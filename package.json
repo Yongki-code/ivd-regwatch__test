@@ -1,0 +1,17 @@
+{
+  "name": "ivd-regwatch",
+  "version": "1.0.0",
+  "description": "MDCG RSS based medical device regulation monitoring dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mdcg",
+    "medical-device",
+    "rss",
+    "regulatory-monitoring"
+  ],
+  "author": "",
+  "license": "MIT"
+}
