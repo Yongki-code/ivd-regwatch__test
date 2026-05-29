@@ -207,7 +207,12 @@ async function loadFeed(useCacheFirst = false) {
     </article>
   `;
 
-  const endpoint = useCacheFirst ? "/api/cache" : "/api/rss";
+const isGitHubPages = location.hostname.endsWith("github.io");
+const endpoint = isGitHubPages
+  ? "data/mdcg-cache.json"
+  : useCacheFirst
+    ? "/api/cache"
+    : "/api/rss";
   try {
     const response = await fetch(endpoint);
     if (!response.ok) throw new Error("feed unavailable");
