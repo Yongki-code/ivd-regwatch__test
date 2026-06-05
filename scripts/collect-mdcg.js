@@ -206,6 +206,51 @@ function parseOpenFdaDeviceRecalls(data, source) {
   });
 }
 
+function parseHtmlPage(html, source) {
+  const links = [...html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+  const seen = new Set();
+
+  return links
+    .map((match, index) => {
+      const href = decodeEntities(match[1]);
+      const title = stripTags(match[2]);
+      if (!title || title.length < 8) return null;
+
+      const link = new URL(href, source.url).href;
+      const key = `${title}|${link}`;
+      if (seen.has(key)) return null;
+      seen.add(key);
+
+      const type = inferType(title, source.type);
+      const severity = classifySeverity(title, "", type);
+      const item = {
+        id: `${source.id}:${link || `${index}-${title}`}`,
+        title,
+        source: source.source,
+        authority: source.authority,
+        region: source.region,
+        country: source.country,
+        type,
+        date: new Date().toISOString().slice(0, 10),
+        link,
+        summary: "",
+        rawSummary: "",
+        severity,
+        read: false,
+        action: "",
+        impactPoints: [],
+        analysisMode: "rules"
+      };
+
+      item.summary = defaultSummary(item);
+      item.action = defaultAction(item);
+      item.impactPoints = impactPoints(item);
+      return item;
+    })
+    .filter(Boolean)
+    .filter((item) => matchesKeywords(item, source));
+}
+
 async function fetchFeed(source) {
   const response = await fetch(source.url, {
     headers: {
@@ -224,6 +269,10 @@ async function fetchFeed(source) {
   }
 
   const xml = await response.text();
+  if (source.kind === "html-page") {
+    return parseHtmlPage(xml, source).slice(0, source.limit || 20);
+  }
+
   return parseFeed(xml, source)
     .filter((item) => matchesKeywords(item, source))
     .slice(0, source.limit || 20);
