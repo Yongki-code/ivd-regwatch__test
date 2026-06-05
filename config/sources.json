@@ -1,1 +1,58 @@
-Add regulatory sources config
+[
+  {
+    "id": "eu-mdcg",
+    "enabled": true,
+    "source": "MDCG",
+    "authority": "European Commission",
+    "region": "EU",
+    "country": "European Union",
+    "type": "Guidance",
+    "url": "https://health.ec.europa.eu/node/12916/rss_en",
+    "keywords": ["medical device", "medical devices", "ivd", "in vitro", "mdcg", "mir", "emdn", "notified bod", "regulation", "guidance"]
+  },
+  {
+    "id": "us-fda-device-recalls",
+    "enabled": true,
+    "source": "FDA",
+    "authority": "U.S. Food and Drug Administration",
+    "region": "US",
+    "country": "United States",
+    "type": "Recall",
+    "kind": "openfda-device-recall",
+    "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
+    "keywords": ["medical device", "device", "diagnostic", "ivd", "recall", "safety"]
+  },
+  {
+    "id": "ca-health-canada-devices",
+    "enabled": true,
+    "source": "Health Canada",
+    "authority": "Health Canada",
+    "region": "CA",
+    "country": "Canada",
+    "type": "Recall",
+    "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
+    "keywords": ["medical device", "device", "diagnostic", "ivd", "recall", "advisory"]
+  },
+  {
+    "id": "uk-mhra-device-safety",
+    "enabled": true,
+    "source": "MHRA",
+    "authority": "Medicines and Healthcare products Regulatory Agency",
+    "region": "UK",
+    "country": "United Kingdom",
+    "type": "Safety Alert",
+    "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=device-safety-information",
+    "keywords": ["medical device", "device", "diagnostic", "ivd", "safety", "field safety"]
+  },
+  {
+    "id": "uk-mhra-field-safety-notices",
+    "enabled": true,
+    "source": "MHRA",
+    "authority": "Medicines and Healthcare products Regulatory Agency",
+    "region": "UK",
+    "country": "United Kingdom",
+    "type": "Field Safety Notice",
+    "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=field-safety-notices",
+    "keywords": ["medical device", "device", "diagnostic", "ivd", "field safety", "notice"]
+  }
+]
