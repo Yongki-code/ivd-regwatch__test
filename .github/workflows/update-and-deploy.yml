@@ -12,11 +12,12 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     environment:
       name: github-pages
@@ -29,13 +30,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Collect MDCG RSS
         run: node scripts/collect-mdcg.js
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          AI_ENRICH_LIMIT: 12
 
       - name: Publish source config
         run: |
