@@ -1,51 +1,7 @@
-const sampleItems = [
-  {
-    id: "sample-1",
-    title: "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
-    source: "MDCG",
-    region: "EU",
-    type: "Guidance",
-    date: "2026-05-18",
-    link: "https://health.ec.europa.eu/medical-devices-sector/latest-updates_en",
-    summary: "적합성 평가와 인증기관 요구사항에 영향을 줄 수 있는 업데이트입니다. 인증 전략, 기술문서, 심사 대응 자료에 반영할 변경점이 있는지 검토가 필요합니다.",
-    severity: "medium",
-    read: false,
-    action: "법규 원문과 부속서를 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
-    impactPoints: ["자사 제품군 인증 경로 영향 확인", "Annex VII 체크리스트 갱신", "인증기관 질의사항 정리"]
-  },
-  {
-    id: "sample-2",
-    title: "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
-    source: "MDCG",
-    region: "EU",
-    type: "Guidance",
-    date: "2026-05-07",
-    link: "https://health.ec.europa.eu/medical-devices-sector/latest-updates_en",
-    summary: "제조사 사고 보고, MIR 양식 또는 감시체계 운영과 관련된 업데이트입니다. RA/QA 담당자는 적용일, 제출 양식, 내부 보고 절차 변경 여부를 우선 확인해야 합니다.",
-    severity: "high",
-    read: false,
-    action: "즉시 영향 평가를 열고 관련 SOP, 제출 양식, 책임자별 액션 항목을 확인하세요. 적용일이 명시된 경우 변경관리 티켓을 생성하는 것을 권장합니다.",
-    impactPoints: ["MIR 7.3.1 적용 여부 확인", "vigilance SOP 개정 검토", "유럽 대리인 및 수입자 공유"]
-  },
-  {
-    id: "sample-3",
-    title: "Implementing Regulation (EU) 2026/977 – uniform requirements for conformity assessment and notified bodies (Annex VII)",
-    source: "MDCG",
-    region: "EU",
-    type: "Guidance",
-    date: "2026-05-05",
-    link: "https://eur-lex.europa.eu/",
-    summary: "EU 의료기기 규정을 준수하기 위한 통일된 요구사항을 제시합니다. IVD 제품의 안전성과 효능 보장을 위해 인증기관과 적합성 평가 과정의 일관성을 확인하세요.",
-    severity: "high",
-    read: false,
-    action: "Annex VII 요구사항을 내부 기술문서 점검표에 반영하고, 진행 중인 인증 프로젝트의 심사 범위를 재확인하세요.",
-    impactPoints: ["심사 대응 자료 갭 분석", "인증기관 계약 범위 확인", "품질문서 변경관리 착수"]
-  }
-];
-
-let allItems = [];
+﻿let allItems = [];
 let activeSeverity = "all";
 let selectedItemId = null;
+let currentPayload = null;
 
 const elements = {
   feedList: document.querySelector("#feedList"),
@@ -57,6 +13,12 @@ const elements = {
   unreadCount: document.querySelector("#unreadCount"),
   lastCollected: document.querySelector("#lastCollected"),
   collectionMode: document.querySelector("#collectionMode"),
+  aiStatus: document.querySelector("#aiStatus"),
+  aiFooter: document.querySelector("#aiFooter"),
+  aiDot: document.querySelector("#aiDot"),
+  regionFilters: document.querySelector("#regionFilters"),
+  typeFilters: document.querySelector("#typeFilters"),
+  sourceFilters: document.querySelector("#sourceFilters"),
   detailPanel: document.querySelector("#detailPanel"),
   detailContent: document.querySelector("#detailContent"),
   settingsModal: document.querySelector("#settingsModal")
@@ -93,17 +55,42 @@ function getCheckedValues(filterName) {
   return [...document.querySelectorAll(`[data-filter="${filterName}"]:checked`)].map((input) => input.value);
 }
 
+function uniqueValues(key) {
+  return [...new Set(allItems.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function renderFilterGroup(container, filterName, values) {
+  container.innerHTML = values.map((value) => `
+    <label class="check-row">
+      <input type="checkbox" checked data-filter="${filterName}" value="${escapeHtml(value)}" />
+      <span>${escapeHtml(value)}</span>
+    </label>
+  `).join("");
+
+  container.querySelectorAll("[data-filter]").forEach((input) => {
+    input.addEventListener("change", renderList);
+  });
+}
+
+function renderDynamicFilters() {
+  renderFilterGroup(elements.regionFilters, "region", uniqueValues("region"));
+  renderFilterGroup(elements.typeFilters, "type", uniqueValues("type"));
+  renderFilterGroup(elements.sourceFilters, "source", uniqueValues("source"));
+}
+
 function getFilteredItems() {
   const query = elements.searchInput.value.trim().toLowerCase();
   const regions = getCheckedValues("region");
   const types = getCheckedValues("type");
+  const sources = getCheckedValues("source");
 
   return allItems.filter((item) => {
     const matchesQuery = !query || `${item.title} ${item.summary}`.toLowerCase().includes(query);
     const matchesRegion = regions.includes(item.region);
     const matchesType = types.includes(item.type);
+    const matchesSource = sources.includes(item.source);
     const matchesSeverity = activeSeverity === "all" || item.severity === activeSeverity;
-    return matchesQuery && matchesRegion && matchesType && matchesSeverity;
+    return matchesQuery && matchesRegion && matchesType && matchesSource && matchesSeverity;
   });
 }
 
@@ -144,6 +131,8 @@ function renderList() {
         <span>${escapeHtml(item.source)}</span>
         <span class="separator">·</span>
         <span class="region-pill">${escapeHtml(item.region)}</span>
+        <span class="separator">·</span>
+        <span>${escapeHtml(item.analysisMode === "ai" ? "AI" : "Rules")}</span>
         ${!item.read ? '<span class="new-badge">NEW</span>' : ""}
       </div>
       <span class="doc-pill">${escapeHtml(item.type)}</span>
@@ -171,12 +160,12 @@ function renderDetail(item) {
     </header>
 
     <section class="insight-card ai">
-      <h3>AI 요약</h3>
+      <h3>${item.analysisMode === "ai" ? "AI 요약" : "규칙 기반 요약"}</h3>
       <p>${escapeHtml(item.summary)}</p>
     </section>
 
     <section class="insight-card action">
-      <h3>RA ACTION</h3>
+      <h3>${item.analysisMode === "ai" ? "AI RA ACTION" : "RA ACTION"}</h3>
       <p>${escapeHtml(item.action)}</p>
     </section>
 
@@ -220,16 +209,24 @@ async function loadFeed(useCacheFirst = false) {
     const response = await fetch(endpoint);
     if (!response.ok) throw new Error("feed unavailable");
     const payload = await response.json();
-    allItems = payload.items?.length ? payload.items : sampleItems;
+    currentPayload = payload;
+    allItems = payload.items || [];
     elements.lastCollected.textContent = payload.collectedAt ? payload.collectedAt.slice(0, 10) : "-";
-    elements.collectionMode.textContent = payload.mode === "html-fallback" ? "HTML 보조" : "RSS";
+    elements.collectionMode.textContent = payload.mode?.includes("ai") ? "RSS + AI" : "RSS";
+    elements.aiStatus.textContent = payload.aiEnabled ? "활성" : "비활성";
+    elements.aiFooter.textContent = payload.aiEnabled ? "AI 분석 활성" : "규칙 기반 분석";
+    elements.aiDot.classList.toggle("success", Boolean(payload.aiEnabled));
+    renderDynamicFilters();
   } catch (error) {
     if (isLocalServer && !useCacheFirst) {
       return loadFeed(true);
     }
-    allItems = sampleItems;
-    elements.lastCollected.textContent = "샘플";
-    elements.collectionMode.textContent = "샘플";
+    allItems = [];
+    elements.lastCollected.textContent = "-";
+    elements.collectionMode.textContent = "오류";
+    elements.aiStatus.textContent = "비활성";
+    elements.aiFooter.textContent = "데이터 로드 실패";
+    renderDynamicFilters();
   }
   renderList();
 }
@@ -289,3 +286,5 @@ document.addEventListener("keydown", (event) => {
 });
 
 loadFeed();
+
+
