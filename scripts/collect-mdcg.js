@@ -48,6 +48,17 @@ function normalizeDate(value) {
   return date.toISOString().slice(0, 10);
 }
 
+function readHtmlHeading(html) {
+  const title = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1];
+  const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1];
+  return decodeEntities(stripTags(h1 || title || "")).replace(/\s+\|\s+.*$/, "").trim();
+}
+
+function inferHtmlDate(text) {
+  const match = text.match(/(?:published|last updated)\s+([0-9]{1,2}\s+[a-z]+\s+[0-9]{4})/i);
+  return normalizeDate(match?.[1]);
+}
+
 function inferType(title, sourceType) {
   const text = title.toLowerCase();
   if (/recall|field safety|safety alert|hazard|medwatch|market action/.test(text)) return sourceType || "Safety Alert";
@@ -209,8 +220,11 @@ function parseOpenFdaDeviceRecalls(data, source) {
 function parseHtmlPage(html, source) {
   const links = [...html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
   const seen = new Set();
+  const pageTitle = readHtmlHeading(html) || source.source || "Regulatory update";
+  const pageText = stripTags(decodeEntities(html));
+  const pageDate = inferHtmlDate(pageText);
 
-  return links
+  const linkItems = links
     .map((match, index) => {
       const href = decodeEntities(match[1]);
       const title = stripTags(match[2]);
@@ -231,7 +245,7 @@ function parseHtmlPage(html, source) {
         region: source.region,
         country: source.country,
         type,
-        date: new Date().toISOString().slice(0, 10),
+        date: pageDate,
         link,
         summary: "",
         rawSummary: "",
@@ -247,15 +261,44 @@ function parseHtmlPage(html, source) {
       item.impactPoints = impactPoints(item);
       return item;
     })
-    .filter(Boolean)
-    .filter((item) => matchesKeywords(item, source));
+    .filter(Boolean);
+
+  const matchedLinks = linkItems.filter((item) => matchesKeywords(item, source));
+  if (matchedLinks.length) return matchedLinks;
+
+  const type = inferType(pageTitle, source.type);
+  const rawSummary = pageText.slice(0, 700);
+  const severity = classifySeverity(pageTitle, rawSummary, type);
+  const pageItem = {
+    id: `${source.id}:${source.url}`,
+    title: pageTitle,
+    source: source.source,
+    authority: source.authority,
+    region: source.region,
+    country: source.country,
+    type,
+    date: pageDate,
+    link: source.url,
+    summary: "",
+    rawSummary,
+    severity,
+    read: false,
+    action: "",
+    impactPoints: [],
+    analysisMode: "rules"
+  };
+
+  pageItem.summary = defaultSummary(pageItem);
+  pageItem.action = defaultAction(pageItem);
+  pageItem.impactPoints = impactPoints(pageItem);
+  return matchesKeywords(pageItem, source) ? [pageItem] : [];
 }
 
 async function fetchFeed(source) {
   const response = await fetch(source.url, {
     headers: {
       "user-agent": "IVD-RegWatch-GitHub-Actions/2.0",
-      accept: "application/rss+xml, application/atom+xml, application/xml, text/xml"
+      accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, text/html"
     }
   });
 
@@ -311,8 +354,7 @@ async function enrichWithAi(item) {
     },
     body: JSON.stringify({
       model: OPENAI_MODEL,
-      input: prompt,
-      temperature: 0.2
+      input: prompt
     })
   });
 
@@ -335,8 +377,39 @@ async function enrichWithAi(item) {
   };
 }
 
+function readPreviousPayload() {
+  if (!fs.existsSync(OUTPUT)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(OUTPUT, "utf8"));
+  } catch (error) {
+    return null;
+  }
+}
+
+function sourceSnapshot(sources) {
+  return sources.map(({ id, source, authority, region, country, type, url, enabled, kind }) => ({
+    id,
+    source,
+    authority,
+    region,
+    country,
+    type,
+    url,
+    enabled,
+    kind: kind || "rss"
+  }));
+}
+
+function formatError(error) {
+  const cause = error.cause?.code || error.cause?.message;
+  return cause ? `${error.message}: ${cause}` : error.message;
+}
+
 async function main() {
   const sources = JSON.parse(fs.readFileSync(SOURCES_PATH, "utf8")).filter((source) => source.enabled !== false);
+  const previousPayload = readPreviousPayload();
+  const previousItems = Array.isArray(previousPayload?.items) ? previousPayload.items : [];
+  const hasPreviousItems = previousItems.length > 0;
   const results = [];
   const errors = [];
 
@@ -346,22 +419,31 @@ async function main() {
       results.push(...items);
       console.log(`Collected ${items.length} items from ${source.id}.`);
     } catch (error) {
-      errors.push({ source: source.id, message: error.message });
-      console.error(error.message);
+      const message = formatError(error);
+      errors.push({ source: source.id, message });
+      console.error(message);
     }
   }
 
-  const uniqueItems = [...new Map(results.map((item) => [item.id, item])).values()]
+  const mergedItems = results.length ? [...results, ...previousItems] : previousItems;
+  const uniqueItems = [...new Map(mergedItems.map((item) => [item.id, item])).values()]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 80);
 
   const enriched = [];
-  for (const item of uniqueItems) {
-    try {
-      enriched.push(await enrichWithAi(item));
-    } catch (error) {
-      errors.push({ source: item.source, message: error.message });
-      enriched.push(item);
+  const usingStaleCache = results.length === 0 && hasPreviousItems;
+
+  if (usingStaleCache) {
+    enriched.push(...uniqueItems);
+    errors.push({ source: "cache", message: "All live fetches failed. Previous cache was preserved." });
+  } else {
+    for (const item of uniqueItems) {
+      try {
+        enriched.push(await enrichWithAi(item));
+      } catch (error) {
+        errors.push({ source: item.source, message: formatError(error) });
+        enriched.push(item);
+      }
     }
   }
 
@@ -375,16 +457,9 @@ async function main() {
         aiEnabled: USE_AI,
         openAiModel: USE_AI ? OPENAI_MODEL : null,
         count: enriched.length,
-        sources: sources.map(({ id, source, authority, region, country, type, url, enabled }) => ({
-          id,
-          source,
-          authority,
-          region,
-          country,
-          type,
-          url,
-          enabled
-        })),
+        sources: sourceSnapshot(sources),
+        staleCache: usingStaleCache,
+        previousCollectedAt: usingStaleCache ? previousPayload.collectedAt || null : null,
         errors,
         items: enriched
       },
