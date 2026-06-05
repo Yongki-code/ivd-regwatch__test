@@ -138,13 +138,65 @@
             Branch
             <input id="githubBranchInput" type="text" value="main" />
           </label>
-          <label>
-            수집 소스 JSON
-            <textarea id="sourcesJsonInput" spellcheck="false" placeholder="config/sources.json 내용을 불러오는 중입니다."></textarea>
-          </label>
+          <div class="source-manager">
+            <div class="source-manager-head">
+              <h3>수집 소스 관리</h3>
+              <button class="ghost-button" id="newSourceButton" type="button">+ 소스 추가</button>
+            </div>
+
+            <section class="source-form" id="sourceForm" aria-label="수집 소스 입력">
+              <input id="sourceEditIndex" type="hidden" value="" />
+              <label>
+                소스 이름
+                <input id="sourceNameInput" type="text" placeholder="MDCG" />
+              </label>
+              <label>
+                URL
+                <input id="sourceUrlInput" type="url" placeholder="https://..." />
+              </label>
+              <div class="form-grid">
+                <label>
+                  기관명
+                  <input id="sourceAuthorityInput" type="text" placeholder="European Commission" />
+                </label>
+                <label>
+                  지역
+                  <select id="sourceRegionInput">
+                    <option value="EU">EU</option>
+                    <option value="US">US</option>
+                    <option value="CA">CA</option>
+                    <option value="UK">UK</option>
+                    <option value="AU">AU</option>
+                    <option value="JP">JP</option>
+                    <option value="KR">KR</option>
+                    <option value="Global">Global</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                문서 유형
+                <input id="sourceTypeInput" type="text" placeholder="Guidance" />
+              </label>
+              <label>
+                키워드
+                <input id="sourceKeywordsInput" type="text" placeholder="medical device, ivd, recall, guidance" />
+              </label>
+              <fieldset class="url-kind-group">
+                <legend>URL 유형</legend>
+                <label><input type="radio" name="sourceKind" value="rss" checked /> RSS/Atom</label>
+                <label><input type="radio" name="sourceKind" value="html-page" /> HTML</label>
+                <label><input type="radio" name="sourceKind" value="openfda-device-recall" /> openFDA API</label>
+              </fieldset>
+              <div class="source-form-actions">
+                <button class="ghost-button" id="clearSourceFormButton" type="button">취소</button>
+                <button class="primary-action" id="saveSourceFormButton" type="button">소스 저장</button>
+              </div>
+            </section>
+
+            <div class="managed-source-list" id="managedSourceList"></div>
+          </div>
           <div class="source-admin-actions">
             <button class="ghost-button" id="loadSourcesButton" type="button">현재 설정 불러오기</button>
-            <button class="ghost-button" id="insertSourceButton" type="button">소스 템플릿 추가</button>
             <button class="primary-action" id="applySourcesButton" type="button">저장 후 수집 실행</button>
           </div>
           <p class="apply-status" id="sourceApplyStatus">토큰은 브라우저 메모리에서만 사용되며 저장하지 않습니다.</p>

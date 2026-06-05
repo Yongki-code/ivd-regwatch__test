@@ -2,6 +2,7 @@
 let activeSeverity = "all";
 let selectedItemId = null;
 let currentPayload = null;
+let sourceDrafts = [];
 
 const elements = {
   feedList: document.querySelector("#feedList"),
@@ -21,7 +22,14 @@ const elements = {
   sourceFilters: document.querySelector("#sourceFilters"),
   githubTokenInput: document.querySelector("#githubTokenInput"),
   githubBranchInput: document.querySelector("#githubBranchInput"),
-  sourcesJsonInput: document.querySelector("#sourcesJsonInput"),
+  sourceEditIndex: document.querySelector("#sourceEditIndex"),
+  sourceNameInput: document.querySelector("#sourceNameInput"),
+  sourceUrlInput: document.querySelector("#sourceUrlInput"),
+  sourceAuthorityInput: document.querySelector("#sourceAuthorityInput"),
+  sourceRegionInput: document.querySelector("#sourceRegionInput"),
+  sourceTypeInput: document.querySelector("#sourceTypeInput"),
+  sourceKeywordsInput: document.querySelector("#sourceKeywordsInput"),
+  managedSourceList: document.querySelector("#managedSourceList"),
   sourceApplyStatus: document.querySelector("#sourceApplyStatus"),
   detailPanel: document.querySelector("#detailPanel"),
   detailContent: document.querySelector("#detailContent"),
@@ -218,29 +226,165 @@ function fromBase64(value) {
   return new TextDecoder().decode(bytes);
 }
 
-function validateSourcesJson(value) {
-  const parsed = JSON.parse(value);
-  if (!Array.isArray(parsed)) {
-    throw new Error("최상위 값은 배열이어야 합니다.");
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "source";
+}
+
+function getSelectedSourceKind() {
+  return document.querySelector('input[name="sourceKind"]:checked')?.value || "rss";
+}
+
+function setSelectedSourceKind(kind = "rss") {
+  const normalized = kind === "openfda-device-recall" || kind === "html-page" ? kind : "rss";
+  const input = document.querySelector(`input[name="sourceKind"][value="${normalized}"]`);
+  if (input) input.checked = true;
+}
+
+function normalizeSource(source, index = 0) {
+  const sourceName = (source.source || "Authority").trim();
+  const region = (source.region || "Global").trim();
+  const type = (source.type || "Update").trim();
+  const keywords = Array.isArray(source.keywords)
+    ? source.keywords
+    : String(source.keywords || "")
+        .split(",")
+        .map((keyword) => keyword.trim())
+        .filter(Boolean);
+
+  return {
+    id: source.id || `${slugify(region)}-${slugify(sourceName)}-${index + 1}`,
+    enabled: source.enabled !== false,
+    source: sourceName,
+    authority: (source.authority || sourceName).trim(),
+    region,
+    country: (source.country || region).trim(),
+    type,
+    ...(source.kind && source.kind !== "rss" ? { kind: source.kind } : {}),
+    url: (source.url || "").trim(),
+    keywords
+  };
+}
+
+function validateSources(sources) {
+  if (!Array.isArray(sources)) {
+    throw new Error("소스 목록을 불러오지 못했습니다.");
   }
 
-  parsed.forEach((source, index) => {
+  return sources.map((source, index) => {
+    const normalized = normalizeSource(source, index);
     ["id", "source", "region", "type", "url"].forEach((key) => {
-      if (!source[key]) {
+      if (!normalized[key]) {
         throw new Error(`${index + 1}번째 소스에 ${key} 값이 없습니다.`);
       }
     });
     try {
-      new URL(source.url);
+      new URL(normalized.url);
     } catch {
       throw new Error(`${index + 1}번째 소스 URL 형식이 올바르지 않습니다.`);
     }
-    if (source.keywords && !Array.isArray(source.keywords)) {
-      throw new Error(`${index + 1}번째 소스 keywords는 배열이어야 합니다.`);
-    }
+    return normalized;
   });
+}
 
-  return parsed;
+function clearSourceForm() {
+  elements.sourceEditIndex.value = "";
+  elements.sourceNameInput.value = "";
+  elements.sourceUrlInput.value = "";
+  elements.sourceAuthorityInput.value = "";
+  elements.sourceRegionInput.value = "EU";
+  elements.sourceTypeInput.value = "Guidance";
+  elements.sourceKeywordsInput.value = "";
+  setSelectedSourceKind("rss");
+}
+
+function fillSourceForm(source, index) {
+  elements.sourceEditIndex.value = String(index);
+  elements.sourceNameInput.value = source.source || "";
+  elements.sourceUrlInput.value = source.url || "";
+  elements.sourceAuthorityInput.value = source.authority || source.source || "";
+  elements.sourceRegionInput.value = source.region || "Global";
+  elements.sourceTypeInput.value = source.type || "Update";
+  elements.sourceKeywordsInput.value = (source.keywords || []).join(", ");
+  setSelectedSourceKind(source.kind || "rss");
+}
+
+function sourceFromForm() {
+  const sourceName = elements.sourceNameInput.value.trim();
+  const region = elements.sourceRegionInput.value.trim();
+  const type = elements.sourceTypeInput.value.trim();
+  const url = elements.sourceUrlInput.value.trim();
+  const kind = getSelectedSourceKind();
+
+  if (!sourceName) throw new Error("소스 이름을 입력해 주세요.");
+  if (!url) throw new Error("URL을 입력해 주세요.");
+  new URL(url);
+
+  const editIndex = elements.sourceEditIndex.value === "" ? -1 : Number(elements.sourceEditIndex.value);
+  const previous = editIndex >= 0 ? sourceDrafts[editIndex] : null;
+  return normalizeSource({
+    id: previous?.id || `${slugify(region)}-${slugify(sourceName)}`,
+    enabled: previous?.enabled ?? true,
+    source: sourceName,
+    authority: elements.sourceAuthorityInput.value.trim() || sourceName,
+    region,
+    country: region,
+    type,
+    kind,
+    url,
+    keywords: elements.sourceKeywordsInput.value
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean)
+  });
+}
+
+function renderManagedSources() {
+  if (!sourceDrafts.length) {
+    elements.managedSourceList.innerHTML = `
+      <article class="managed-source empty">
+        <span>등록된 수집 소스가 없습니다.</span>
+      </article>
+    `;
+    return;
+  }
+
+  elements.managedSourceList.innerHTML = sourceDrafts.map((source, index) => `
+    <article class="managed-source ${source.enabled ? "" : "disabled"}">
+      <label class="switch">
+        <input type="checkbox" data-source-toggle="${index}" ${source.enabled ? "checked" : ""} />
+        <span></span>
+      </label>
+      <button class="managed-source-main" type="button" data-source-edit="${index}">
+        <strong>${escapeHtml(source.source)}</strong>
+        <small>${escapeHtml(source.authority || source.source)}</small>
+      </button>
+      <span class="source-chip">${escapeHtml(source.region)}</span>
+      <span class="source-chip">${escapeHtml(source.kind === "html-page" ? "HTML" : source.kind === "openfda-device-recall" ? "API" : "RSS")}</span>
+      <button class="source-delete" type="button" data-source-delete="${index}" aria-label="소스 삭제">⌫</button>
+    </article>
+  `).join("");
+}
+
+function saveSourceForm() {
+  const source = sourceFromForm();
+  const editIndex = elements.sourceEditIndex.value === "" ? -1 : Number(elements.sourceEditIndex.value);
+  if (editIndex >= 0) {
+    sourceDrafts[editIndex] = source;
+  } else {
+    sourceDrafts.push(source);
+  }
+  clearSourceForm();
+  renderManagedSources();
+  setApplyStatus("소스 목록에 반영했습니다. GitHub에 적용하려면 저장 후 수집 실행을 누르세요.", "success");
+}
+
+function newSourceForm() {
+  clearSourceForm();
+  elements.sourceNameInput.focus();
 }
 
 async function githubRequest(path, options = {}) {
@@ -276,7 +420,8 @@ async function loadSourcesConfig() {
   async function loadPublishedConfig(message) {
     const response = await fetch("./config/sources.json");
     if (!response.ok) throw new Error("config/sources.json을 불러오지 못했습니다.");
-    elements.sourcesJsonInput.value = JSON.stringify(await response.json(), null, 2);
+    sourceDrafts = validateSources(await response.json());
+    renderManagedSources();
     setApplyStatus(message, "success");
   }
 
@@ -294,45 +439,26 @@ async function loadSourcesConfig() {
 
   try {
     const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
-    elements.sourcesJsonInput.dataset.sha = data.sha;
-    elements.sourcesJsonInput.value = JSON.stringify(JSON.parse(fromBase64(data.content)), null, 2);
+    elements.managedSourceList.dataset.sha = data.sha;
+    sourceDrafts = validateSources(JSON.parse(fromBase64(data.content)));
+    renderManagedSources();
     setApplyStatus("GitHub 저장소의 최신 config/sources.json을 불러왔습니다.", "success");
   } catch (error) {
     await loadPublishedConfig(`GitHub API 불러오기는 실패했지만 배포된 설정을 표시했습니다. ${error.message}`);
   }
 }
 
-function insertSourceTemplate() {
-  const template = {
-    id: "new-authority-feed",
-    enabled: true,
-    source: "Authority",
-    authority: "Authority full name",
-    region: "KR",
-    country: "Korea",
-    type: "Guidance",
-    url: "https://example.com/rss.xml",
-    keywords: ["medical device", "ivd", "recall", "guidance"]
-  };
-
-  const current = elements.sourcesJsonInput.value.trim();
-  const sources = current ? validateSourcesJson(current) : [];
-  sources.push(template);
-  elements.sourcesJsonInput.value = JSON.stringify(sources, null, 2);
-  setApplyStatus("소스 템플릿을 추가했습니다. id, source, region, url, keywords를 수정하세요.", "success");
-}
-
 async function applySourcesConfig() {
   const { owner, repo } = getRepoInfo();
   const branch = elements.githubBranchInput.value.trim() || "main";
-  const sources = validateSourcesJson(elements.sourcesJsonInput.value);
+  const sources = validateSources(sourceDrafts);
 
   if (!owner || !repo) {
     throw new Error("GitHub Pages URL에서 접속해야 저장소에 바로 적용할 수 있습니다.");
   }
 
   setApplyStatus("GitHub에 설정을 저장하는 중입니다. 잠시만 기다려 주세요.", "muted");
-  let sha = elements.sourcesJsonInput.dataset.sha;
+  let sha = elements.managedSourceList.dataset.sha;
   if (!sha) {
     const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
     sha = data.sha;
@@ -409,7 +535,7 @@ async function loadFeed(useCacheFirst = false) {
 function openSettings() {
   elements.settingsModal.classList.add("open");
   elements.settingsModal.setAttribute("aria-hidden", "false");
-  if (!elements.sourcesJsonInput.value.trim()) {
+  if (!sourceDrafts.length) {
     loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
   }
 }
@@ -445,15 +571,42 @@ document.querySelector("#saveSettings").addEventListener("click", closeSettings)
 document.querySelector("#loadSourcesButton").addEventListener("click", () => {
   loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
 });
-document.querySelector("#insertSourceButton").addEventListener("click", () => {
+document.querySelector("#newSourceButton").addEventListener("click", newSourceForm);
+document.querySelector("#clearSourceFormButton").addEventListener("click", () => {
+  clearSourceForm();
+  setApplyStatus("소스 입력을 취소했습니다.", "muted");
+});
+document.querySelector("#saveSourceFormButton").addEventListener("click", () => {
   try {
-    insertSourceTemplate();
+    saveSourceForm();
   } catch (error) {
     setApplyStatus(error.message, "error");
   }
 });
 document.querySelector("#applySourcesButton").addEventListener("click", () => {
   applySourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+});
+
+elements.managedSourceList.addEventListener("click", (event) => {
+  const editButton = event.target.closest("[data-source-edit]");
+  const deleteButton = event.target.closest("[data-source-delete]");
+  if (editButton) {
+    fillSourceForm(sourceDrafts[Number(editButton.dataset.sourceEdit)], Number(editButton.dataset.sourceEdit));
+    setApplyStatus("선택한 소스를 편집 중입니다.", "muted");
+  }
+  if (deleteButton) {
+    sourceDrafts.splice(Number(deleteButton.dataset.sourceDelete), 1);
+    renderManagedSources();
+    setApplyStatus("소스를 삭제했습니다. GitHub에 적용하려면 저장 후 수집 실행을 누르세요.", "success");
+  }
+});
+
+elements.managedSourceList.addEventListener("change", (event) => {
+  const toggle = event.target.closest("[data-source-toggle]");
+  if (!toggle) return;
+  sourceDrafts[Number(toggle.dataset.sourceToggle)].enabled = toggle.checked;
+  renderManagedSources();
+  setApplyStatus("소스 활성 상태를 변경했습니다. GitHub에 적용하려면 저장 후 수집 실행을 누르세요.", "success");
 });
 
 document.querySelectorAll("[data-filter]").forEach((input) => {
