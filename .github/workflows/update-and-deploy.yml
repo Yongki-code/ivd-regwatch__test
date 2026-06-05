@@ -33,6 +33,9 @@ jobs:
 
       - name: Collect MDCG RSS
         run: node scripts/collect-mdcg.js
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
