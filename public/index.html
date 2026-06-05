@@ -126,6 +126,29 @@
           <h3>새 국가/기관 추가</h3>
           <p><code>config/sources.json</code>에 source, region, type, url, keywords를 추가한 뒤 Actions를 다시 실행하세요.</p>
         </div>
+
+        <div class="source-admin">
+          <h3>사이트에서 바로 적용</h3>
+          <p>관리자 GitHub 토큰으로 <code>config/sources.json</code>을 커밋하고 수집 워크플로우를 실행합니다.</p>
+          <label>
+            GitHub classic token
+            <input id="githubTokenInput" type="password" autocomplete="off" placeholder="repo, workflow 권한 필요" />
+          </label>
+          <label>
+            Branch
+            <input id="githubBranchInput" type="text" value="main" />
+          </label>
+          <label>
+            수집 소스 JSON
+            <textarea id="sourcesJsonInput" spellcheck="false" placeholder="config/sources.json 내용을 불러오는 중입니다."></textarea>
+          </label>
+          <div class="source-admin-actions">
+            <button class="ghost-button" id="loadSourcesButton" type="button">현재 설정 불러오기</button>
+            <button class="ghost-button" id="insertSourceButton" type="button">소스 템플릿 추가</button>
+            <button class="primary-action" id="applySourcesButton" type="button">저장 후 수집 실행</button>
+          </div>
+          <p class="apply-status" id="sourceApplyStatus">토큰은 브라우저 메모리에서만 사용되며 저장하지 않습니다.</p>
+        </div>
         <div class="modal-actions">
           <button class="ghost-button" id="cancelSettings" type="button">취소</button>
           <button class="primary-action" id="saveSettings" type="button">저장</button>

@@ -19,6 +19,10 @@ const elements = {
   regionFilters: document.querySelector("#regionFilters"),
   typeFilters: document.querySelector("#typeFilters"),
   sourceFilters: document.querySelector("#sourceFilters"),
+  githubTokenInput: document.querySelector("#githubTokenInput"),
+  githubBranchInput: document.querySelector("#githubBranchInput"),
+  sourcesJsonInput: document.querySelector("#sourcesJsonInput"),
+  sourceApplyStatus: document.querySelector("#sourceApplyStatus"),
   detailPanel: document.querySelector("#detailPanel"),
   detailContent: document.querySelector("#detailContent"),
   settingsModal: document.querySelector("#settingsModal")
@@ -188,6 +192,161 @@ function closeDetail() {
   renderList();
 }
 
+function getRepoInfo() {
+  const owner = location.hostname.endsWith("github.io") ? location.hostname.split(".")[0] : "";
+  const repo = location.hostname.endsWith("github.io") ? location.pathname.split("/").filter(Boolean)[0] : "";
+  return { owner, repo };
+}
+
+function setApplyStatus(message, tone = "muted") {
+  elements.sourceApplyStatus.textContent = message;
+  elements.sourceApplyStatus.dataset.tone = tone;
+}
+
+function toBase64(value) {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary);
+}
+
+function fromBase64(value) {
+  const binary = atob(value.replace(/\s/g, ""));
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function validateSourcesJson(value) {
+  const parsed = JSON.parse(value);
+  if (!Array.isArray(parsed)) {
+    throw new Error("최상위 값은 배열이어야 합니다.");
+  }
+
+  parsed.forEach((source, index) => {
+    ["id", "source", "region", "type", "url"].forEach((key) => {
+      if (!source[key]) {
+        throw new Error(`${index + 1}번째 소스에 ${key} 값이 없습니다.`);
+      }
+    });
+    try {
+      new URL(source.url);
+    } catch {
+      throw new Error(`${index + 1}번째 소스 URL 형식이 올바르지 않습니다.`);
+    }
+    if (source.keywords && !Array.isArray(source.keywords)) {
+      throw new Error(`${index + 1}번째 소스 keywords는 배열이어야 합니다.`);
+    }
+  });
+
+  return parsed;
+}
+
+async function githubRequest(path, options = {}) {
+  const token = elements.githubTokenInput.value.trim();
+  if (!token) {
+    throw new Error("GitHub classic token을 입력해 주세요.");
+  }
+
+  const response = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      accept: "application/vnd.github+json",
+      authorization: `Bearer ${token}`,
+      "x-github-api-version": "2022-11-28",
+      ...(options.headers || {})
+    }
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`GitHub API 오류 ${response.status}: ${detail.slice(0, 220)}`);
+  }
+
+  if (response.status === 204) return null;
+  return response.json();
+}
+
+async function loadSourcesConfig() {
+  const { owner, repo } = getRepoInfo();
+  const branch = elements.githubBranchInput.value.trim() || "main";
+
+  if (!owner || !repo) {
+    const response = await fetch("../config/sources.json");
+    if (!response.ok) throw new Error("config/sources.json을 불러오지 못했습니다.");
+    elements.sourcesJsonInput.value = JSON.stringify(await response.json(), null, 2);
+    setApplyStatus("현재 설정을 불러왔습니다. GitHub Pages에서 접속하면 바로 저장도 가능합니다.", "success");
+    return;
+  }
+
+  const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
+  elements.sourcesJsonInput.dataset.sha = data.sha;
+  elements.sourcesJsonInput.value = JSON.stringify(JSON.parse(fromBase64(data.content)), null, 2);
+  setApplyStatus("현재 config/sources.json을 불러왔습니다.", "success");
+}
+
+function insertSourceTemplate() {
+  const template = {
+    id: "new-authority-feed",
+    enabled: true,
+    source: "Authority",
+    authority: "Authority full name",
+    region: "KR",
+    country: "Korea",
+    type: "Guidance",
+    url: "https://example.com/rss.xml",
+    keywords: ["medical device", "ivd", "recall", "guidance"]
+  };
+
+  const current = elements.sourcesJsonInput.value.trim();
+  const sources = current ? validateSourcesJson(current) : [];
+  sources.push(template);
+  elements.sourcesJsonInput.value = JSON.stringify(sources, null, 2);
+  setApplyStatus("소스 템플릿을 추가했습니다. id, source, region, url, keywords를 수정하세요.", "success");
+}
+
+async function applySourcesConfig() {
+  const { owner, repo } = getRepoInfo();
+  const branch = elements.githubBranchInput.value.trim() || "main";
+  const sources = validateSourcesJson(elements.sourcesJsonInput.value);
+
+  if (!owner || !repo) {
+    throw new Error("GitHub Pages URL에서 접속해야 저장소에 바로 적용할 수 있습니다.");
+  }
+
+  setApplyStatus("GitHub에 설정을 저장하는 중입니다.", "muted");
+  let sha = elements.sourcesJsonInput.dataset.sha;
+  if (!sha) {
+    const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
+    sha = data.sha;
+  }
+
+  await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "Update regulatory source settings",
+      content: toBase64(`${JSON.stringify(sources, null, 2)}\n`),
+      sha,
+      branch
+    })
+  });
+
+  setApplyStatus("설정 저장 완료. 수집 워크플로우를 실행하는 중입니다.", "success");
+  await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ ref: branch })
+  });
+
+  setApplyStatus("적용 완료. Actions 탭에서 실행 상태를 확인하고, 완료 후 사이트를 새로고침하세요.", "success");
+}
+
 async function loadFeed(useCacheFirst = false) {
   elements.feedList.innerHTML = `
     <article class="empty-state loading">
@@ -234,6 +393,9 @@ async function loadFeed(useCacheFirst = false) {
 function openSettings() {
   elements.settingsModal.classList.add("open");
   elements.settingsModal.setAttribute("aria-hidden", "false");
+  if (!elements.sourcesJsonInput.value.trim()) {
+    loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+  }
 }
 
 function closeSettings() {
@@ -264,6 +426,19 @@ document.querySelector("#settingsButton").addEventListener("click", openSettings
 document.querySelector("#closeSettings").addEventListener("click", closeSettings);
 document.querySelector("#cancelSettings").addEventListener("click", closeSettings);
 document.querySelector("#saveSettings").addEventListener("click", closeSettings);
+document.querySelector("#loadSourcesButton").addEventListener("click", () => {
+  loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+});
+document.querySelector("#insertSourceButton").addEventListener("click", () => {
+  try {
+    insertSourceTemplate();
+  } catch (error) {
+    setApplyStatus(error.message, "error");
+  }
+});
+document.querySelector("#applySourcesButton").addEventListener("click", () => {
+  applySourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+});
 
 document.querySelectorAll("[data-filter]").forEach((input) => {
   input.addEventListener("change", renderList);

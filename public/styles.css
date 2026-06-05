@@ -38,7 +38,8 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -583,11 +584,13 @@ button {
 .settings-modal {
   position: relative;
   width: min(780px, 94vw);
+  max-height: calc(100vh - 48px);
   padding: 42px 36px 34px;
   border: 1px solid var(--border-strong);
   border-radius: 12px;
   background: #121c2d;
   box-shadow: var(--shadow);
+  overflow-y: auto;
 }
 
 .modal-close {
@@ -613,14 +616,27 @@ button {
   font-size: 20px;
 }
 
-.settings-modal input {
+.settings-modal input,
+.settings-modal textarea {
   width: 100%;
-  min-height: 56px;
   padding: 0 16px;
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   background: #111a2a;
   color: var(--text);
+}
+
+.settings-modal input {
+  min-height: 56px;
+}
+
+.settings-modal textarea {
+  min-height: 260px;
+  padding: 14px 16px;
+  resize: vertical;
+  line-height: 1.45;
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 14px;
 }
 
 .hint,
@@ -634,6 +650,45 @@ button {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #0f1726;
+}
+
+.source-admin {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #0d1524;
+}
+
+.source-admin h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.source-admin p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.source-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.apply-status {
+  min-height: 22px;
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.apply-status[data-tone="success"] {
+  color: #91f0b9;
+}
+
+.apply-status[data-tone="error"] {
+  color: #ffb2b5;
 }
 
 .source-help h3 {
