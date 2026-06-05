@@ -37,6 +37,11 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
 
+      - name: Publish source config
+        run: |
+          mkdir -p public/config
+          cp config/sources.json public/config/sources.json
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
