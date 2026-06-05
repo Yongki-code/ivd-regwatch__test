@@ -6,6 +6,7 @@ const PORT = Number(process.env.PORT || 4173);
 const PUBLIC_DIR = path.join(__dirname, "public");
 const DATA_DIR = path.join(__dirname, "data");
 const CACHE_PATH = path.join(DATA_DIR, "mdcg-cache.json");
+const CACHE_ENABLED = process.env.REGWATCH_CACHE === "1";
 const RSS_URL =
   process.env.MDCG_RSS_URL ||
   "https://health.ec.europa.eu/node/12916/rss_en";
@@ -213,11 +214,11 @@ async function collectMdcgUpdates() {
     items: filtered
   };
 
-  try {
+  if (CACHE_ENABLED) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
     fs.writeFileSync(CACHE_PATH, JSON.stringify(payload, null, 2), "utf8");
-  } catch (cacheError) {
-    payload.cacheError = cacheError.message;
+  } else {
+    payload.cacheDisabled = true;
   }
 
   return payload;
@@ -266,6 +267,10 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (url.pathname === "/api/cache") {
+    if (!CACHE_ENABLED) {
+      sendJson(res, 404, { error: "로컬 캐시 저장이 비활성화되어 있습니다." });
+      return;
+    }
     try {
       const cache = fs.readFileSync(CACHE_PATH, "utf8");
       res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
