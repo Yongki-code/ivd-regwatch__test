@@ -67,8 +67,15 @@ function getCheckedValues(filterName) {
   return [...document.querySelectorAll(`[data-filter="${filterName}"]:checked`)].map((input) => input.value);
 }
 
+function configuredSources() {
+  const payloadSources = currentPayload?.sources || [];
+  return [...payloadSources, ...sourceDrafts].filter((source) => source && source.enabled !== false);
+}
+
 function uniqueValues(key) {
-  return [...new Set(allItems.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  const itemValues = allItems.map((item) => item[key]).filter(Boolean);
+  const sourceValues = configuredSources().map((source) => source[key]).filter(Boolean);
+  return [...new Set([...itemValues, ...sourceValues])].sort((a, b) => a.localeCompare(b));
 }
 
 function renderFilterGroup(container, filterName, values) {
@@ -448,6 +455,17 @@ async function loadSourcesConfig() {
   }
 }
 
+async function loadPublishedSourcesForFilters() {
+  if (sourceDrafts.length) return;
+  try {
+    const response = await fetch("./config/sources.json", { cache: "no-store" });
+    if (!response.ok) return;
+    sourceDrafts = validateSources(await response.json());
+  } catch (error) {
+    console.warn("Source filter config was not loaded.", error);
+  }
+}
+
 async function applySourcesConfig() {
   const { owner, repo } = getRepoInfo();
   const branch = elements.githubBranchInput.value.trim() || "main";
@@ -512,6 +530,7 @@ async function loadFeed(useCacheFirst = false) {
     const payload = await response.json();
     currentPayload = payload;
     allItems = payload.items || [];
+    await loadPublishedSourcesForFilters();
     elements.lastCollected.textContent = payload.collectedAt ? payload.collectedAt.slice(0, 10) : "-";
     elements.collectionMode.textContent = payload.mode?.includes("ai") ? "RSS + AI" : "RSS";
     elements.aiStatus.textContent = payload.aiEnabled ? "활성" : "비활성";
@@ -527,6 +546,7 @@ async function loadFeed(useCacheFirst = false) {
     elements.collectionMode.textContent = "오류";
     elements.aiStatus.textContent = "비활성";
     elements.aiFooter.textContent = "데이터 로드 실패";
+    await loadPublishedSourcesForFilters();
     renderDynamicFilters();
   }
   renderList();
