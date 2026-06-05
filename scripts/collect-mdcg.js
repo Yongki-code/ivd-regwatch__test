@@ -7,6 +7,7 @@ const OUTPUT = path.join(ROOT_DIR, "public", "data", "mdcg-cache.json");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
 const USE_AI = Boolean(OPENAI_API_KEY);
+const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
 
 function stripTags(value = "") {
   return value
@@ -413,7 +414,7 @@ async function main() {
   const results = [];
   const errors = [];
 
-  for (const source of sources) {
+  await Promise.all(sources.map(async (source) => {
     try {
       const items = await fetchFeed(source);
       results.push(...items);
@@ -423,8 +424,9 @@ async function main() {
       errors.push({ source: source.id, message });
       console.error(message);
     }
-  }
+  }));
 
+  const liveItemIds = new Set(results.map((item) => item.id));
   const mergedItems = results.length ? [...results, ...previousItems] : previousItems;
   const uniqueItems = [...new Map(mergedItems.map((item) => [item.id, item])).values()]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -437,13 +439,27 @@ async function main() {
     enriched.push(...uniqueItems);
     errors.push({ source: "cache", message: "All live fetches failed. Previous cache was preserved." });
   } else {
+    let aiCalls = 0;
     for (const item of uniqueItems) {
       try {
-        enriched.push(await enrichWithAi(item));
+        const alreadyAi = item.analysisMode === "ai" && item.summary && item.action;
+        const shouldEnrich = USE_AI && !alreadyAi && liveItemIds.has(item.id) && aiCalls < AI_ENRICH_LIMIT;
+        if (shouldEnrich) {
+          aiCalls += 1;
+          enriched.push(await enrichWithAi(item));
+        } else {
+          enriched.push(item);
+        }
       } catch (error) {
         errors.push({ source: item.source, message: formatError(error) });
         enriched.push(item);
       }
+    }
+    if (USE_AI && liveItemIds.size > AI_ENRICH_LIMIT) {
+      errors.push({
+        source: "ai",
+        message: `AI enrichment was limited to ${AI_ENRICH_LIMIT} newly collected items to keep GitHub Actions fast.`
+      });
     }
   }
 
