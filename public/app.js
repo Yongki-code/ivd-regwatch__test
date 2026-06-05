@@ -271,19 +271,35 @@ async function githubRequest(path, options = {}) {
 async function loadSourcesConfig() {
   const { owner, repo } = getRepoInfo();
   const branch = elements.githubBranchInput.value.trim() || "main";
+  const token = elements.githubTokenInput.value.trim();
 
-  if (!owner || !repo) {
-    const response = await fetch("../config/sources.json");
+  async function loadPublishedConfig(message) {
+    const response = await fetch("./config/sources.json");
     if (!response.ok) throw new Error("config/sources.json을 불러오지 못했습니다.");
     elements.sourcesJsonInput.value = JSON.stringify(await response.json(), null, 2);
-    setApplyStatus("현재 설정을 불러왔습니다. GitHub Pages에서 접속하면 바로 저장도 가능합니다.", "success");
+    setApplyStatus(message, "success");
+  }
+
+  setApplyStatus("현재 설정을 불러오는 중입니다.", "muted");
+
+  if (!owner || !repo) {
+    await loadPublishedConfig("배포된 설정을 불러왔습니다. 저장 적용은 GitHub Pages 주소에서 가능합니다.");
     return;
   }
 
-  const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
-  elements.sourcesJsonInput.dataset.sha = data.sha;
-  elements.sourcesJsonInput.value = JSON.stringify(JSON.parse(fromBase64(data.content)), null, 2);
-  setApplyStatus("현재 config/sources.json을 불러왔습니다.", "success");
+  if (!token) {
+    await loadPublishedConfig("배포된 설정을 불러왔습니다. 저장하려면 GitHub classic token을 입력하세요.");
+    return;
+  }
+
+  try {
+    const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
+    elements.sourcesJsonInput.dataset.sha = data.sha;
+    elements.sourcesJsonInput.value = JSON.stringify(JSON.parse(fromBase64(data.content)), null, 2);
+    setApplyStatus("GitHub 저장소의 최신 config/sources.json을 불러왔습니다.", "success");
+  } catch (error) {
+    await loadPublishedConfig(`GitHub API 불러오기는 실패했지만 배포된 설정을 표시했습니다. ${error.message}`);
+  }
 }
 
 function insertSourceTemplate() {
@@ -315,7 +331,7 @@ async function applySourcesConfig() {
     throw new Error("GitHub Pages URL에서 접속해야 저장소에 바로 적용할 수 있습니다.");
   }
 
-  setApplyStatus("GitHub에 설정을 저장하는 중입니다.", "muted");
+  setApplyStatus("GitHub에 설정을 저장하는 중입니다. 잠시만 기다려 주세요.", "muted");
   let sha = elements.sourcesJsonInput.dataset.sha;
   if (!sha) {
     const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
