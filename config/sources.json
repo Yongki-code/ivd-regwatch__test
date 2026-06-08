@@ -3,22 +3,15 @@
     "id": "eu-mdcg",
     "enabled": true,
     "source": "MDCG",
-    "authority": "European Commission",
-    "region": "EU",
-    "country": "European Union",
+    "authority": "MDCG",
+    "region": "Global",
+    "country": "Global",
     "type": "Guidance",
-    "url": "https://health.ec.europa.eu/node/12916/rss_en",
+    "kind": "html-page",
+    "url": "https://health.ec.europa.eu/medical-devices-sector/latest-updates_en",
     "keywords": [
       "medical device",
-      "medical devices",
-      "ivd",
-      "in vitro",
-      "mdcg",
-      "mir",
-      "emdn",
-      "notified bod",
-      "regulation",
-      "guidance"
+      "ivd"
     ]
   },
   {
