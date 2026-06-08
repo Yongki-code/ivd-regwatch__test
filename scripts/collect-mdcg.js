@@ -345,16 +345,31 @@ function parseAiJson(text) {
 async function enrichWithAi(item) {
   if (!USE_AI) return item;
 
-  const prompt = [
-    "You are a regulatory affairs analyst for medical devices and IVDs.",
-    "Return only compact JSON with keys: summaryKo, raActionKo, severity, impactPointsKo.",
-    "severity must be one of high, medium, low. impactPointsKo must be an array of 3 short Korean bullets.",
-    `Authority: ${item.authority}`,
-    `Region: ${item.region}`,
-    `Type: ${item.type}`,
-    `Title: ${item.title}`,
-    `Description: ${item.rawSummary || "(none)"}`,
-    `Link: ${item.link}`
+  const systemPrompt = [
+    "You are an IVD and medical device Regulatory Affairs analyst.",
+    "Analyze only the evidence provided in the input. Do not infer unverified dates, article numbers, deadlines, product scope, or legal obligations.",
+    "If information is missing or unclear, say '확인 필요' in Korean.",
+    "If the document is not directly applicable to IVDs, clearly state the lack of direct IVD applicability in the summary, action, and impact points.",
+    "Separate the three outputs by purpose: summaryKo explains the document, raActionKo gives concrete RA work, impactPointsKo lists internal applicability questions.",
+    "Keep the output concise, factual, and in Korean."
+  ].join("\n");
+
+  const userPrompt = [
+    "Analyze this regulatory update for an IVD manufacturer.",
+    "",
+    `<authority>${item.authority || "확인 필요"}</authority>`,
+    `<region>${item.region || "확인 필요"}</region>`,
+    `<source_type>${item.type || "확인 필요"}</source_type>`,
+    `<date>${item.date || "확인 필요"}</date>`,
+    `<title>${item.title || "확인 필요"}</title>`,
+    `<description>${item.rawSummary || "확인 필요"}</description>`,
+    `<link>${item.link || "확인 필요"}</link>`,
+    "",
+    "Output requirements:",
+    "- summaryKo: 3 to 5 Korean sentences, within 500 Korean characters. Include regulatory background/purpose, key change or announcement, applicable device or manufacturer scope, and effective date/timeline. Use '확인 필요' for unknown elements.",
+    "- raActionKo: within 300 Korean characters. Give concrete RA work for an IVD manufacturer, such as Technical File impact, registration renewal/change filing, SOP update, local representative check, or deadline tracking. If not directly IVD-applicable, write that no direct IVD action is required and monitoring should continue.",
+    "- severity: high, medium, or low. High only when the update is directly mandatory for IVD products and near-term action is likely required. Most general news, draft guidance, system updates, and indirect items should be medium or low.",
+    "- impactPointsKo: exactly 3 short Korean questions or checkpoints for company-specific impact assessment. Focus on market access, technical documentation, performance/clinical evidence, labeling, supply chain, cost, or timeline risk."
   ].join("\n");
 
   const response = await fetch("https://api.openai.com/v1/responses", {
@@ -365,7 +380,44 @@ async function enrichWithAi(item) {
     },
     body: JSON.stringify({
       model: OPENAI_MODEL,
-      input: prompt
+      input: [
+        { role: "developer", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ],
+      text: {
+        format: {
+          type: "json_schema",
+          name: "regulatory_update_analysis",
+          strict: true,
+          schema: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              summaryKo: {
+                type: "string",
+                description: "Korean regulatory summary within 500 Korean characters."
+              },
+              raActionKo: {
+                type: "string",
+                description: "Concrete Korean RA action for an IVD manufacturer within 300 Korean characters."
+              },
+              severity: {
+                type: "string",
+                enum: ["high", "medium", "low"]
+              },
+              impactPointsKo: {
+                type: "array",
+                minItems: 3,
+                maxItems: 3,
+                items: {
+                  type: "string"
+                }
+              }
+            },
+            required: ["summaryKo", "raActionKo", "severity", "impactPointsKo"]
+          }
+        }
+      }
     })
   });
 
@@ -452,7 +504,7 @@ async function main() {
     let aiCalls = 0;
     for (const item of uniqueItems) {
       try {
-        const alreadyAi = item.summary && item.action && Array.isArray(item.impactPoints) && item.impactPoints.length;
+        const alreadyAi = item.analysisMode === "ai" && item.summary && item.action && Array.isArray(item.impactPoints) && item.impactPoints.length;
         const shouldEnrich = USE_AI && !alreadyAi && liveItemIds.has(item.id) && aiCalls < AI_ENRICH_LIMIT;
         if (shouldEnrich) {
           aiCalls += 1;
