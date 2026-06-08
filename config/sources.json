@@ -23,7 +23,7 @@
   },
   {
     "id": "us-fda-device-recalls",
-    "enabled": false,
+    "enabled": true,
     "source": "FDA",
     "authority": "U.S. Food and Drug Administration",
     "region": "US",
