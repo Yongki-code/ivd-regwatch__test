@@ -8,6 +8,8 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const USE_AI = Boolean(OPENAI_API_KEY);
 const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
+const MAX_AI_SOURCE_CHARS = Number(process.env.MAX_AI_SOURCE_CHARS || 6000);
+const MIN_RICH_SUMMARY_CHARS = Number(process.env.MIN_RICH_SUMMARY_CHARS || 260);
 
 function stripTags(value = "") {
   return value
@@ -41,6 +43,27 @@ function readTag(xml, tag) {
   const match = xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`, "i"));
   if (!match) return "";
   return decodeEntities(match[1].replace(/^<!\[CDATA\[/, "").replace(/\]\]>$/, "").trim());
+}
+
+function truncateForPrompt(value = "", limit = MAX_AI_SOURCE_CHARS) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > limit ? `${text.slice(0, limit)} ... [truncated]` : text;
+}
+
+async function fetchArticleText(url) {
+  if (!url || !/^https?:\/\//i.test(url)) return "";
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(8000),
+    headers: {
+      "user-agent": "IVD-RegWatch-GitHub-Actions/2.0",
+      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
+  });
+  if (!response.ok) return "";
+  const contentType = response.headers.get("content-type") || "";
+  if (!/html|xml|text/i.test(contentType)) return "";
+  const html = await response.text();
+  return truncateForPrompt(stripTags(decodeEntities(html)));
 }
 
 function normalizeDate(value) {
@@ -342,36 +365,15 @@ function parseAiJson(text) {
   }
 }
 
-async function enrichWithAi(item) {
-  if (!USE_AI) return item;
+function isThinAiOutput(parsed, sourceText) {
+  if (!parsed || sourceText.length < 500) return false;
+  const summaryLength = String(parsed.summaryKo || "").replace(/\s/g, "").length;
+  const actionLength = String(parsed.raActionKo || "").replace(/\s/g, "").length;
+  const impactLength = Array.isArray(parsed.impactPointsKo) ? parsed.impactPointsKo.join("").replace(/\s/g, "").length : 0;
+  return summaryLength < MIN_RICH_SUMMARY_CHARS || actionLength < 120 || impactLength < 120;
+}
 
-  const systemPrompt = [
-    "You are an IVD and medical device Regulatory Affairs analyst.",
-    "Analyze only the evidence provided in the input. Do not infer unverified dates, article numbers, deadlines, product scope, or legal obligations.",
-    "If information is missing or unclear, say '확인 필요' in Korean.",
-    "If the document is not directly applicable to IVDs, clearly state the lack of direct IVD applicability in the summary, action, and impact points.",
-    "Separate the three outputs by purpose: summaryKo explains the document, raActionKo gives concrete RA work, impactPointsKo lists internal applicability questions.",
-    "Keep the output concise, factual, and in Korean."
-  ].join("\n");
-
-  const userPrompt = [
-    "Analyze this regulatory update for an IVD manufacturer.",
-    "",
-    `<authority>${item.authority || "확인 필요"}</authority>`,
-    `<region>${item.region || "확인 필요"}</region>`,
-    `<source_type>${item.type || "확인 필요"}</source_type>`,
-    `<date>${item.date || "확인 필요"}</date>`,
-    `<title>${item.title || "확인 필요"}</title>`,
-    `<description>${item.rawSummary || "확인 필요"}</description>`,
-    `<link>${item.link || "확인 필요"}</link>`,
-    "",
-    "Output requirements:",
-    "- summaryKo: 3 to 5 Korean sentences, within 500 Korean characters. Include regulatory background/purpose, key change or announcement, applicable device or manufacturer scope, and effective date/timeline. Use '확인 필요' for unknown elements.",
-    "- raActionKo: within 300 Korean characters. Give concrete RA work for an IVD manufacturer, such as Technical File impact, registration renewal/change filing, SOP update, local representative check, or deadline tracking. If not directly IVD-applicable, write that no direct IVD action is required and monitoring should continue.",
-    "- severity: high, medium, or low. High only when the update is directly mandatory for IVD products and near-term action is likely required. Most general news, draft guidance, system updates, and indirect items should be medium or low.",
-    "- impactPointsKo: exactly 3 short Korean questions or checkpoints for company-specific impact assessment. Focus on market access, technical documentation, performance/clinical evidence, labeling, supply chain, cost, or timeline risk."
-  ].join("\n");
-
+async function requestAiAnalysis(systemPrompt, userPrompt, retryNote = "") {
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
@@ -382,7 +384,7 @@ async function enrichWithAi(item) {
       model: OPENAI_MODEL,
       input: [
         { role: "developer", content: systemPrompt },
-        { role: "user", content: userPrompt }
+        { role: "user", content: retryNote ? `${userPrompt}\n\n${retryNote}` : userPrompt }
       ],
       text: {
         format: {
@@ -395,11 +397,11 @@ async function enrichWithAi(item) {
             properties: {
               summaryKo: {
                 type: "string",
-                description: "Korean regulatory summary within 500 Korean characters."
+                description: "Korean regulatory summary. Use 350-500 Korean characters when source_text has enough evidence."
               },
               raActionKo: {
                 type: "string",
-                description: "Concrete Korean RA action for an IVD manufacturer within 300 Korean characters."
+                description: "Concrete Korean RA action for an IVD manufacturer. Use 180-300 Korean characters when applicable."
               },
               severity: {
                 type: "string",
@@ -427,7 +429,61 @@ async function enrichWithAi(item) {
 
   const data = await response.json();
   const outputText = data.output_text || data.output?.flatMap((entry) => entry.content || []).map((part) => part.text || "").join("\n") || "";
-  const parsed = parseAiJson(outputText);
+  return parseAiJson(outputText);
+}
+
+async function enrichWithAi(item) {
+  if (!USE_AI) return item;
+
+  let articleText = "";
+  try {
+    articleText = await fetchArticleText(item.link);
+  } catch (error) {
+    articleText = "";
+  }
+
+  const sourceText = truncateForPrompt([item.rawSummary, articleText]
+    .filter(Boolean)
+    .filter((value, index, array) => array.indexOf(value) === index)
+    .join("\n\n"));
+
+  const systemPrompt = [
+    "You are an IVD and medical device Regulatory Affairs analyst.",
+    "Analyze only the evidence provided in the input. Do not infer unverified dates, article numbers, deadlines, product scope, or legal obligations.",
+    "If information is missing or unclear, say '확인 필요' in Korean.",
+    "If the document is not directly applicable to IVDs, clearly state the lack of direct IVD applicability in the summary, action, and impact points.",
+    "Separate the three outputs by purpose: summaryKo explains the document, raActionKo gives concrete RA work, impactPointsKo lists internal applicability questions.",
+    "Use enough detail when the source_text is long. Do not produce one-line generic output for long source_text.",
+    "Keep the output factual and in Korean."
+  ].join("\n");
+
+  const userPrompt = [
+    "Analyze this regulatory update for an IVD manufacturer.",
+    "",
+    `<authority>${item.authority || "확인 필요"}</authority>`,
+    `<region>${item.region || "확인 필요"}</region>`,
+    `<source_type>${item.type || "확인 필요"}</source_type>`,
+    `<date>${item.date || "확인 필요"}</date>`,
+    `<title>${item.title || "확인 필요"}</title>`,
+    `<link>${item.link || "확인 필요"}</link>`,
+    `<source_text_length>${sourceText.length}</source_text_length>`,
+    `<source_text>${sourceText || "확인 필요"}</source_text>`,
+    "",
+    "Output requirements:",
+    "- summaryKo: If source_text_length is 500 or more, write 4 to 6 Korean sentences and use 350 to 500 Korean characters. If source_text is shorter than 500 characters, write a proportionate summary. Include regulatory background/purpose, key change or announcement, applicable device or manufacturer scope, and effective date/timeline. Use '확인 필요' for unknown elements.",
+    "- raActionKo: If source_text_length is 500 or more and the update is relevant, use 180 to 300 Korean characters. Give concrete RA work for an IVD manufacturer, such as Technical File impact, registration renewal/change filing, SOP update, local representative check, or deadline tracking. If not directly IVD-applicable, write that no direct IVD action is required and monitoring should continue.",
+    "- severity: high, medium, or low. High only when the update is directly mandatory for IVD products and near-term action is likely required. Most general news, draft guidance, system updates, and indirect items should be medium or low.",
+    "- impactPointsKo: exactly 3 Korean questions or checkpoints for company-specific impact assessment. If source_text_length is 500 or more, each point should be specific and substantive, not a generic phrase. Focus on market access, technical documentation, performance/clinical evidence, labeling, supply chain, cost, or timeline risk."
+  ].join("\n");
+
+  let parsed = await requestAiAnalysis(systemPrompt, userPrompt);
+  if (isThinAiOutput(parsed, sourceText)) {
+    parsed = await requestAiAnalysis(
+      systemPrompt,
+      userPrompt,
+      "The previous output would be too brief for the available source_text. Rewrite with the required detail: summaryKo 350-500 Korean characters, raActionKo 180-300 Korean characters, and three specific impactPointsKo."
+    );
+  }
   if (!parsed) return item;
 
   return {
