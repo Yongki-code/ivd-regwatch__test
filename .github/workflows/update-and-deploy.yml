@@ -2,6 +2,11 @@ name: Update MDCG Feed and Deploy Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      skip_collect:
+        description: "Deploy committed public/data/mdcg-cache.json without collecting live feeds"
+        required: false
+        default: "false"
   schedule:
     - cron: "0 22 * * *"
 
@@ -33,6 +38,7 @@ jobs:
           node-version: 24
 
       - name: Collect MDCG RSS
+        if: ${{ github.event.inputs.skip_collect != 'true' }}
         run: node scripts/collect-mdcg.js
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
