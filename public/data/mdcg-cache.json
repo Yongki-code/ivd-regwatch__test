@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T12:12:22.361Z",
+  "collectedAt": "2026-06-08T23:13:30.949Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "openAiModel": "gpt-4o-mini",
-  "count": 20,
+  "count": 25,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -335,6 +335,50 @@
       "analysisMode": "ai"
     },
     {
+      "id": "us-fda-device-recalls:98877",
+      "title": "Bicarby\" Dialysate; Model Numbers: RFP-400-G, RFP-401-G, RFP-402-G, RFP-404-G, RFP-407-G, and RFP-456-G;",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "United States",
+      "type": "Recall",
+      "date": "2026-05-12",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미국 식품의약국(FDA)은 Fresenius Medical Care Holdings, Inc.가 제조한 Bicarby 다이알리제이트 모델(Luer-lock 유출 관련)의 리콜을 발표했습니다. 이 리콜은 제품 사용 준비 과정에서 발생할 수 있는 Luer-lock 유출로 인한 안전 위험을 경고합니다. 리콜된 모델 번호는 RFP-400-G, RFP-401-G, RFP-402-G, RFP-404-G, RFP-407-G, RFP-456-G이며, 2025년 1월 13일부터 2026년 1월 13일 사이에 생산된 모든 로트가 포함됩니다. 리콜의 주요 이유는 사용자 보고에 따른 누수 발생 건수가 증가했기 때문입니다. 이 문제는 바닥에 물이 흘러 미끄러짐과 넘어짐의 위험을 초래할 수 있습니다.",
+      "rawSummary": "Given the increased number of leaks reported by users, it was determined to be the appropriate course of action to notify users of the potential for the occurrence of Bicarby luer-lock leaks during manipulation of the frangible and tubing when preparing the product for use for treatment. This issue presents the potential of a slip and fall hazard associated with fluid on the floor. | Firm: Fresenius Medical Care Holdings, Inc. | Product code: KPO | Code info: Model Number: RFP-400-G; UDI-DI: 00840861102839; 2. Model Number: RFP-401-G; UDI-DI: 00840861102853; 3. Model Number: RFP-402-G; UDI-DI: 00840861102822; 4. Model Number: RFP-404-G; UDI-DI: 00840861102914; 5. Model Number: RFP-407-G; UDI-DI: 00840861102846: 6. Model Number: RFP-456-G; UDI-DI: 00840861102945; All lots produced from January 13, 2025, through lot 26AG02019 on January 13, 2026",
+      "severity": "low",
+      "read": false,
+      "action": "해당 리콜 업데이트는 IVD 제품과 직접적으로 관련이 없으므로, IVD 제조업체는 구체적인 조치를 취할 필요는 없습니다. 그러나 공급망 모니터링을 지속해야 하며, 다른 제품 관련 업데이트가 있는지 점검하는 것이 필요합니다.",
+      "impactPoints": [
+        "Bicarby 제품이 IVD 제품의 조합에 포함되는지 여부는 무엇인가요?",
+        "이번 리콜이 IVD 시장 접근에 미치는 영향은 어떻게 평가할 수 있나요?",
+        "해당 리콜의 통보가 회사의 기술 문서 및 내부 규정에 어떤 변화를 요구할 수 있는가요?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda-device-recalls:98914",
+      "title": "Atlan A350XL. Model Number: 8621600. anesthesia workstation",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "United States",
+      "type": "Recall",
+      "date": "2026-05-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "2026년 5월 7일자 FDA의 보도에 따르면, Draeger, Inc.에서 생산한 Atlan A350XL 기계 환기 장치(Model Number: 8621600)가 심각한 결함으로 인해 리콜되었습니다. 이 기기는 사용 전에 피스톤 환기가 실패했거나, 사용 중 기계 환기가 중단되는 문제를 겪었습니다. 이러한 결함은 환자의 안전에 직접적인 영향을 미칠 수 있으며, 해당 제품의 UDI-DI 번호는 04048675556183입니다. 연관된 일련번호도 다수 적시되어 있으며, 이로 인해 전 세계적으로 사용되는 이 장치에 대해 신속한 조사와 리콜 조치가 필요합니다.",
+      "rawSummary": "The Atlan anesthesia workstation either indicated a failure of the piston ventilator before use or suffered a failure of the mechanical ventilation during use. | Firm: Draeger, Inc. | Product code: BSZ | Code info: Model Number: 8621600. UDI-DI Number: 04048675556183. Serial Numbers: ASSL-0354, ASSL-0357, ASSL-0360, ASSH-0240, ASSH-0242, ASSH-0243, ASSH-0245, ASSH-0246, ASSH-0247, ASSH-0248, ASSH-0249, ASSH-0250, ASSL-0355, ASSL-0356, ASSL-0358, ASSL-0359, ASSL-0361, ASSH-0239, ASSH-0241, ASSH-0244, ASSH-0251, ASSH-0252, ASSH-0253, ASSH-0254, ASTA-0308, ASTA-0310, ASTA-0312, ASTA-0271, ASTA-0272, ASTA-0273, ASTA-0274, ASTA-0275, ASTA-0276, ASTA-0352, ASTA-0354, ASTA-0364, ASTA-0395, ASTA-0396, ASTA-0397, ASTA-0407, ASSM-0464, ASSM-0465, ASSM-0466, ASSM-0467, ASSM-0468, ASSM-0469, ASSM-0491, ASSM-0492, ASSM-0493, ASSM-0494, ASSM-0495.",
+      "severity": "medium",
+      "read": false,
+      "action": "현재 리콜된 Atlan A350XL 기계 환기 장치는 IVD와는 직접적인 연관이 없으므로, IVD 제조업체는 해당 리콜 사안을 주의 깊게 모니터링하면 됩니다. 리콜 정보가 IVD 시장에 영향이 있을 수 있으므로, 혹시 다른 기기와의 연계가 있는지 검토할 필요가 있습니다.",
+      "impactPoints": [
+        "Atlan A350XL의 리콜이 비슷한 기능을 가진 IVD 기기에서 발생할 수 있는 리콜 사태에 어떤 영향을 미칠까요?",
+        "해당 장치와 연관된 데이터나 문서가 다른 제품에 영향을 줄 수 있는지 검토되었나요?",
+        "환기 장치와 관련된 안전성 데이터가 IVD의 성능과 어떻게 연관되는지 분석해 보았나요?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
       "id": "us-fda-device-recalls:98929",
       "title": "LVP software of the Ivenix Infusion System (IIS); Product Code LVP-SW-0005.",
       "source": "FDA",
@@ -419,6 +463,72 @@
         "해당 리콜이 IVD 제품에 미치는 영향은 어떻게 평가될 수 있는가?",
         "유사한 제품에 대한 안전성 검토가 필요한가?",
         "리콜로 인해 공급망에 지장이 있을 가능성은 어떤가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda-device-recalls:98820",
+      "title": "Pediatric care bed; Product Designation: KayserBett IDA;",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "United States",
+      "type": "Recall",
+      "date": "2026-05-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미국 식품의약국(FDA)은 KayserBett IDA라는 소아용 침대의 리콜을 발표했다. 리콜의 주요 원인은 손 제어 장치의 잠금 기능이 잠길 경우 미작동 상태가 되어 소아 환자 또는 타인이 침대 프레임과 바닥 사이에 끼일 수 있는 위험을 초래한다는 점이다. 이 문제는 심각한 부상이나 사망 원인이 될 수 있다. 해당 제품은 KAYSERBETTEN GMBH & CO. KG에 의해 제조되었으며, 제품 코드와 일련번호가 명기되어 있다. 이 조치는 즉각적인 주의가 요구되며, 시장에서의 사용을 지속하기에는 위험이 크다.",
+      "rawSummary": "If the adjustment functions of the hand control, as instructed in the Manual, are not locked with the provided key when the patient (child) is unattended, there is an increased risk that the patient (child) or third parties (children) will operate the hand control and trap themselves or others under the bed frame or between the bed frame and the floor. This can lead to serious injuries or even death of the patient (child) or third parties (children). | Firm: KAYSERBETTEN GMBH & CO. KG Rieper Str. 12 Bad Fallingbostel Germany | Product code: FNL | Code info: Product Designation: KayserBett IDA; UDI-DI: 426038961IDAGU; Serial Number: 386, 387, 388, 389, 390, 391, 392, 635, 636, 637, 638, 639, 641, 642, 643, 644, 645, 646, 647, 1072, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1085, 1086, 1087, 1088, 1089, 1090, 1110, 1111, 1446, 1447, 1448, 1449, 1648, 1649, 1950, 1975, 1976, 1982, 1983, 1998, 2001, 2003, 2004, 2337, 2338, 2339, 2340, 2341, 2342, 2343, 2344, 2345, 2396, 2763, 2764, 2765, 2766, 2767, 2770, 2771, 2772, 2773, 2774, 3087, 3088, 3089, 3090, 3091, 3092, 3167, 3299, 3300, 3301, 3302, 3303, 3304, 3305, 3306, 3309, 3310, 3311, 3312, 3313, 3314, 3740, 3741, 3760, 4223, 4232, 4233, 4234, 4235, 4236, 4237, 4239, 4240, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249, 4250, 4567, 4568, 4569, 4570, 4571, 4572, 4573, 4574, 4575, 4576, 4577, 4578, 4579, 4580, 4581, 4582, 4583, 4584, 4986, 5238, 5254, 5255, 5256, 5257, 5258, 5259, 5637, 5919, 5920, 5921, 5922, 5923, 5924, 5925, 5926, 5937, 5938, 5939, 5940, 5948, 6332, 6338, 6339, 6340, 6341, 6342, 6343, 6344, 6345, 6346, 6347, 6351, 6355, 6795, 6796, 7176, 7177, 7178, 7179, 7180, 7181, 7182, 7183, 7184, 7185, 7186, 7187, 7188, 7189, 7190, 7191, 7192, 7193, 7194, 7195, 7617, 7618, 7619, 7620, 7621, 7622, 7623, 8242, 8243, 8244, 8245, 8588, 8589, 8590, 8591, 8592, 8593, 8594, 8595, 8596, 8597, 8598, 8599, 8600, 8601, 8602, 8603, 8608, 8609, 8691, 8704, 8912, 8921, 8922, 8923, 8924, 8925, 8926, 8927, 8928, 8929, 8930, 9725, 9726, 9727, 10350, 10351, 10352, 10819, 10820, 10821, 10822, 10823, 10824, 10825, 11186, 11367, 11368, 11369, 11370, 11371, 11372, 11797, 11798, 11799, 11800, 11801, 11802, 11803, 11804, 11805, 11806, 11807, 11808, 12247, 12248, 12249, 12250, 12251, 12252, 12253, 12254, 12255, 12256, 12257, 12397, 12398, 12399, 12782, 12783, 12963, 12964, 12965, 12966, 12967, 12968, 12969, 12970, 12971, 12972, 13486, 13487, 13488, 13489, 13490, 13491, 13492, 13493, 13494, 13495, 13496, 13497, 13912, 13913, 13914, 13915, 13916, 13917, 13918, 14942, 14944, 14952, 14953, 15912, 15913, 15914, 16403, 16404, 16405, 16406, 16407, 16408, 16409, 16410, 16411, 16984, 16985, 16986, 16987, 16988, 16989, 16990, 16991, 16992, 16993, 16994, 17577, 17578, 17579, 17580, 17581, 17582, 17583, 17584, 17585, 17586, 17587, 18494, 19112, 19113, 19114, 20151, 20152, 20153, 20154, 20155, 20156, 20157, 20158, 20963, 20964, 20965, 20966, 20967, 20968, 20969, 20970, 20972, 21192, 21193, 21194;",
+      "severity": "low",
+      "read": false,
+      "action": "현재 리콜된 제품은 IVD와 직접적으로 관련이 없으므로 별도의 조치가 필요하지 않다. 하지만 리콜에 대한 내부 모니터링과 추적은 계속 이루어져야 하며, 후속 제품의 안전성 확보를 위해 같은 유형의 경고에 대한 대비는 필요하다.",
+      "impactPoints": [
+        "해당 리콜이 IVD 제품군에 미치는 잠재적 영향은 무엇인가?",
+        "향후 유사 리콜 발생 시 대응 프로세스가 마련되어 있는가?",
+        "현재 유통 중인 제품의 관련성을 평가하기 위한 기준은 무엇인가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda-device-recalls:98924",
+      "title": "SD LTM 64 PLUS, EEG Amplifier/recorder, Model/Catalog Number: SD LTM 64 PLUS, Software Version: firmware 2021.02, 2022.01 or 2022.02",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "United States",
+      "type": "Recall",
+      "date": "2026-05-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "Natus는 SD LTM 64 PLUS EEG 앰플리파이어 제품에 대해 두 가지 불만이 접수됨을 알렸습니다. 이 제품은 2022.02, 2021.02, 2022.01 펌웨어 버전을 사용하는 다중 앰플리파이어 구성에서 64채널 블록 간 1초의 시차가 발생할 수 있음을 우려하고 있습니다. 드물게 이러한 문제가 발생하면 검사 결과 해석에 혼동을 초래할 수 있습니다. 해당 제품의 lot 코드와 일련번호가 포함되어 있으며, 이로 인해 사용자에게 실질적인 위험이 우려됩니다. FDA는 관련 조치를 취하며 소비자에게 정보를 제공할 예정입니다.",
+      "rawSummary": "Natus has become aware of two complaints related to the SD LTM 64 PLUS where the EEG traces acquired from two or four different amplifiers used in a multiple amplifier configuration (128 or 256 channels) running firmware version 2022.02 were displayed with a shift of 1 second between the 64channels blocks. In rare circumstances, a fixed 1-second temporal delay may appear between two 64-channel modules with firmware 2021.02, 2022.01 or 2022.02 in a multi-module SEEG configuration, potentially leading to misinterpretation of results. | Product code: GWQ | Code info: UDI-DI: 8033928120897; Lot Code: Model No SD LTM 64 PLUS; UDI-DI 8033928120897; Serial Numbers BAA-0051/01-19, BAA-0069/02-19, BAA-0070/02-19, BAA-0071/02-19, BAA-0082/02-19, BAA-0083/02-19, BAA-0084/02-19, BAA-0085/02-19, BAA-0086/02-19, BAA-0087/02-19, BAA-0088/02-19, BAA-0089/02-19, BAA-0090/02-19, BAA-0091/02-19, BAA-0092/02-19, BAA-0093/02-19, BAA-0095/02-19, BAA-0096/02-19, BAA-0098/02-19, BAA-0104/02-19, BAA-0105/02-19, BAA-0106/02-19, BAA-0107/02-19, BAA-0108/02-19, BAA-0109/02-19, BAA-0110/02-19, BAA-0111/02-19, BAA-0112/02-19, BAA-0113/02-19, BAA-0115/02-19, BAA-0116/02-19, BAA-0117/02-19, BAA-0118/02-19, BAA-0119/02-19, BAA-0121/02-19, BAA-0122/02-19, BAA-0142/03-19, BAA-0155/03-20, BAA-0156/03-20, BAA-0191/04-20, BAA-0192/04-20, BAA-0193/04-20, BAA-0194/04-20, BAA-0286/04-21, BAA-0287/04-21, BAA-0288/04-21, BAA-0289/04-21, BAA-0329/04-22",
+      "severity": "medium",
+      "read": false,
+      "action": "IVD 제조업체는 SD LTM 64 PLUS와 관련된 리콜 정보를 주의 깊게 모니터링해야 합니다. 현재 직접적인 IVD 관련성은 낮으나, 해당 제품이 IVD와 함께 사용되고 있다면 성능 및 임상 데이터에 대한 추가 검토가 필요할 수 있습니다. 또한, 기술 파일 및 SOP 업데이트를 검토해야 합니다.",
+      "impactPoints": [
+        "SD LTM 64 PLUS와 관련된 IVD 제품이 시장에 영향을 받을 가능성이 있는가?",
+        "해당 제품의 기술 문서 및 임상 데이터에 대한 검토가 필요한가?",
+        "라벨링 수정이나 사용자 안전 경고에 대한 필요성이 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda-device-recalls:98922",
+      "title": "CGuard Prime Carotid Stent System, 135cm, 10mmx40mm Model/Catalog Number: CND1040",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "United States",
+      "type": "Recall",
+      "date": "2026-05-01",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미국 식품의약국(FDA)은 CGuard Prime Carotid Stent System(CND1040 모델 및 카탈로그 번호)에 대한 리콜을 발표하였다. 이 스텐트 전달 시스템은 배치 과정에서 문제를 일으킬 수 있으며, 이로 인해 높은 저항이 발생하거나 스텐트를 배치할 수 없는 상황이 생길 수 있다. 리콜 대상은 2025년 2월 3일부터 2026년 2월 23일 사이에 생산된 모든 배치와 일련 번호가 포함되며, 제조업체는 INSPIREMD Inc이다. IVD와 관련된 정보는 없어 직접적인 관련성은 없는 것으로 보인다.",
+      "rawSummary": "Stent delivery system may encounter complications during deployment which may result in high resistance or inability to deploy the stent. | Firm: INSPIREMD Inc | Product code: NIM | Code info: UDI: 07290120281783; all lots/serial numbers manufactured between 02/03/2025 and 02/23/2026",
+      "severity": "medium",
+      "read": false,
+      "action": "해당 리콜은 IVD 제품과 직접적인 관련이 없으므로, 별도의 IVD 제조업체에 대한 RA 조치는 필요하지 않다. 그러나 IVD 시장에 영향을 미칠 수 있는 다른 동향에 대한 모니터링이 필요하다.",
+      "impactPoints": [
+        "현재 시장에서 어떤 IVD 제품이 사용되고 있는지 확인 필요",
+        "연관된 IVD 솔루션이 있다면, 기술 문서 및 성능 데이터를 검토해야 하는지 확인 필요",
+        "미국 내 IVD 제품의 시장 접근성에 영향을 미칠 수 있는지 여부 파악 필요"
       ],
       "analysisMode": "ai"
     },
