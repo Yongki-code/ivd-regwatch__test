@@ -7,10 +7,6 @@ on:
         description: "Deploy committed public/data/mdcg-cache.json without collecting live feeds"
         required: false
         default: "false"
-      force_ai:
-        description: "Re-run AI summary/action for collected items even if cached items already have AI output"
-        required: false
-        default: "false"
   schedule:
     - cron: "0 22 * * *"
 
@@ -48,7 +44,6 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4o-mini
           AI_ENRICH_LIMIT: 12
-          FORCE_AI_REENRICH: ${{ github.event.inputs.force_ai }}
 
       - name: Commit collected cache
         if: ${{ github.event.inputs.skip_collect != 'true' }}
