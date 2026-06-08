@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-05T11:37:21.767Z",
-  "mode": "github-actions-rss-rules",
+  "collectedAt": "2026-06-08T04:45:08.575Z",
+  "mode": "manual-test-data",
   "aiEnabled": false,
   "openAiModel": null,
-  "count": 71,
+  "count": 70,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -37,96 +37,17 @@
       "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
       "enabled": true,
       "kind": "rss"
-    },
-    {
-      "id": "uk-mhra-device-safety",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Safety Alert",
-      "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=device-safety-information",
-      "enabled": true,
-      "kind": "rss"
-    },
-    {
-      "id": "uk-mhra-field-safety-notices",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=field-safety-notices",
-      "enabled": true,
-      "kind": "rss"
-    },
-    {
-      "id": "au-tga-guidance",
-      "source": "TGA",
-      "authority": "Therapeutic Goods Administration",
-      "region": "AU",
-      "country": "Australia",
-      "type": "Guidance",
-      "url": "https://tga.gov.au/feeds/guidance.xml",
-      "enabled": true,
-      "kind": "rss"
     }
   ],
-  "staleCache": true,
-  "previousCollectedAt": "2026-06-05T11:36:52.907Z",
+  "staleCache": false,
+  "previousCollectedAt": "2026-06-08T03:51:37.173Z",
   "errors": [
     {
-      "source": "eu-mdcg",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "us-fda-device-recalls",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "ca-health-canada-devices",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "uk-mhra-device-safety",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "uk-mhra-field-safety-notices",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "au-tga-guidance",
-      "message": "fetch failed: SELF_SIGNED_CERT_IN_CHAIN"
-    },
-    {
-      "source": "cache",
-      "message": "All live fetches failed. Previous cache was preserved."
+      "source": "manual",
+      "message": "Data was manually edited for LLM/UI testing."
     }
   ],
   "items": [
-    {
-      "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-25-to-29-may-2026",
-      "title": "Field Safety Notices: 25 to 29 May 2026",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "date": "2026-06-02",
-      "link": "https://www.gov.uk/drug-device-alerts/field-safety-notices-25-to-29-may-2026",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "List of Field Safety Notices for 25 to 29 May 2026",
-      "severity": "high",
-      "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-18-22-may-2026",
       "title": "Field Safety Notices: 18 -22 May 2026",
@@ -140,7 +61,7 @@
       "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
       "rawSummary": "List of Field Safety Notices for 18 -22 May 2026",
       "severity": "high",
-      "read": false,
+      "read": true,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
       "impactPoints": [
         "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
@@ -1634,7 +1555,7 @@
       "date": "2021-08-13",
       "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/76233a-eng.php",
       "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "",
+      "rawSummary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
@@ -1656,7 +1577,7 @@
       "date": "2021-06-25",
       "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/75905a-eng.php",
       "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "",
+      "rawSummary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
