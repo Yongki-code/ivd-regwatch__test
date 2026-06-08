@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T11:01:22.773Z",
+  "collectedAt": "2026-06-08T11:04:14.415Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "openAiModel": "gpt-4o-mini",
-  "count": 30,
+  "count": 31,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -26,6 +26,17 @@
       "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
       "enabled": true,
       "kind": "openfda-device-recall"
+    },
+    {
+      "id": "global-anvisa",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "News",
+      "url": "https://www.emergobyul.com/news/regulatory-updates",
+      "enabled": true,
+      "kind": "html-page"
     }
   ],
   "staleCache": false,
@@ -56,6 +67,28 @@
         "의료 기기 시장의 규제 변화 반영",
         "안전성과 효과성 보장",
         "제품 승인 및 마케팅 전략 재검토"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "title": "Regulatory Update May 22, 2026 ANVISA Updates Hospitalar 2026 Attendees about Regulatory Reliance At the February ABIMED meeting, ANVISA Director Marcelo Mario Matos Moreira shared the Brazil medical device...",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "News",
+      "date": "2026-06-08",
+      "link": "https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "summary": "ANVISA가 2026년 병원 관련 회의에서 규제 의존성에 대해 발표했습니다.",
+      "rawSummary": "",
+      "severity": "medium",
+      "read": false,
+      "action": "의료기기 제조업체는 ANVISA의 새로운 지침을 숙지하고 준비해야 합니다.",
+      "impactPoints": [
+        "브라질 시장 접근성 영향",
+        "규제 변화에 대한 준비 필요",
+        "의료기기 승인 절차의 변화 가능성"
       ],
       "analysisMode": "ai"
     },
