@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T10:21:03.067Z",
+  "collectedAt": "2026-06-08T10:21:39.755Z",
   "mode": "manual-test-data",
   "aiEnabled": false,
   "openAiModel": null,
-  "count": 66,
+  "count": 61,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -48,116 +48,6 @@
     }
   ],
   "items": [
-    {
-      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
-      "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
-      "source": "MDCG",
-      "authority": "European Commission",
-      "region": "EU",
-      "country": "European Union",
-      "type": "Regulation",
-      "date": "2026-05-18",
-      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
-      "summary": "새로운 시행 규정은 적합성 평가 및 통지 기관에 대한 일관된 요구 사항을 설정합니다.",
-      "rawSummary": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
-      "severity": "high",
-      "read": false,
-      "action": "적합성 평가 절차 및 통지 기관 인증 절차 검토 필요",
-      "impactPoints": [
-        "모든 의료기기 및 IVD에 적용",
-        "규정 준수 필수",
-        "시장 접근성에 큰 영향"
-      ],
-      "analysisMode": "ai"
-    },
-    {
-      "id": "us-fda-device-recalls:99044",
-      "title": "DeRoyal Industries Inc. Ref 46-406, Covaderm Plus, Vascular Access Dressing 6\"x6\" (15cmx15cm)",
-      "source": "FDA",
-      "authority": "U.S. Food and Drug Administration",
-      "region": "US",
-      "country": "United States",
-      "type": "Recall",
-      "date": "2026-05-18",
-      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
-      "summary": "DeRoyal Industries Inc.의 Covaderm Plus 혈관 접근 드레싱이 멸균 보증 부족으로 리콜됨.",
-      "rawSummary": "Sterile wound dressing, lacks sterility assurance | Firm: DeRoyal Industries Inc | Product code: NAC | Code info: Lot: 63295141/UDI: None",
-      "severity": "high",
-      "read": false,
-      "action": "리콜 결정 및 배포 중단.",
-      "impactPoints": [
-        "환자 감염 위험 증가.",
-        "의료기관 사용 중단 필요.",
-        "리콜 조치로 인해 불필요한 비용 발생."
-      ],
-      "analysisMode": "ai"
-    },
-    {
-      "id": "us-fda-device-recalls:98913",
-      "title": "Medtronic 2x4 Pocket Adaptor Kit for Deep Brain Stimulation, Model 64002; Stimulator, electrical, implanted, for parkinsonian tremor",
-      "source": "FDA",
-      "authority": "U.S. Food and Drug Administration",
-      "region": "US",
-      "country": "United States",
-      "type": "Recall",
-      "date": "2026-05-13",
-      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
-      "summary": "Medtronic의 2x4 포켓 어댑터 키트에서 잘못된 사용 기한이 표시된 제품이 발견되었습니다.",
-      "rawSummary": "A limited number of Pocket Adaptor Kits, Model 64001 and 64002, are labeled with incorrect Use-By-Dates. | Firm: Medtronic Neuromodulation | Product code: MHY | Code info: GTIN 00643169090866, Lot Number VA368G3; GTIN 00643169090866, Lot Number VA36V7T; GTIN 00643169936584, Lot Number VA3347Y; GTIN 00643169936584, Lot Number VA33481; GTIN 00643169936584, Lot Number VA33M8V; GTIN 00643169936584, Lot Number VA33M92; GTIN 00643169936584, Lot Number VA33T31; GTIN 00643169936584, Lot Number VA33T33; GTIN 00643169936584, Lot Number VA35B5D; GTIN 00643169936584, Lot Number VA35B5E; GTIN 00643169936584, Lot Number VA35WSP; GTIN 00643169936584, Lot Number VA35WSU; GTIN 00763000963040, Lot Number VA35TTU; GTIN 00763000963040, Lot Number VA35TTV; GTIN 00763000963040, Lot Number VA368FZ; GTIN 00763000963040, Lot Number VA368G3; GTIN 00763000963040, Lot Number VA36V7T; GTIN 00763000963040, Lot Number VA36V8Q; GTIN 00763000968427, Lot Number 0231980220; GTIN 00763000968427, Lot Number 0231980221; GTIN 00763000968427, Lot Number 0231980222; GTIN 00763000968434, Lot Number 0231493884; GTIN 00763000968434, Lot Number 0231493885; GTIN 00763000968434, Lot Number 0231494066; GTIN 00763000968434, Lot Number 0231928923; GTIN 00763000968434, Lot Number 0231929188; GTIN 00763000968434, Lot Number 0231929189; GTIN 00763000968434, Lot Number 0231929192; GTIN 00763000968441, Lot Number 0231367316; GTIN 00763000968441, Lot Number 0231367317.",
-      "severity": "high",
-      "read": false,
-      "action": "해당 제품의 즉각적인 리콜 조치를 취하십시오.",
-      "impactPoints": [
-        "환자의 안전에 중대한 영향 가능성.",
-        "잘못된 사용 기한으로 인한 오용 위험.",
-        "즉시 리콜 및 환자 통지 필요."
-      ],
-      "analysisMode": "ai"
-    },
-    {
-      "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-27-april-to-1-may-2026",
-      "title": "Field Safety Notices: 27 April to 1 May 2026",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "date": "2026-05-12",
-      "link": "https://www.gov.uk/drug-device-alerts/field-safety-notices-27-april-to-1-may-2026",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "List of Field Safety Notices from 27 April to 1 May 2026.",
-      "severity": "high",
-      "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
-    {
-      "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-4-to-8-may-2026",
-      "title": "Field Safety Notices: 4 to 8 May 2026",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "date": "2026-05-12",
-      "link": "https://www.gov.uk/drug-device-alerts/field-safety-notices-4-to-8-may-2026",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "List of Field Safety Notices from 4 to 8 May 2026.",
-      "severity": "high",
-      "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance/pmsv-reporting-forms_en",
       "title": "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
