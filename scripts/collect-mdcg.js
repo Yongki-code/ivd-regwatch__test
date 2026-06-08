@@ -5,7 +5,7 @@ const ROOT_DIR = path.join(__dirname, "..");
 const SOURCES_PATH = path.join(ROOT_DIR, "config", "sources.json");
 const OUTPUT = path.join(ROOT_DIR, "public", "data", "mdcg-cache.json");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const USE_AI = Boolean(OPENAI_API_KEY);
 const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
 
@@ -58,6 +58,15 @@ function readHtmlHeading(html) {
 function inferHtmlDate(text) {
   const match = text.match(/(?:published|last updated)\s+([0-9]{1,2}\s+[a-z]+\s+[0-9]{4})/i);
   return normalizeDate(match?.[1]);
+}
+
+function inferSourceKind(url = "") {
+  const value = url.trim().toLowerCase();
+  if (/api\.fda\.gov\/device\/recall/.test(value)) return "openfda-device-recall";
+  if (/\.(rss|xml|atom)(\?|#|$)/.test(value)) return "rss";
+  if (/\/(rss|feed|feeds)(\/|\?|#|$)/.test(value)) return "rss";
+  if (value.includes("rss") || value.includes("atom")) return "rss";
+  return "html-page";
 }
 
 function inferType(title, sourceType) {
@@ -296,6 +305,7 @@ function parseHtmlPage(html, source) {
 }
 
 async function fetchFeed(source) {
+  const kind = inferSourceKind(source.url);
   const response = await fetch(source.url, {
     headers: {
       "user-agent": "IVD-RegWatch-GitHub-Actions/2.0",
@@ -307,13 +317,13 @@ async function fetchFeed(source) {
     throw new Error(`${source.id} failed: ${response.status} ${response.statusText}`);
   }
 
-  if (source.kind === "openfda-device-recall") {
+  if (kind === "openfda-device-recall") {
     const data = await response.json();
     return parseOpenFdaDeviceRecalls(data, source).slice(0, source.limit || 20);
   }
 
   const xml = await response.text();
-  if (source.kind === "html-page") {
+  if (kind === "html-page") {
     return parseHtmlPage(xml, source).slice(0, source.limit || 20);
   }
 
@@ -388,7 +398,7 @@ function readPreviousPayload() {
 }
 
 function sourceSnapshot(sources) {
-  return sources.map(({ id, source, authority, region, country, type, url, enabled, kind }) => ({
+  return sources.map(({ id, source, authority, region, country, type, url, enabled }) => ({
     id,
     source,
     authority,
@@ -397,7 +407,7 @@ function sourceSnapshot(sources) {
     type,
     url,
     enabled,
-    kind: kind || "rss"
+    kind: inferSourceKind(url)
   }));
 }
 
