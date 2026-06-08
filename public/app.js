@@ -566,7 +566,8 @@ async function pollWorkflowRun(owner, repo, branch, startedAt) {
 
     if (freshRun.status === "completed") {
       if (freshRun.conclusion === "success") {
-        setDataStatus(`수동 수집 완료. Pages 배포 반영까지 잠시 후 데이터 새로고침을 누르세요. 실행 #${freshRun.run_number}`, "success");
+        setDataStatus(`수동 수집 완료. 최신 데이터를 다시 불러오는 중입니다. 실행 #${freshRun.run_number}`, "success");
+        await loadDataConfig();
         return;
       }
       throw new Error(`Actions 실행이 ${freshRun.conclusion || "실패"} 상태로 종료되었습니다. Actions 탭에서 실행 #${freshRun.run_number} 로그를 확인하세요.`);
@@ -601,13 +602,10 @@ async function applyDataConfig() {
 
   setDataStatus("GitHub에 테스트 데이터를 저장하는 중입니다.", "muted");
 
-  let sha = elements.managedDataList.dataset.sha;
-  if (!sha) {
-    const data = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}`);
-    sha = data.sha;
-  }
+  const latest = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}&ts=${Date.now()}`);
+  const sha = latest.sha;
 
-  await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json`, {
+  const saved = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json`, {
     method: "PUT",
     headers: {
       "content-type": "application/json"
@@ -619,6 +617,7 @@ async function applyDataConfig() {
       branch
     })
   });
+  elements.managedDataList.dataset.sha = saved.content?.sha || sha;
 
   setDataStatus("데이터 저장 완료. RSS 재수집 없이 Pages만 배포합니다.", "success");
   await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
