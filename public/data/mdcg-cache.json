@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T10:40:22.080Z",
-  "mode": "github-actions-rss-ai",
-  "aiEnabled": true,
-  "openAiModel": "gpt-4o-mini",
-  "count": 20,
+  "collectedAt": "2026-06-08T10:41:56.051Z",
+  "mode": "manual-test-data",
+  "aiEnabled": false,
+  "openAiModel": null,
+  "count": 18,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -18,58 +18,14 @@
     }
   ],
   "staleCache": false,
-  "previousCollectedAt": null,
+  "previousCollectedAt": "2026-06-08T10:40:22.080Z",
   "errors": [
     {
-      "source": "ai",
-      "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
+      "source": "manual",
+      "message": "Data was manually edited for LLM/UI testing."
     }
   ],
   "items": [
-    {
-      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
-      "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
-      "source": "MDCG",
-      "authority": "European Commission",
-      "region": "EU",
-      "country": "European Union",
-      "type": "Regulation",
-      "date": "2026-05-18",
-      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
-      "summary": "새로운 시행 규정은 적합성 평가 및 통지 기관에 대한 일관된 요구 사항을 설정합니다.",
-      "rawSummary": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
-      "severity": "high",
-      "read": false,
-      "action": "새로운 규정에 따라 적합성 평가 절차 및 통지 기관의 기준을 검토하고 준수할 필요가 있습니다.",
-      "impactPoints": [
-        "모든 의료 기기 및 IVD에 대한 적합성 평가 기준 강화",
-        "통지 기관의 역할 및 책임 명확화",
-        "규정 준수를 위한 추가적인 준비 필요"
-      ],
-      "analysisMode": "ai"
-    },
-    {
-      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance/pmsv-reporting-forms_en",
-      "title": "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
-      "source": "MDCG",
-      "authority": "European Commission",
-      "region": "EU",
-      "country": "European Union",
-      "type": "Guidance",
-      "date": "2026-05-07",
-      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance/pmsv-reporting-forms_en",
-      "summary": "제조업체 사건 보고서 PDF 파일(SB 11154) 업데이트 및 2026년 5월 1일부터 수용 가능한 MIR 7.3.1 버전 관련 중요 정보",
-      "rawSummary": "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
-      "severity": "high",
-      "read": false,
-      "action": "새 제조업체 사건 보고서 양식에 따라 보고 의무 이행",
-      "impactPoints": [
-        "2026년 5월 1일부터 변경된 보고 기준 적용",
-        "구버전 MIR 7.3.1 사용 금지",
-        "신규 양식 사용으로 신속한 대응 필요"
-      ],
-      "analysisMode": "ai"
-    },
     {
       "id": "eu-mdcg:https://eur-lex.europa.eu/eli/reg_impl/2026/977/oj",
       "title": "Implementing Regulation (EU) 2026/977 – uniform requirements for conformity assessment and notified bodies (Annex VII)",
