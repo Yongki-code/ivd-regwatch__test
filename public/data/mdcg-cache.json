@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T04:45:08.575Z",
+  "collectedAt": "2026-06-08T06:20:51.233Z",
   "mode": "manual-test-data",
   "aiEnabled": false,
   "openAiModel": null,
-  "count": 70,
+  "count": 69,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -48,28 +48,6 @@
     }
   ],
   "items": [
-    {
-      "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-18-22-may-2026",
-      "title": "Field Safety Notices: 18 -22 May 2026",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "date": "2026-05-28",
-      "link": "https://www.gov.uk/drug-device-alerts/field-safety-notices-18-22-may-2026",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "List of Field Safety Notices for 18 -22 May 2026",
-      "severity": "high",
-      "read": true,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
     {
       "id": "uk-mhra-device-safety:https://www.gov.uk/drug-device-alerts/allurion-gastric-balloon-updated-safety-information-due-to-the-risks-of-gastric-outlet-obstruction-small-bowel-obstruction-and-gastric-perforation-dsi-slash-2026-slash-004",
       "title": "Allurion Gastric Balloon: Updated safety information due to the risks of gastric outlet obstruction, small bowel obstruction and gastric perforation (DSI/2026/004)",
