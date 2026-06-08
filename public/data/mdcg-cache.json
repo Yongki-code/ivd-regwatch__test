@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T10:27:00.320Z",
-  "mode": "manual-test-data",
-  "aiEnabled": false,
-  "openAiModel": null,
-  "count": 0,
+  "collectedAt": "2026-06-08T10:28:37.131Z",
+  "mode": "github-actions-rss-ai",
+  "aiEnabled": true,
+  "openAiModel": "gpt-4o-mini",
+  "count": 20,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -15,37 +15,460 @@
       "url": "https://health.ec.europa.eu/node/12916/rss_en",
       "enabled": true,
       "kind": "rss"
-    },
-    {
-      "id": "us-fda-device-recalls",
-      "source": "FDA",
-      "authority": "U.S. Food and Drug Administration",
-      "region": "US",
-      "country": "United States",
-      "type": "Recall",
-      "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
-      "enabled": true,
-      "kind": "openfda-device-recall"
-    },
-    {
-      "id": "ca-health-canada-devices",
-      "source": "Health Canada",
-      "authority": "Health Canada",
-      "region": "CA",
-      "country": "Canada",
-      "type": "Recall",
-      "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
-      "enabled": true,
-      "kind": "rss"
     }
   ],
   "staleCache": false,
-  "previousCollectedAt": "2026-06-08T10:23:56.963Z",
+  "previousCollectedAt": null,
   "errors": [
     {
-      "source": "manual",
-      "message": "Data was manually edited for LLM/UI testing."
+      "source": "MDCG",
+      "message": "OpenAI API failed: 503 upstream connect error or disconnect/reset before headers. reset reason: connection timeout"
+    },
+    {
+      "source": "ai",
+      "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
     }
   ],
-  "items": []
+  "items": [
+    {
+      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
+      "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Regulation",
+      "date": "2026-05-18",
+      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
+      "summary": "새로운 시행 규정은 적합성 평가 및 통지 기관에 대한 일관된 요구 사항을 설정합니다.",
+      "rawSummary": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
+      "severity": "high",
+      "read": false,
+      "action": "새로운 규정에 따라 적합성 평가 절차 및 통지 기관의 기준을 검토하고 준수할 필요가 있습니다.",
+      "impactPoints": [
+        "모든 의료 기기 및 IVD에 대한 적합성 평가 기준 강화",
+        "통지 기관의 역할 및 책임 명확화",
+        "규정 준수를 위한 추가적인 준비 필요"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance/pmsv-reporting-forms_en",
+      "title": "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-05-07",
+      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance/pmsv-reporting-forms_en",
+      "summary": "제조업체 사건 보고서 PDF 파일(SB 11154) 업데이트 및 2026년 5월 1일부터 수용 가능한 MIR 7.3.1 버전 관련 중요 정보",
+      "rawSummary": "Update – new manufacturer incident report PDF file (SB 11154) and important information about which MIR 7.3.1. versions are accepted from 1st May 2026",
+      "severity": "high",
+      "read": false,
+      "action": "새 제조업체 사건 보고서 양식에 따라 보고 의무 이행",
+      "impactPoints": [
+        "2026년 5월 1일부터 변경된 보고 기준 적용",
+        "구버전 MIR 7.3.1 사용 금지",
+        "신규 양식 사용으로 신속한 대응 필요"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://eur-lex.europa.eu/eli/reg_impl/2026/977/oj",
+      "title": "Implementing Regulation (EU) 2026/977 – uniform requirements for conformity assessment and notified bodies (Annex VII)",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Regulation",
+      "date": "2026-05-05",
+      "link": "https://eur-lex.europa.eu/eli/reg_impl/2026/977/oj",
+      "summary": "2026/977 시행령은 의료기기 및 IVD의 적합성 평가 및 통지 기관에 대한 일관된 요구 사항을 규정합니다.",
+      "rawSummary": "Implementing Regulation (EU) 2026/977 – uniform requirements for conformity assessment and notified bodies (Annex VII)",
+      "severity": "high",
+      "read": false,
+      "action": "의료기기 및 IVD의 적합성 평가 절차를 준수해야 합니다.",
+      "impactPoints": [
+        "통지 기관의 역할 변화가 반영됩니다.",
+        "제품 승인 과정의 복잡성이 증가할 수 있습니다.",
+        "시장 진입 지연으로 인한 경제적 영향이 우려됩니다."
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec8",
+      "title": "Update – Documents on European Medical Device Nomenclature (EMDN)",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-04-22",
+      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec8",
+      "summary": "유럽 의료 기기 명명법(EMDN)에 관한 문서 업데이트.",
+      "rawSummary": "Update – Documents on European Medical Device Nomenclature (EMDN)",
+      "severity": "medium",
+      "read": false,
+      "action": "새로운 명명 규칙에 따라 제품 명칭 업데이트 필요.",
+      "impactPoints": [
+        "명명 전략 재검토 필요.",
+        "규정 준수 확인 필수.",
+        "시장 출시 일정 조정 필요."
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-v5-2026-04-22_en",
+      "title": "Update - Manual on borderline and classification under Regulations (EU) 2017/745 and 2017/746 v5",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-04-22",
+      "link": "https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-v5-2026-04-22_en",
+      "summary": "제품 분류 또는 경계 제품 판단에 영향을 줄 수 있는 문서입니다. 제품군별 분류 근거와 기존 기술문서의 규정 인용이 최신인지 확인하세요.",
+      "rawSummary": "Update - Manual on borderline and classification under Regulations (EU) 2017/745 and 2017/746 v5",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/update-mdcg-2021-24-rev1-guidance-classification-medical-devices-april-2026-2026-04-20_en",
+      "title": "Update - MDCG 2021-24 rev.1 - Guidance on classification of medical devices (April 2026)",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "MDCG Guidance",
+      "date": "2026-04-20",
+      "link": "https://health.ec.europa.eu/latest-updates/update-mdcg-2021-24-rev1-guidance-classification-medical-devices-april-2026-2026-04-20_en",
+      "summary": "의료기기 분류에 대한 MDCG 2021-24 rev.1 가이드라인 업데이트.",
+      "rawSummary": "Update - MDCG 2021-24 rev.1 - Guidance on classification of medical devices (April 2026)",
+      "severity": "medium",
+      "read": false,
+      "action": "새로운 가이드라인에 따라 의료기기 분류가 조정되어야 합니다.",
+      "impactPoints": [
+        "의료기기 분류 기준 변경",
+        "규제 준수 필요성 증가",
+        "시장 진입 일정에 따른 영향"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/74172",
+      "title": "Pilot programme to be launched to support breakthrough medical devices and in vitro diagnostics",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-04-15",
+      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/74172",
+      "summary": "혁신적인 의료기기 및 체외 진단을 지원하는 파일럿 프로그램이 시작됩니다.",
+      "rawSummary": "Pilot programme to be launched to support breakthrough medical devices and in vitro diagnostics",
+      "severity": "medium",
+      "read": false,
+      "action": "규제 관련 정보를 검토하고, 새로운 지침에 따라 절차를 조정해야 합니다.",
+      "impactPoints": [
+        "혁신 기기 개발 촉진",
+        "규제 절차 간소화",
+        "유럽 시장 접근성 향상"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-topics-interest/european-medical-devices-nomenclature-emdn_en#second-training-2025",
+      "title": "Recording available - Second training on EMDN: structure, consultation process, and practical application",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-03-24",
+      "link": "https://health.ec.europa.eu/medical-devices-topics-interest/european-medical-devices-nomenclature-emdn_en#second-training-2025",
+      "summary": "EMDN에 대한 제2차 교육 녹화 제공: 구조, 상담 프로세스 및 실제 적용.",
+      "rawSummary": "Recording available - Second training on EMDN: structure, consultation process, and practical application",
+      "severity": "medium",
+      "read": false,
+      "action": "EMDN 교육 내용을 검토하고 해당 정보에 따라 의료기기 및 IVD의 명명 분야에 반영.",
+      "impactPoints": [
+        "EMDN 구조 이해 증진",
+        "상담 프로세스 개선",
+        "실제 적용 사례 학습"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/events/medical-devices-innovation-and-patient-safety-2026-03-16_en",
+      "title": "Recording available - Commissioner Várhelyi to open high-level event on medical devices",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-03-18",
+      "link": "https://health.ec.europa.eu/events/medical-devices-innovation-and-patient-safety-2026-03-16_en",
+      "summary": "의료기기 및 IVD 관련 고위급 행사 열린다.",
+      "rawSummary": "Recording available - Commissioner Várhelyi to open high-level event on medical devices",
+      "severity": "medium",
+      "read": false,
+      "action": "기술 변경사항 및 규제 방향 확인 필요",
+      "impactPoints": [
+        "위원회 발표 내용 검토 필요",
+        "시장에 미치는 영향 분석",
+        "관련 규제 준수 확인"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/73104",
+      "title": "Commissioner Várhelyi to open high-level event on medical devices",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-03-13",
+      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/73104",
+      "summary": "Commissioner Várhelyi가 의료기기 관련 고위급 행사 개막.",
+      "rawSummary": "Commissioner Várhelyi to open high-level event on medical devices",
+      "severity": "medium",
+      "read": false,
+      "action": "의료기기 규제 동향 파악 및 관련 자료 준비.",
+      "impactPoints": [
+        "의료기기 규제 변화 모니터링 필요",
+        "업계 의견 수렴 일정 확인",
+        "추가적인 지침 발표 가능성"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/71729",
+      "title": "Medical Devices: Register now for high-level conference on 16 March 2026",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-02-03",
+      "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/71729",
+      "summary": "2026년 3월 16일에 열리는 고위급 회의에 등록하세요.",
+      "rawSummary": "Medical Devices: Register now for high-level conference on 16 March 2026",
+      "severity": "low",
+      "read": false,
+      "action": "회의 등록 및 준비 작업 수행",
+      "impactPoints": [
+        "참여를 통해 최신 정보 획득 가능",
+        "의료기기 관련 이해관계자와 네트워킹",
+        "규제 변화에 대한 통찰력 제공"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
+      "title": "Registration - High-level Conference on Medical Devices: Innovation and Patient Safety - 16 March 2026, 9.00 - 17.00 CET",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-02-02",
+      "link": "https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
+      "summary": "의료기기 및 IVD에 대한 혁신과 환자 안전을 주제로 한 고위급 회의 등록.",
+      "rawSummary": "Registration - High-level Conference on Medical Devices: Innovation and Patient Safety - 16 March 2026, 9.00 - 17.00 CET",
+      "severity": "medium",
+      "read": false,
+      "action": "참여 등록을 통해 최신 지침 및 규제 동향 파악.",
+      "impactPoints": [
+        "의료기기 규제의 최신 정보 공유",
+        "혁신 사례 발표 및 논의",
+        "환자 안전 강화 방안 탐색"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://ec.europa.eu/commission/presscorner/detail/en/fs_25_3072",
+      "title": "Factsheet - Better rules for medical devices, better outcomes for EU patients",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2026-01-19",
+      "link": "https://ec.europa.eu/commission/presscorner/detail/en/fs_25_3072",
+      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Factsheet - Better rules for medical devices, better outcomes for EU patients",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
+      "title": "MDCG 2025–10: Guidance on post-market surveillance of medical devices and in vitro diagnostic medical devices (December 2025)",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "MDCG Guidance",
+      "date": "2025-12-19",
+      "link": "https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
+      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "rawSummary": "MDCG 2025–10: Guidance on post-market surveillance of medical devices and in vitro diagnostic medical devices (December 2025)",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
+      "title": "MDCG 2025-7 - Rev. 1: Timelines of the implementation of ‘Master UDI-DI’ to contact lenses and spectacle frames, spectacle lenses and ready-to-wear reading spectacles",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "MDCG Guidance",
+      "date": "2025-12-17",
+      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
+      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "rawSummary": "MDCG 2025-7 - Rev. 1: Timelines of the implementation of ‘Master UDI-DI’ to contact lenses and spectacle frames, spectacle lenses and ready-to-wear reading spectacles",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec13",
+      "title": "MDCG 2025-9: Guidance on Breakthrough Devices (BtX) under Regulations 2017/745 & 2017/746",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "MDCG Guidance",
+      "date": "2025-12-15",
+      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec13",
+      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "rawSummary": "MDCG 2025-9: Guidance on Breakthrough Devices (BtX) under Regulations 2017/745 &amp; 2017/746",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/monitoring-availability-medical-devices-eu-market-study-overview-and-2nd-survey-results-2025-12-01_en",
+      "title": "Monitoring of availability of medical devices on the EU Market - Study overview and 2nd survey results",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2025-12-01",
+      "link": "https://health.ec.europa.eu/latest-updates/monitoring-availability-medical-devices-eu-market-study-overview-and-2nd-survey-results-2025-12-01_en",
+      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Monitoring of availability of medical devices on the EU Market - Study overview and 2nd survey results",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-september-2025-2025-09-12_en",
+      "title": "Update - Manual on borderline and classification under Regulations (EU) 2017/745 and 2017/746 - September 2025",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Guidance",
+      "date": "2025-09-12",
+      "link": "https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-september-2025-2025-09-12_en",
+      "summary": "제품 분류 또는 경계 제품 판단에 영향을 줄 수 있는 문서입니다. 제품군별 분류 근거와 기존 기술문서의 규정 인용이 최신인지 확인하세요.",
+      "rawSummary": "Update - Manual on borderline and classification under Regulations (EU) 2017/745 and 2017/746 - September 2025",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/mdcg-2024-14-rev1-guidance-implementation-master-udi-di-solution-contact-lenses-august-2025-2025-08-26_en",
+      "title": "MDCG 2024-14 - rev.1 - Guidance on the implementation of the Master UDI-DI solution for contact lenses (August 2025)",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "MDCG Guidance",
+      "date": "2025-08-26",
+      "link": "https://health.ec.europa.eu/latest-updates/mdcg-2024-14-rev1-guidance-implementation-master-udi-di-solution-contact-lenses-august-2025-2025-08-26_en",
+      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "rawSummary": "MDCG 2024-14 - rev.1 - Guidance on the implementation of the Master UDI-DI solution for contact lenses (August 2025)",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations_en#Delegated",
+      "title": "Adoption of Commission Delegated Regulation (EU) 2025/788 amending Delegated Regulation (EU) 2023/2197 as regards the date of application",
+      "source": "MDCG",
+      "authority": "European Commission",
+      "region": "EU",
+      "country": "European Union",
+      "type": "Regulation",
+      "date": "2025-07-29",
+      "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations_en#Delegated",
+      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Adoption of Commission Delegated Regulation (EU) 2025/788 amending Delegated Regulation (EU) 2023/2197 as regards the date of application",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    }
+  ]
 }
