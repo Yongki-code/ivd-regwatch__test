@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T06:20:51.233Z",
+  "collectedAt": "2026-06-08T06:40:32.769Z",
   "mode": "manual-test-data",
   "aiEnabled": false,
   "openAiModel": null,
-  "count": 69,
+  "count": 67,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -40,7 +40,7 @@
     }
   ],
   "staleCache": false,
-  "previousCollectedAt": "2026-06-08T03:51:37.173Z",
+  "previousCollectedAt": "2026-06-08T06:38:48.393Z",
   "errors": [
     {
       "source": "manual",
@@ -48,50 +48,6 @@
     }
   ],
   "items": [
-    {
-      "id": "uk-mhra-device-safety:https://www.gov.uk/drug-device-alerts/allurion-gastric-balloon-updated-safety-information-due-to-the-risks-of-gastric-outlet-obstruction-small-bowel-obstruction-and-gastric-perforation-dsi-slash-2026-slash-004",
-      "title": "Allurion Gastric Balloon: Updated safety information due to the risks of gastric outlet obstruction, small bowel obstruction and gastric perforation (DSI/2026/004)",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Safety Alert",
-      "date": "2026-05-27",
-      "link": "https://www.gov.uk/drug-device-alerts/allurion-gastric-balloon-updated-safety-information-due-to-the-risks-of-gastric-outlet-obstruction-small-bowel-obstruction-and-gastric-perforation-dsi-slash-2026-slash-004",
-      "summary": "MHRA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
-      "rawSummary": "In rare instances, the Allurion Gastric Balloon has not transited through the stomach or bowel as intended, leading to complications such as gastric outlet obstruction, small bowel obstruction and gastric perforation.",
-      "severity": "low",
-      "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
-    {
-      "id": "uk-mhra-device-safety:https://www.gov.uk/drug-device-alerts/kimal-procedure-packs-containing-recalled-components-namic-angiographic-syringe-with-the-risk-of-syringe-disconnection-namic-manifolds-with-the-risk-of-foreign-particulates-important-guidance-for-use-in-emergency-situations-dsi-sl",
-      "title": "Kimal Procedure Packs containing recalled components: Namic Angiographic Syringe with the risk of syringe disconnection; Namic Manifolds with the risk of foreign particulates. Important guidance for use in urgent procedures where there are no alternatives. (DSI/2026/002)",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Safety Alert",
-      "date": "2026-05-22",
-      "link": "https://www.gov.uk/drug-device-alerts/kimal-procedure-packs-containing-recalled-components-namic-angiographic-syringe-with-the-risk-of-syringe-disconnection-namic-manifolds-with-the-risk-of-foreign-particulates-important-guidance-for-use-in-emergency-situations-dsi-sl",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "Medline Industries LP and Kimal PLC have identified safety issues with the Namic Angiographic Control Syringes with RA and Namic White Star Off Handle Manifold devices, and have issued field safety notices to affected UK hos…",
-      "severity": "high",
-      "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-11-to-15-may-2026",
       "title": "Field Safety Notices: 11 to 15 May 2026",
