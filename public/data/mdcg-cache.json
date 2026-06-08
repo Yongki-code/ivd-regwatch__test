@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-08T11:04:14.415Z",
+  "collectedAt": "2026-06-08T11:20:34.550Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "openAiModel": "gpt-4o-mini",
@@ -49,28 +49,6 @@
   ],
   "items": [
     {
-      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector_en",
-      "title": "Medical Devices - Sector",
-      "source": "MDCG",
-      "authority": "MDCG",
-      "region": "Global",
-      "country": "Global",
-      "type": "Guidance",
-      "date": "2026-06-08",
-      "link": "https://health.ec.europa.eu/medical-devices-sector_en",
-      "summary": "의료 기기 섹터에 대한 지침을 제공합니다.",
-      "rawSummary": "",
-      "severity": "medium",
-      "read": false,
-      "action": "해당 지침을 따라 준수 계획 수립 필요.",
-      "impactPoints": [
-        "의료 기기 시장의 규제 변화 반영",
-        "안전성과 효과성 보장",
-        "제품 승인 및 마케팅 전략 재검토"
-      ],
-      "analysisMode": "ai"
-    },
-    {
       "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
       "title": "Regulatory Update May 22, 2026 ANVISA Updates Hospitalar 2026 Attendees about Regulatory Reliance At the February ABIMED meeting, ANVISA Director Marcelo Mario Matos Moreira shared the Brazil medical device...",
       "source": "ANVISA",
@@ -89,6 +67,28 @@
         "브라질 시장 접근성 영향",
         "규제 변화에 대한 준비 필요",
         "의료기기 승인 절차의 변화 가능성"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector_en",
+      "title": "Medical Devices - Sector",
+      "source": "MDCG",
+      "authority": "MDCG",
+      "region": "Global",
+      "country": "Global",
+      "type": "Guidance",
+      "date": "2026-06-08",
+      "link": "https://health.ec.europa.eu/medical-devices-sector_en",
+      "summary": "의료 기기 섹터에 대한 지침을 제공합니다.",
+      "rawSummary": "",
+      "severity": "medium",
+      "read": false,
+      "action": "해당 지침을 따라 준수 계획 수립 필요.",
+      "impactPoints": [
+        "의료 기기 시장의 규제 변화 반영",
+        "안전성과 효과성 보장",
+        "제품 승인 및 마케팅 전략 재검토"
       ],
       "analysisMode": "ai"
     },
