@@ -181,12 +181,10 @@
                 키워드
                 <input id="sourceKeywordsInput" type="text" placeholder="medical device, ivd, recall, guidance" />
               </label>
-              <fieldset class="url-kind-group">
-                <legend>URL 유형</legend>
-                <label><input type="radio" name="sourceKind" value="rss" checked /> RSS/Atom</label>
-                <label><input type="radio" name="sourceKind" value="html-page" /> HTML</label>
-                <label><input type="radio" name="sourceKind" value="openfda-device-recall" /> openFDA API</label>
-              </fieldset>
+              <div class="url-kind-auto">
+                <span>URL 유형</span>
+                <strong id="sourceKindAutoLabel">URL 입력 시 자동 분류</strong>
+              </div>
               <div class="source-form-actions">
                 <button class="ghost-button" id="clearSourceFormButton" type="button">취소</button>
                 <button class="primary-action" id="saveSourceFormButton" type="button">소스 저장</button>

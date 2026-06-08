@@ -29,6 +29,7 @@ const elements = {
   sourceRegionInput: document.querySelector("#sourceRegionInput"),
   sourceTypeInput: document.querySelector("#sourceTypeInput"),
   sourceKeywordsInput: document.querySelector("#sourceKeywordsInput"),
+  sourceKindAutoLabel: document.querySelector("#sourceKindAutoLabel"),
   managedSourceList: document.querySelector("#managedSourceList"),
   sourceApplyStatus: document.querySelector("#sourceApplyStatus"),
   detailPanel: document.querySelector("#detailPanel"),
@@ -241,20 +242,33 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "") || "source";
 }
 
-function getSelectedSourceKind() {
-  return document.querySelector('input[name="sourceKind"]:checked')?.value || "rss";
+function inferSourceKind(url = "") {
+  const value = url.trim().toLowerCase();
+  if (!value) return "rss";
+  if (/api\.fda\.gov\/device\/recall/.test(value)) return "openfda-device-recall";
+  if (/\.(rss|xml|atom)(\?|#|$)/.test(value)) return "rss";
+  if (/\/(rss|feed|feeds)(\/|\?|#|$)/.test(value)) return "rss";
+  if (value.includes("rss") || value.includes("atom")) return "rss";
+  return "html-page";
 }
 
-function setSelectedSourceKind(kind = "rss") {
-  const normalized = kind === "openfda-device-recall" || kind === "html-page" ? kind : "rss";
-  const input = document.querySelector(`input[name="sourceKind"][value="${normalized}"]`);
-  if (input) input.checked = true;
+function sourceKindLabel(kind = "rss") {
+  if (kind === "openfda-device-recall") return "openFDA API";
+  if (kind === "html-page") return "HTML";
+  return "RSS/Atom";
+}
+
+function updateSourceKindPreview(kind = inferSourceKind(elements.sourceUrlInput.value)) {
+  if (!elements.sourceKindAutoLabel) return;
+  elements.sourceKindAutoLabel.textContent = sourceKindLabel(kind);
 }
 
 function normalizeSource(source, index = 0) {
   const sourceName = (source.source || "Authority").trim();
   const region = (source.region || "Global").trim();
   const type = (source.type || "Update").trim();
+  const url = (source.url || "").trim();
+  const kind = inferSourceKind(url);
   const keywords = Array.isArray(source.keywords)
     ? source.keywords
     : String(source.keywords || "")
@@ -270,8 +284,8 @@ function normalizeSource(source, index = 0) {
     region,
     country: (source.country || region).trim(),
     type,
-    ...(source.kind && source.kind !== "rss" ? { kind: source.kind } : {}),
-    url: (source.url || "").trim(),
+    ...(kind && kind !== "rss" ? { kind } : {}),
+    url,
     keywords
   };
 }
@@ -305,7 +319,7 @@ function clearSourceForm() {
   elements.sourceRegionInput.value = "EU";
   elements.sourceTypeInput.value = "Guidance";
   elements.sourceKeywordsInput.value = "";
-  setSelectedSourceKind("rss");
+  updateSourceKindPreview("rss");
 }
 
 function fillSourceForm(source, index) {
@@ -316,7 +330,7 @@ function fillSourceForm(source, index) {
   elements.sourceRegionInput.value = source.region || "Global";
   elements.sourceTypeInput.value = source.type || "Update";
   elements.sourceKeywordsInput.value = (source.keywords || []).join(", ");
-  setSelectedSourceKind(source.kind || "rss");
+  updateSourceKindPreview(source.kind || inferSourceKind(source.url || ""));
 }
 
 function sourceFromForm() {
@@ -324,7 +338,7 @@ function sourceFromForm() {
   const region = elements.sourceRegionInput.value.trim();
   const type = elements.sourceTypeInput.value.trim();
   const url = elements.sourceUrlInput.value.trim();
-  const kind = getSelectedSourceKind();
+  const kind = inferSourceKind(url);
 
   if (!sourceName) throw new Error("소스 이름을 입력해 주세요.");
   if (!url) throw new Error("URL을 입력해 주세요.");
@@ -370,7 +384,7 @@ function renderManagedSources() {
         <small>${escapeHtml(source.authority || source.source)}</small>
       </button>
       <span class="source-chip">${escapeHtml(source.region)}</span>
-      <span class="source-chip">${escapeHtml(source.kind === "html-page" ? "HTML" : source.kind === "openfda-device-recall" ? "API" : "RSS")}</span>
+      <span class="source-chip">${escapeHtml(sourceKindLabel(source.kind || "rss"))}</span>
       <button class="source-delete" type="button" data-source-delete="${index}" aria-label="소스 삭제">⌫</button>
     </article>
   `).join("");
@@ -588,6 +602,7 @@ document.querySelector("#settingsButton").addEventListener("click", openSettings
 document.querySelector("#closeSettings").addEventListener("click", closeSettings);
 document.querySelector("#cancelSettings").addEventListener("click", closeSettings);
 document.querySelector("#saveSettings").addEventListener("click", closeSettings);
+elements.sourceUrlInput.addEventListener("input", () => updateSourceKindPreview());
 document.querySelector("#loadSourcesButton").addEventListener("click", () => {
   loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
 });
