@@ -532,14 +532,14 @@ async function runManualCollection() {
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 수동 수집을 실행할 수 있습니다.");
 
   setDataStatus("수동 수집을 요청하는 중입니다. 저장된 수집 소스 기준으로 크롤링합니다.", "muted");
-  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false", force_ai: "true" });
-  setDataStatus("수동 수집을 시작했습니다. 삭제했던 데이터도 수집 조건에 맞으면 다시 복구될 수 있습니다.", "muted");
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false" });
+  setDataStatus("수동 수집을 시작했습니다. 삭제했던 데이터는 조건에 맞으면 복구되며, AI 결과가 없는 항목만 AI 처리합니다.", "muted");
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setDataStatus(message, tone),
     successMessage: (run) => `수동 수집 완료. 최신 데이터를 다시 불러오는 중입니다. 실행 #${run.run_number}`,
     onSuccess: async (run) => {
       await loadDataConfig();
-      setDataStatus(`수동 수집 완료. 저장된 수집 소스 기준으로 데이터를 다시 크롤링했습니다. 삭제했던 데이터도 조건에 맞으면 복구됩니다. 실행 #${run.run_number}`, "success");
+      setDataStatus(`수동 수집 완료. 저장된 수집 소스 기준으로 데이터를 다시 크롤링했습니다. AI 결과가 없는 항목만 AI 처리했습니다. 실행 #${run.run_number}`, "success");
     }
   });
 }
@@ -635,7 +635,7 @@ async function applyDataConfig() {
   elements.managedDataList.dataset.sha = saved.content?.sha || sha;
 
   setDataStatus("데이터 저장 완료. RSS 재수집 없이 현재 목록 그대로 Pages 배포를 요청합니다.", "muted");
-  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "true", force_ai: "false" });
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "true" });
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setDataStatus(message, tone),
     successMessage: (run) => `데이터만 저장/배포 완료. 현재 목록 그대로 배포했습니다. 수집 실행 또는 매일 오전 7시(KST) 자동 갱신 시 삭제 데이터는 다시 복구될 수 있습니다. 실행 #${run.run_number}`
@@ -744,10 +744,10 @@ async function applySourcesConfig() {
   });
 
   setApplyStatus("설정 저장 완료. GitHub Actions 수집을 요청하는 중입니다.", "muted");
-  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false", force_ai: "false" });
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false" });
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setApplyStatus(message, tone),
-    successMessage: (run) => `저장 후 수집 실행 완료. 저장된 수집 소스 기준으로 데이터를 갱신했습니다. 사이트를 새로고침하세요. 실행 #${run.run_number}`
+    successMessage: (run) => `저장 후 수집 실행 완료. 저장된 수집 소스 기준으로 데이터를 갱신했고, AI 결과가 없는 항목만 AI 처리했습니다. 사이트를 새로고침하세요. 실행 #${run.run_number}`
   });
 }
 
