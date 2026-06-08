@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T10:19:40.707Z",
-  "mode": "github-actions-rss-ai",
-  "aiEnabled": true,
-  "openAiModel": "gpt-4o-mini",
-  "count": 67,
+  "collectedAt": "2026-06-08T10:21:03.067Z",
+  "mode": "manual-test-data",
+  "aiEnabled": false,
+  "openAiModel": null,
+  "count": 66,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -40,36 +40,14 @@
     }
   ],
   "staleCache": false,
-  "previousCollectedAt": null,
+  "previousCollectedAt": "2026-06-08T10:19:40.707Z",
   "errors": [
     {
-      "source": "ai",
-      "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
+      "source": "manual",
+      "message": "Data was manually edited for LLM/UI testing."
     }
   ],
   "items": [
-    {
-      "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-11-to-15-may-2026",
-      "title": "Field Safety Notices: 11 to 15 May 2026",
-      "source": "MHRA",
-      "authority": "Medicines and Healthcare products Regulatory Agency",
-      "region": "UK",
-      "country": "United Kingdom",
-      "type": "Field Safety Notice",
-      "date": "2026-05-22",
-      "link": "https://www.gov.uk/drug-device-alerts/field-safety-notices-11-to-15-may-2026",
-      "summary": "MHRA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "List of Field Safety Notices from 11 to 15 May 2026.",
-      "severity": "high",
-      "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
-      "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
-      ],
-      "analysisMode": "rules"
-    },
     {
       "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
       "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
