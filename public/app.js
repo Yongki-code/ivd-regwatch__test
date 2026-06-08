@@ -514,23 +514,34 @@ async function loadDataConfig() {
   setDataStatus(`배포된 수집 데이터 ${dataDraftItems.length}건을 불러왔습니다. 저장하려면 GitHub classic token이 필요합니다.`, "success");
 }
 
-async function runManualCollection() {
-  const { owner, repo } = getRepoInfo();
-  const branch = elements.githubBranchInput.value.trim() || "main";
-  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 수동 수집을 실행할 수 있습니다.");
-
-  setDataStatus("GitHub Actions 수집 워크플로우를 실행하는 중입니다.", "muted");
+async function dispatchWorkflow(owner, repo, branch, inputs) {
   const startedAt = Date.now();
   await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
     method: "POST",
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "false", force_ai: "true" } })
+    body: JSON.stringify({ ref: branch, inputs })
   });
+  return startedAt;
+}
 
-  setDataStatus("수동 수집을 시작했습니다. Actions 상태를 확인하는 중입니다.", "muted");
-  await pollWorkflowRun(owner, repo, branch, startedAt);
+async function runManualCollection() {
+  const { owner, repo } = getRepoInfo();
+  const branch = elements.githubBranchInput.value.trim() || "main";
+  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 수동 수집을 실행할 수 있습니다.");
+
+  setDataStatus("수동 수집을 요청하는 중입니다. 저장된 수집 소스 기준으로 크롤링합니다.", "muted");
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false", force_ai: "true" });
+  setDataStatus("수동 수집을 시작했습니다. 삭제했던 데이터도 수집 조건에 맞으면 다시 복구될 수 있습니다.", "muted");
+  await pollWorkflowRun(owner, repo, branch, startedAt, {
+    onUpdate: (message, tone) => setDataStatus(message, tone),
+    successMessage: (run) => `수동 수집 완료. 최신 데이터를 다시 불러오는 중입니다. 실행 #${run.run_number}`,
+    onSuccess: async (run) => {
+      await loadDataConfig();
+      setDataStatus(`수동 수집 완료. 저장된 수집 소스 기준으로 데이터를 다시 크롤링했습니다. 삭제했던 데이터도 조건에 맞으면 복구됩니다. 실행 #${run.run_number}`, "success");
+    }
+  });
 }
 
 function workflowStatusText(run) {
@@ -541,7 +552,8 @@ function workflowStatusText(run) {
   return run.status || "확인 중";
 }
 
-async function pollWorkflowRun(owner, repo, branch, startedAt) {
+async function pollWorkflowRun(owner, repo, branch, startedAt, options = {}) {
+  const onUpdate = options.onUpdate || setDataStatus;
   await wait(2500);
   let targetRun = null;
 
@@ -555,19 +567,22 @@ async function pollWorkflowRun(owner, repo, branch, startedAt) {
     const candidateRuns = (data.workflow_runs || []).filter((run) => new Date(run.created_at).getTime() >= startedAt - 10000);
     targetRun = targetRun || candidateRuns[0];
     if (!targetRun) {
-      setDataStatus(`Actions 실행을 찾는 중입니다. (${attempt}/90)`, "muted");
+      onUpdate(`Actions 실행을 찾는 중입니다. (${attempt}/90)`, "muted");
       await wait(4000);
       continue;
     }
 
     const freshRun = data.workflow_runs?.find((run) => run.id === targetRun.id) || targetRun;
     const text = workflowStatusText(freshRun);
-    setDataStatus(`Actions ${text}. 실행 #${freshRun.run_number} 확인 중입니다.`, freshRun.conclusion === "failure" ? "error" : "muted");
+    onUpdate(`Actions ${text}. 실행 #${freshRun.run_number} 확인 중입니다.`, freshRun.conclusion === "failure" ? "error" : "muted");
 
     if (freshRun.status === "completed") {
       if (freshRun.conclusion === "success") {
-        setDataStatus(`수동 수집 완료. 최신 데이터를 다시 불러오는 중입니다. 실행 #${freshRun.run_number}`, "success");
-        await loadDataConfig();
+        const message = typeof options.successMessage === "function"
+          ? options.successMessage(freshRun)
+          : `Actions 완료. 실행 #${freshRun.run_number}`;
+        onUpdate(message, "success");
+        if (options.onSuccess) await options.onSuccess(freshRun);
         return;
       }
       throw new Error(`Actions 실행이 ${freshRun.conclusion || "실패"} 상태로 종료되었습니다. Actions 탭에서 실행 #${freshRun.run_number} 로그를 확인하세요.`);
@@ -576,7 +591,7 @@ async function pollWorkflowRun(owner, repo, branch, startedAt) {
     await wait(5000);
   }
 
-  setDataStatus("Actions가 아직 완료되지 않았습니다. Actions 탭에서 진행 상태를 확인하세요.", "muted");
+  onUpdate("Actions가 아직 완료되지 않았습니다. Actions 탭에서 진행 상태를 확인하세요.", "muted");
 }
 
 function buildDataPayload() {
@@ -600,7 +615,7 @@ async function applyDataConfig() {
   const branch = elements.githubBranchInput.value.trim() || "main";
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 데이터를 저장/배포할 수 있습니다.");
 
-  setDataStatus("GitHub에 테스트 데이터를 저장하는 중입니다.", "muted");
+  setDataStatus("GitHub에 현재 데이터 목록을 저장하는 중입니다. 이 기능은 LLM/UI 테스트용입니다.", "muted");
 
   const latest = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}&ts=${Date.now()}`);
   const sha = latest.sha;
@@ -619,16 +634,12 @@ async function applyDataConfig() {
   });
   elements.managedDataList.dataset.sha = saved.content?.sha || sha;
 
-  setDataStatus("데이터 저장 완료. RSS 재수집 없이 Pages만 배포합니다.", "success");
-  await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "true", force_ai: "false" } })
+  setDataStatus("데이터 저장 완료. RSS 재수집 없이 현재 목록 그대로 Pages 배포를 요청합니다.", "muted");
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "true", force_ai: "false" });
+  await pollWorkflowRun(owner, repo, branch, startedAt, {
+    onUpdate: (message, tone) => setDataStatus(message, tone),
+    successMessage: (run) => `데이터만 저장/배포 완료. 현재 목록 그대로 배포했습니다. 수집 실행 또는 매일 오전 7시(KST) 자동 갱신 시 삭제 데이터는 다시 복구될 수 있습니다. 실행 #${run.run_number}`
   });
-
-  setDataStatus("적용 완료. Actions 완료 후 사이트를 새로고침하세요.", "success");
 }
 
 async function githubRequest(path, options = {}) {
@@ -732,16 +743,12 @@ async function applySourcesConfig() {
     })
   });
 
-  setApplyStatus("설정 저장 완료. 수집 워크플로우를 실행하는 중입니다.", "success");
-  await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "false", force_ai: "false" } })
+  setApplyStatus("설정 저장 완료. GitHub Actions 수집을 요청하는 중입니다.", "muted");
+  const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false", force_ai: "false" });
+  await pollWorkflowRun(owner, repo, branch, startedAt, {
+    onUpdate: (message, tone) => setApplyStatus(message, tone),
+    successMessage: (run) => `저장 후 수집 실행 완료. 저장된 수집 소스 기준으로 데이터를 갱신했습니다. 사이트를 새로고침하세요. 실행 #${run.run_number}`
   });
-
-  setApplyStatus("적용 완료. Actions 탭에서 실행 상태를 확인하고, 완료 후 사이트를 새로고침하세요.", "success");
 }
 
 async function loadFeed(useCacheFirst = false) {
