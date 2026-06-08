@@ -420,6 +420,10 @@ function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function defaultImpactPointsForTest() {
   return [
     "자사 제품군 적용 여부 확인",
@@ -516,15 +520,62 @@ async function runManualCollection() {
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 수동 수집을 실행할 수 있습니다.");
 
   setDataStatus("GitHub Actions 수집 워크플로우를 실행하는 중입니다.", "muted");
+  const startedAt = Date.now();
   await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
     method: "POST",
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "false" } })
+    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "false", force_ai: "true" } })
   });
 
-  setDataStatus("수동 수집을 시작했습니다. Actions 완료 후 사이트를 새로고침하세요.", "success");
+  setDataStatus("수동 수집을 시작했습니다. Actions 상태를 확인하는 중입니다.", "muted");
+  await pollWorkflowRun(owner, repo, branch, startedAt);
+}
+
+function workflowStatusText(run) {
+  if (run.status === "queued") return "대기 중";
+  if (run.status === "in_progress") return "실행 중";
+  if (run.status === "completed" && run.conclusion === "success") return "완료";
+  if (run.status === "completed") return `종료: ${run.conclusion || "unknown"}`;
+  return run.status || "확인 중";
+}
+
+async function pollWorkflowRun(owner, repo, branch, startedAt) {
+  await wait(2500);
+  let targetRun = null;
+
+  for (let attempt = 1; attempt <= 90; attempt += 1) {
+    const query = new URLSearchParams({
+      branch,
+      event: "workflow_dispatch",
+      per_page: "5"
+    });
+    const data = await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/runs?${query.toString()}`);
+    const candidateRuns = (data.workflow_runs || []).filter((run) => new Date(run.created_at).getTime() >= startedAt - 10000);
+    targetRun = targetRun || candidateRuns[0];
+    if (!targetRun) {
+      setDataStatus(`Actions 실행을 찾는 중입니다. (${attempt}/90)`, "muted");
+      await wait(4000);
+      continue;
+    }
+
+    const freshRun = data.workflow_runs?.find((run) => run.id === targetRun.id) || targetRun;
+    const text = workflowStatusText(freshRun);
+    setDataStatus(`Actions ${text}. 실행 #${freshRun.run_number} 확인 중입니다.`, freshRun.conclusion === "failure" ? "error" : "muted");
+
+    if (freshRun.status === "completed") {
+      if (freshRun.conclusion === "success") {
+        setDataStatus(`수동 수집 완료. Pages 배포 반영까지 잠시 후 데이터 새로고침을 누르세요. 실행 #${freshRun.run_number}`, "success");
+        return;
+      }
+      throw new Error(`Actions 실행이 ${freshRun.conclusion || "실패"} 상태로 종료되었습니다. Actions 탭에서 실행 #${freshRun.run_number} 로그를 확인하세요.`);
+    }
+
+    await wait(5000);
+  }
+
+  setDataStatus("Actions가 아직 완료되지 않았습니다. Actions 탭에서 진행 상태를 확인하세요.", "muted");
 }
 
 function buildDataPayload() {
@@ -575,7 +626,7 @@ async function applyDataConfig() {
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "true" } })
+    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "true", force_ai: "false" } })
   });
 
   setDataStatus("적용 완료. Actions 완료 후 사이트를 새로고침하세요.", "success");
@@ -688,7 +739,7 @@ async function applySourcesConfig() {
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify({ ref: branch })
+    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "false", force_ai: "false" } })
   });
 
   setApplyStatus("적용 완료. Actions 탭에서 실행 상태를 확인하고, 완료 후 사이트를 새로고침하세요.", "success");
@@ -712,7 +763,8 @@ async function loadFeed(useCacheFirst = false) {
       : "/api/rss"
     : "./data/mdcg-cache.json";
   try {
-    const response = await fetch(endpoint);
+    const cacheSafeEndpoint = isLocalServer ? endpoint : `${endpoint}?v=${Date.now()}`;
+    const response = await fetch(cacheSafeEndpoint, { cache: "no-store" });
     if (!response.ok) throw new Error("feed unavailable");
     const payload = await response.json();
     currentPayload = payload;
