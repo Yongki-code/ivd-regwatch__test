@@ -32,38 +32,5 @@
     "type": "Recall",
     "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
     "keywords": ["medical device", "device", "diagnostic", "ivd", "recall", "advisory"]
-  },
-  {
-    "id": "uk-mhra-device-safety",
-    "enabled": true,
-    "source": "MHRA",
-    "authority": "Medicines and Healthcare products Regulatory Agency",
-    "region": "UK",
-    "country": "United Kingdom",
-    "type": "Safety Alert",
-    "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=device-safety-information",
-    "keywords": ["medical device", "device", "diagnostic", "ivd", "safety", "field safety"]
-  },
-  {
-    "id": "uk-mhra-field-safety-notices",
-    "enabled": true,
-    "source": "MHRA",
-    "authority": "Medicines and Healthcare products Regulatory Agency",
-    "region": "UK",
-    "country": "United Kingdom",
-    "type": "Field Safety Notice",
-    "url": "https://www.gov.uk/drug-device-alerts.atom?alert_type%5B%5D=field-safety-notices",
-    "keywords": ["medical device", "device", "diagnostic", "ivd", "field safety", "notice"]
-  },
-  {
-    "id": "au-tga-guidance",
-    "enabled": true,
-    "source": "TGA",
-    "authority": "Therapeutic Goods Administration",
-    "region": "AU",
-    "country": "Australia",
-    "type": "Guidance",
-    "url": "https://tga.gov.au/feeds/guidance.xml",
-    "keywords": ["medical device", "medical devices", "device", "diagnostic", "ivd", "in vitro", "guidance"]
   }
 ]
