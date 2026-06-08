@@ -50,5 +50,20 @@
       "recall",
       "advisory"
     ]
+  },
+  {
+    "id": "global-anvisa",
+    "enabled": true,
+    "source": "ANVISA",
+    "authority": "EMERGO",
+    "region": "Global",
+    "country": "Global",
+    "type": "News",
+    "kind": "html-page",
+    "url": "https://www.emergobyul.com/news/regulatory-updates",
+    "keywords": [
+      "Brazil",
+      "ANVISA"
+    ]
   }
 ]
