@@ -1,9 +1,9 @@
 {
-  "collectedAt": "2026-06-08T12:09:11.461Z",
-  "mode": "manual-test-data",
-  "aiEnabled": false,
-  "openAiModel": null,
-  "count": 19,
+  "collectedAt": "2026-06-08T12:11:17.108Z",
+  "mode": "github-actions-rss-ai",
+  "aiEnabled": true,
+  "openAiModel": "gpt-4o-mini",
+  "count": 20,
   "sources": [
     {
       "id": "eu-mdcg",
@@ -40,14 +40,36 @@
     }
   ],
   "staleCache": false,
-  "previousCollectedAt": "2026-06-08T12:06:14.687Z",
+  "previousCollectedAt": null,
   "errors": [
     {
-      "source": "manual",
-      "message": "Data was manually edited for LLM/UI testing."
+      "source": "ai",
+      "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
     }
   ],
   "items": [
+    {
+      "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "title": "Regulatory Update May 22, 2026 ANVISA Updates Hospitalar 2026 Attendees about Regulatory Reliance At the February ABIMED meeting, ANVISA Director Marcelo Mario Matos Moreira shared the Brazil medical device...",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "News",
+      "date": "2026-06-08",
+      "link": "https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "summary": "2026년 5월 22일, ANVISA는 Hospitalar 2026 참가자에게 규제 의존성에 대해 설명하면서 Equivalent Foreign Regulatory Authority (AREE) 프로세스에 대한 관심을 강조했습니다. AREE는 2024년 4월에 발행된 Normative Instruction 290/2024에 따라 조직된 것으로, 미국, 캐나다, 호주 및 일본에서 승인된 의료 기기에 대해 브라질의 승인 절차를 간소화할 수 있습니다. 하지만, 실제 이 프로세스를 이용한 사례는 예상보다 낮으며, ANVISA는 AREE의 사용 이유로 규제 요구에 대한 지식 부족과 브라질 시장에 대한 불확실성을 지적했습니다. ANVISA는 AREE에 따라 추가 국가/시장을 탐색할 예정입니다.",
+      "rawSummary": "",
+      "severity": "medium",
+      "read": false,
+      "action": "IVD 제조업체는 ANVISA의 AREE 프로세스에 대한 이해를 높이고, RDC 830/2023에 따라 제출해야 할 기술 문서의 적합성을 검토해야 합니다. 또한, AREE 승인의 법적 문서 인증 요구 사항을 충족하기 위해 필요한 절차를 준비해야 합니다. 관련 SOP 업데이트도 필요할 수 있습니다.",
+      "impactPoints": [
+        "AREE를 통한 시장 접근성을 높이기 위해 ANVISA의 요구 사항을 준수하려면 어떤 추가 문서를 준비해야 하는가?",
+        "다른 법인에 의해 승인된 경우, 동일한 제조 그룹 소속임을 증명하는 데 필요한 자료는 무엇인가?",
+        "AREE 프로세스를 적용하기 위한 내부 교육 및 인식 제고 방안은 어떻게 마련할 것인가?"
+      ],
+      "analysisMode": "ai"
+    },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector_en",
       "title": "Medical Devices - Sector",
