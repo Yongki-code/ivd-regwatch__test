@@ -8,7 +8,6 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const USE_AI = Boolean(OPENAI_API_KEY);
 const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
-const FORCE_AI_REENRICH = process.env.FORCE_AI_REENRICH === "true";
 
 function stripTags(value = "") {
   return value
@@ -453,7 +452,7 @@ async function main() {
     let aiCalls = 0;
     for (const item of uniqueItems) {
       try {
-        const alreadyAi = !FORCE_AI_REENRICH && item.analysisMode === "ai" && item.summary && item.action;
+        const alreadyAi = item.summary && item.action && Array.isArray(item.impactPoints) && item.impactPoints.length;
         const shouldEnrich = USE_AI && !alreadyAi && liveItemIds.has(item.id) && aiCalls < AI_ENRICH_LIMIT;
         if (shouldEnrich) {
           aiCalls += 1;
