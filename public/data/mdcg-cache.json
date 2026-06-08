@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-08T08:55:06.411Z",
+  "collectedAt": "2026-06-08T10:19:40.707Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "openAiModel": "gpt-4o-mini",
@@ -454,17 +454,17 @@
       "type": "Guidance",
       "date": "2026-04-22",
       "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec8",
-      "summary": "유럽 의료기기 명명체계(EMDN) 관련 업데이트입니다. 제품 등록, UDI/EUDAMED 입력값, 내부 품목 마스터 데이터와의 정합성을 점검하세요.",
+      "summary": "유럽 의료기기 명명법(EMDN)에 대한 문서 업데이트.",
       "rawSummary": "Update – Documents on European Medical Device Nomenclature (EMDN)",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "업데이트된 문서 확인 및 준수필요.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료기기 명명법 변경사항 반영해야 함.",
+        "기타 관련 문서와 일치시킬 필요가 있음.",
+        "업데이트된 정보로 규제 준수를 보장해야 함."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-v5-2026-04-22_en",
@@ -476,17 +476,17 @@
       "type": "Guidance",
       "date": "2026-04-22",
       "link": "https://health.ec.europa.eu/latest-updates/update-manual-borderline-and-classification-under-regulations-eu-2017745-and-2017746-v5-2026-04-22_en",
-      "summary": "제품 분류 또는 경계 제품 판단에 영향을 줄 수 있는 문서입니다. 제품군별 분류 근거와 기존 기술문서의 규정 인용이 최신인지 확인하세요.",
+      "summary": "EU 2017/745 및 2017/746에 따른 경계 및 분류에 대한 매뉴얼 업데이트.",
       "rawSummary": "Update - Manual on borderline and classification under Regulations (EU) 2017/745 and 2017/746 v5",
       "severity": "medium",
       "read": false,
-      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "action": "새로운 지침에 따라 제품의 분류 및 경계 여부를 재검토해야 함.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "신규 지침 준수 필수",
+        "제품 분류 변경 가능성",
+        "시장 접근 영향"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/latest-updates/update-mdcg-2021-24-rev1-guidance-classification-medical-devices-april-2026-2026-04-20_en",
@@ -498,17 +498,17 @@
       "type": "MDCG Guidance",
       "date": "2026-04-20",
       "link": "https://health.ec.europa.eu/latest-updates/update-mdcg-2021-24-rev1-guidance-classification-medical-devices-april-2026-2026-04-20_en",
-      "summary": "제품 분류 또는 경계 제품 판단에 영향을 줄 수 있는 문서입니다. 제품군별 분류 근거와 기존 기술문서의 규정 인용이 최신인지 확인하세요.",
+      "summary": "의료기기 분류에 대한 MDCG 2021-24 rev.1 지침 업데이트.",
       "rawSummary": "Update - MDCG 2021-24 rev.1 - Guidance on classification of medical devices (April 2026)",
       "severity": "medium",
       "read": false,
-      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "action": "의료기기 분류를 최신 지침에 맞추어 재검토 및 조정.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료기기 분류 기준 변경 가능성.",
+        "회사 정책 및 품목에 대한 영향.",
+        "규정 준수를 위한 추가 학습 필요."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/74172",
@@ -520,17 +520,17 @@
       "type": "Guidance",
       "date": "2026-04-15",
       "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/74172",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "혁신적인 의료기기 및 IVD 지원을 위한 파일럿 프로그램 출범.",
       "rawSummary": "Pilot programme to be launched to support breakthrough medical devices and in vitro diagnostics",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "신규 의료기기 및 IVD의 규제 체계 긍정적 영향 예상.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료기기 혁신 가속화",
+        "시장 접근성 향상",
+        "규제 절차 간소화"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-6-to-10-april-2026",
@@ -608,17 +608,17 @@
       "type": "Guidance",
       "date": "2026-03-24",
       "link": "https://health.ec.europa.eu/medical-devices-topics-interest/european-medical-devices-nomenclature-emdn_en#second-training-2025",
-      "summary": "유럽 의료기기 명명체계(EMDN) 관련 업데이트입니다. 제품 등록, UDI/EUDAMED 입력값, 내부 품목 마스터 데이터와의 정합성을 점검하세요.",
+      "summary": "EMDN에 대한 두 번째 훈련의 기록이 제공됩니다. 구조, 상담 프로세스 및 실제 적용에 대해 다룹니다.",
       "rawSummary": "Recording available - Second training on EMDN: structure, consultation process, and practical application",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "EMDN 훈련 참가 후 적용 방안을 검토해야 합니다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료 기기 분류 개선에 기여",
+        "규제 요구 사항 이해促進",
+        "업계 및 당국 간 소통 향상"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-16-20-march-2026",
@@ -674,17 +674,17 @@
       "type": "Guidance",
       "date": "2026-03-18",
       "link": "https://health.ec.europa.eu/events/medical-devices-innovation-and-patient-safety-2026-03-16_en",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "의료 기기 혁신 및 환자 안전에 대한 고위급 행사 개막.",
       "rawSummary": "Recording available - Commissioner Várhelyi to open high-level event on medical devices",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "의료 기기 관련 정책과 지침을 검토하고 논의.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "유럽 의료 기기 규제 변화 시사.",
+        "환자 안전 강화 기대.",
+        "의료 기기 산업의 혁신 촉진 가능성."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://ec.europa.eu/newsroom/sante/newsletter-archives/73104",
@@ -696,17 +696,17 @@
       "type": "Guidance",
       "date": "2026-03-13",
       "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/73104",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "Várhelyi 위원이 의료기기 관련 고위급 행사 개막.",
       "rawSummary": "Commissioner Várhelyi to open high-level event on medical devices",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "의료기기 정책 및 규제 변화 모니터링 필요.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료기기 시장에 미치는 영향 분석",
+        "규제 방향성 파악",
+        "업계와의 소통 강화 필요"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-02-to-06-march-2026",
@@ -828,17 +828,17 @@
       "type": "Guidance",
       "date": "2026-02-03",
       "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/71729",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "2026년 3월 16일 고위급 회의 등록 안내.",
       "rawSummary": "Medical Devices: Register now for high-level conference on 16 March 2026",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "회의 등록 및 참여 검토.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "미국 및 유럽 의료기기 규제 논의.",
+        "업계 전문가와의 네트워킹 기회.",
+        "최신 규정 동향 파악 가능."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
@@ -850,17 +850,17 @@
       "type": "Guidance",
       "date": "2026-02-02",
       "link": "https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "의료기기 및 IVD에 관한 고위급 회의 등록.",
       "rawSummary": "Registration - High-level Conference on Medical Devices: Innovation and Patient Safety - 16 March 2026, 9.00 - 17.00 CET",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "등록 마감일 확인 및 참여 준비.",
       "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
+        "의료기기 혁신 촉진",
+        "환자 안전 증대",
+        "규제 변화 논의"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "uk-mhra-field-safety-notices:https://www.gov.uk/drug-device-alerts/field-safety-notices-26-30-january-2026",
@@ -916,17 +916,17 @@
       "type": "Guidance",
       "date": "2026-01-19",
       "link": "https://ec.europa.eu/commission/presscorner/detail/en/fs_25_3072",
-      "summary": "MDCG의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "EU 환자를 위한 의료기기 규정 개선을 다룬 사실 요약.",
       "rawSummary": "Factsheet - Better rules for medical devices, better outcomes for EU patients",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "의료기기 규정 준수 및 업데이트 필요.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "의료기기 안전성 향상",
+        "환자 결과 개선",
+        "유럽 시장 접근성 증가"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "uk-mhra-device-safety:https://www.gov.uk/drug-device-alerts/m6-c-artificial-cervical-disc-spinal-kinetics-llc-new-monitoring-requirements-for-the-risk-of-osteolysis",
@@ -960,17 +960,17 @@
       "type": "MDCG Guidance",
       "date": "2025-12-19",
       "link": "https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
-      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "summary": "의료기기 및 IVD에 대한 시판 후 감시 가이드라인",
       "rawSummary": "MDCG 2025–10: Guidance on post-market surveillance of medical devices and in vitro diagnostic medical devices (December 2025)",
       "severity": "medium",
       "read": false,
-      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "action": "가이드라인에 따라 시판 후 감시 프로세스를 검토 및 조정할 필요",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "시판 후 데이터 수집 방법론 개선",
+        "위험 관리 및 기술 평가 강화",
+        "사용자 및 환자의 안전 확보"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
@@ -982,17 +982,17 @@
       "type": "MDCG Guidance",
       "date": "2025-12-17",
       "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
-      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "summary": "MDCG 2025-7 - Rev. 1은 콘택트렌즈 및 안경 프레임, 안경 렌즈, 기성 독서용 안경에 대한 'Master UDI-DI'의 시행 일정에 대한 지침입니다.",
       "rawSummary": "MDCG 2025-7 - Rev. 1: Timelines of the implementation of ‘Master UDI-DI’ to contact lenses and spectacle frames, spectacle lenses and ready-to-wear reading spectacles",
       "severity": "medium",
       "read": false,
-      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "action": "해당 지침에 따라 제품 등록 및 라벨링을 준비해야 합니다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "콘택트렌즈 및 안경 제품의 규제 준수 필요성 증가",
+        "신규 UDI-DI 시스템에 대한 교육 필요",
+        "시행 일정에 맞춘 제품 출시 일정 조정 필요"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-mdcg:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec13",
