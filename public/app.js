@@ -3,6 +3,7 @@ let activeSeverity = "all";
 let selectedItemId = null;
 let currentPayload = null;
 let sourceDrafts = [];
+let dataDraftItems = [];
 
 const elements = {
   feedList: document.querySelector("#feedList"),
@@ -32,6 +33,16 @@ const elements = {
   sourceKindAutoLabel: document.querySelector("#sourceKindAutoLabel"),
   managedSourceList: document.querySelector("#managedSourceList"),
   sourceApplyStatus: document.querySelector("#sourceApplyStatus"),
+  managedDataList: document.querySelector("#managedDataList"),
+  dataApplyStatus: document.querySelector("#dataApplyStatus"),
+  testItemTitleInput: document.querySelector("#testItemTitleInput"),
+  testItemSourceInput: document.querySelector("#testItemSourceInput"),
+  testItemRegionInput: document.querySelector("#testItemRegionInput"),
+  testItemTypeInput: document.querySelector("#testItemTypeInput"),
+  testItemSummaryInput: document.querySelector("#testItemSummaryInput"),
+  testItemActionInput: document.querySelector("#testItemActionInput"),
+  testItemSeverityInput: document.querySelector("#testItemSeverityInput"),
+  testItemLinkInput: document.querySelector("#testItemLinkInput"),
   detailPanel: document.querySelector("#detailPanel"),
   detailContent: document.querySelector("#detailContent"),
   settingsModal: document.querySelector("#settingsModal")
@@ -217,6 +228,11 @@ function getRepoInfo() {
 function setApplyStatus(message, tone = "muted") {
   elements.sourceApplyStatus.textContent = message;
   elements.sourceApplyStatus.dataset.tone = tone;
+}
+
+function setDataStatus(message, tone = "muted") {
+  elements.dataApplyStatus.textContent = message;
+  elements.dataApplyStatus.dataset.tone = tone;
 }
 
 function toBase64(value) {
@@ -406,6 +422,194 @@ function saveSourceForm() {
 function newSourceForm() {
   clearSourceForm();
   elements.sourceNameInput.focus();
+}
+
+function todayIso() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function defaultImpactPointsForTest() {
+  return [
+    "자사 제품군 적용 여부 확인",
+    "기술문서, PMS, vigilance 절차 영향 검토",
+    "필요 시 RA/QA 후속 액션 지정"
+  ];
+}
+
+function normalizeDataItem(item, index = 0) {
+  const title = (item.title || `Test regulatory update ${index + 1}`).trim();
+  const source = (item.source || "Test").trim();
+  const region = (item.region || "Global").trim();
+  const type = (item.type || "Update").trim();
+  const severity = ["high", "medium", "low"].includes(item.severity) ? item.severity : "medium";
+  const date = item.date || todayIso();
+  const summary = item.summary || item.rawSummary || "테스트용 규제 업데이트 요약입니다.";
+  const action = item.action || "RA 담당자는 해당 변경사항의 적용 범위와 내부 절차 반영 필요성을 검토하세요.";
+  const link = item.link || "https://example.com";
+
+  return {
+    id: item.id || `manual-test:${Date.now()}:${index}`,
+    title,
+    source,
+    authority: item.authority || source,
+    region,
+    country: item.country || region,
+    type,
+    date,
+    link,
+    summary,
+    rawSummary: item.rawSummary || summary,
+    severity,
+    read: Boolean(item.read),
+    action,
+    impactPoints: Array.isArray(item.impactPoints) && item.impactPoints.length ? item.impactPoints.slice(0, 3) : defaultImpactPointsForTest(),
+    analysisMode: item.analysisMode || "manual"
+  };
+}
+
+function clearTestItemForm() {
+  elements.testItemTitleInput.value = "";
+  elements.testItemSourceInput.value = "";
+  elements.testItemRegionInput.value = "EU";
+  elements.testItemTypeInput.value = "Guidance";
+  elements.testItemSummaryInput.value = "";
+  elements.testItemActionInput.value = "";
+  elements.testItemSeverityInput.value = "medium";
+  elements.testItemLinkInput.value = "";
+}
+
+function testItemFromForm() {
+  const title = elements.testItemTitleInput.value.trim();
+  const source = elements.testItemSourceInput.value.trim() || "Manual Test";
+  const summary = elements.testItemSummaryInput.value.trim();
+  const action = elements.testItemActionInput.value.trim();
+  const link = elements.testItemLinkInput.value.trim() || "https://example.com";
+
+  if (!title) throw new Error("테스트 항목 제목을 입력해 주세요.");
+  if (!summary) throw new Error("테스트 항목 요약을 입력해 주세요.");
+  new URL(link);
+
+  return normalizeDataItem({
+    id: `manual-test:${Date.now()}:${slugify(title)}`,
+    title,
+    source,
+    authority: source,
+    region: elements.testItemRegionInput.value,
+    country: elements.testItemRegionInput.value,
+    type: elements.testItemTypeInput.value.trim() || "Update",
+    date: todayIso(),
+    link,
+    summary,
+    rawSummary: summary,
+    severity: elements.testItemSeverityInput.value,
+    action: action || "RA 담당자는 해당 변경사항의 적용 범위와 내부 절차 반영 필요성을 검토하세요.",
+    analysisMode: "manual"
+  });
+}
+
+function renderManagedData() {
+  if (!dataDraftItems.length) {
+    elements.managedDataList.innerHTML = `
+      <article class="managed-source empty">
+        <span>표시할 테스트 데이터가 없습니다.</span>
+      </article>
+    `;
+    return;
+  }
+
+  elements.managedDataList.innerHTML = dataDraftItems.map((item, index) => `
+    <article class="managed-source data-row">
+      <button class="managed-source-main" type="button" data-data-preview="${index}">
+        <strong>${escapeHtml(item.title)}</strong>
+        <small>${escapeHtml(item.source)} · ${escapeHtml(item.region)} · ${escapeHtml(item.type)} · ${escapeHtml(item.date)}</small>
+      </button>
+      <span class="source-chip">${escapeHtml(severityLabel(item.severity))}</span>
+      <button class="source-delete" type="button" data-data-delete="${index}" aria-label="데이터 삭제">⌫</button>
+    </article>
+  `).join("");
+}
+
+async function loadDataConfig() {
+  const { owner, repo } = getRepoInfo();
+  const branch = elements.githubBranchInput.value.trim() || "main";
+  const token = elements.githubTokenInput.value.trim();
+
+  setDataStatus("수집 데이터를 불러오는 중입니다.", "muted");
+
+  if (owner && repo && token) {
+    try {
+      const data = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}`);
+      elements.managedDataList.dataset.sha = data.sha;
+      const payload = JSON.parse(fromBase64(data.content));
+      dataDraftItems = (payload.items || []).map(normalizeDataItem);
+      renderManagedData();
+      setDataStatus(`GitHub 저장소의 수집 데이터 ${dataDraftItems.length}건을 불러왔습니다.`, "success");
+      return;
+    } catch (error) {
+      setDataStatus(`GitHub 데이터 불러오기에 실패해 배포 데이터를 사용합니다. ${error.message}`, "error");
+    }
+  }
+
+  const response = await fetch("./data/mdcg-cache.json", { cache: "no-store" });
+  if (!response.ok) throw new Error("배포된 수집 데이터를 불러오지 못했습니다.");
+  const payload = await response.json();
+  dataDraftItems = (payload.items || []).map(normalizeDataItem);
+  renderManagedData();
+  setDataStatus(`배포된 수집 데이터 ${dataDraftItems.length}건을 불러왔습니다. 저장하려면 GitHub classic token이 필요합니다.`, "success");
+}
+
+function buildDataPayload() {
+  const sources = currentPayload?.sources?.length ? currentPayload.sources : sourceDrafts;
+  return {
+    collectedAt: new Date().toISOString(),
+    mode: "manual-test-data",
+    aiEnabled: false,
+    openAiModel: null,
+    count: dataDraftItems.length,
+    sources,
+    staleCache: false,
+    previousCollectedAt: currentPayload?.collectedAt || null,
+    errors: [{ source: "manual", message: "Data was manually edited for LLM/UI testing." }],
+    items: dataDraftItems.map(normalizeDataItem)
+  };
+}
+
+async function applyDataConfig() {
+  const { owner, repo } = getRepoInfo();
+  const branch = elements.githubBranchInput.value.trim() || "main";
+  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 데이터를 저장/배포할 수 있습니다.");
+
+  setDataStatus("GitHub에 테스트 데이터를 저장하는 중입니다.", "muted");
+
+  let sha = elements.managedDataList.dataset.sha;
+  if (!sha) {
+    const data = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}`);
+    sha = data.sha;
+  }
+
+  await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "Update test regulatory data cache",
+      content: toBase64(`${JSON.stringify(buildDataPayload(), null, 2)}\n`),
+      sha,
+      branch
+    })
+  });
+
+  setDataStatus("데이터 저장 완료. RSS 재수집 없이 Pages만 배포합니다.", "success");
+  await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ ref: branch, inputs: { skip_collect: "true" } })
+  });
+
+  setDataStatus("적용 완료. Actions 완료 후 사이트를 새로고침하세요.", "success");
 }
 
 async function githubRequest(path, options = {}) {
@@ -621,6 +825,27 @@ document.querySelector("#saveSourceFormButton").addEventListener("click", () => 
 document.querySelector("#applySourcesButton").addEventListener("click", () => {
   applySourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
 });
+document.querySelector("#loadDataButton").addEventListener("click", () => {
+  loadDataConfig().catch((error) => setDataStatus(error.message, "error"));
+});
+document.querySelector("#addTestItemButton").addEventListener("click", () => {
+  try {
+    dataDraftItems.unshift(testItemFromForm());
+    clearTestItemForm();
+    renderManagedData();
+    setDataStatus("테스트 항목을 추가했습니다. 배포하려면 데이터만 저장/배포를 누르세요.", "success");
+  } catch (error) {
+    setDataStatus(error.message, "error");
+  }
+});
+document.querySelector("#clearDataButton").addEventListener("click", () => {
+  dataDraftItems = [];
+  renderManagedData();
+  setDataStatus("테스트 데이터 목록을 비웠습니다. 배포하려면 데이터만 저장/배포를 누르세요.", "success");
+});
+document.querySelector("#applyDataButton").addEventListener("click", () => {
+  applyDataConfig().catch((error) => setDataStatus(error.message, "error"));
+});
 
 elements.managedSourceList.addEventListener("click", (event) => {
   const editButton = event.target.closest("[data-source-edit]");
@@ -642,6 +867,20 @@ elements.managedSourceList.addEventListener("change", (event) => {
   sourceDrafts[Number(toggle.dataset.sourceToggle)].enabled = toggle.checked;
   renderManagedSources();
   setApplyStatus("소스 활성 상태를 변경했습니다. GitHub에 적용하려면 저장 후 수집 실행을 누르세요.", "success");
+});
+
+elements.managedDataList.addEventListener("click", (event) => {
+  const previewButton = event.target.closest("[data-data-preview]");
+  const deleteButton = event.target.closest("[data-data-delete]");
+  if (previewButton) {
+    const item = dataDraftItems[Number(previewButton.dataset.dataPreview)];
+    if (item) renderDetail(item);
+  }
+  if (deleteButton) {
+    dataDraftItems.splice(Number(deleteButton.dataset.dataDelete), 1);
+    renderManagedData();
+    setDataStatus("선택한 데이터를 삭제했습니다. 배포하려면 데이터만 저장/배포를 누르세요.", "success");
+  }
 });
 
 document.querySelectorAll("[data-filter]").forEach((input) => {

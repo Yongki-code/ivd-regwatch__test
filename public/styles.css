@@ -663,6 +663,19 @@ button {
   background: #0d1524;
 }
 
+.data-manager {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.data-manager > p {
+  margin: -4px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .source-manager {
   margin-top: 18px;
 }
@@ -684,6 +697,11 @@ button {
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   background: #101827;
+}
+
+.data-form textarea {
+  min-height: 92px;
+  font-family: inherit;
 }
 
 .form-grid {
@@ -728,6 +746,12 @@ button {
   margin-top: 14px;
 }
 
+.data-list {
+  max-height: 320px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
 .managed-source {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto auto auto;
@@ -746,6 +770,10 @@ button {
 .managed-source.empty {
   grid-template-columns: 1fr;
   color: var(--muted);
+}
+
+.managed-source.data-row {
+  grid-template-columns: minmax(0, 1fr) auto auto;
 }
 
 .managed-source-main {
