@@ -1,8 +1,11 @@
 {
-  "collectedAt": "2026-06-10T11:31:54.709Z",
+  "collectedAt": "2026-06-10T11:59:25.793Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
+  "aiProvider": "openai",
+  "aiModel": "gpt-5.5",
   "openAiModel": "gpt-5.5",
+  "claudeModel": null,
   "count": 25,
   "sources": [
     {
