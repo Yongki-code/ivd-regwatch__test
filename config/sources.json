@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "eu-ivdr",
+    "enabled": true,
+    "source": "IVDR",
+    "authority": "MDCG",
+    "region": "EU",
+    "country": "EU",
+    "type": "Guidance",
+    "url": "https://health.ec.europa.eu/node/12916/rss_en",
+    "keywords": []
+  }
+]
