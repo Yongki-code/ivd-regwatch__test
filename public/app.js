@@ -51,15 +51,20 @@ function escapeHtml(value = "") {
 }
 
 function formatDate(value) {
+  if (!value) return "날짜 확인 필요";
+  const parsed = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return "날짜 확인 필요";
   return new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
-  }).format(new Date(`${value}T00:00:00`)).replace(/\. /g, "-").replace(".", "");
+  }).format(parsed).replace(/\. /g, "-").replace(".", "");
 }
 
 function isThisWeek(value) {
+  if (!value) return false;
   const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return false;
   const now = new Date();
   const start = new Date(now);
   start.setDate(now.getDate() - now.getDay());
@@ -129,7 +134,7 @@ function renderMetrics(items) {
   const today = new Date().toISOString().slice(0, 10);
   elements.visibleCount.textContent = items.length;
   elements.totalCount.textContent = allItems.length;
-  elements.todayCount.textContent = allItems.filter((item) => item.date === today).length;
+  elements.todayCount.textContent = allItems.filter((item) => item.date && item.date === today).length;
   elements.highCount.textContent = allItems.filter((item) => item.severity === "high" && isThisWeek(item.date)).length;
   elements.unreadCount.textContent = allItems.filter((item) => !item.read).length;
 }
