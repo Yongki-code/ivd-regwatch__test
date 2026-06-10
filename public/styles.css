@@ -155,6 +155,7 @@ button {
 .settings-button,
 .ghost-button,
 .primary-action,
+.danger-button,
 .icon-button {
   border: 1px solid var(--border-strong);
   color: var(--text);
@@ -680,6 +681,28 @@ button {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.5;
+}
+
+.key-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -10px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.danger-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-color: rgba(255, 74, 79, 0.45);
+  color: #ffb2b5;
+  white-space: nowrap;
+}
+
+.danger-button:hover {
+  background: rgba(255, 74, 79, 0.08);
 }
 
 .data-manager > p {

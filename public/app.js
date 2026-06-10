@@ -29,6 +29,8 @@ const elements = {
   claudeKeyInput: document.querySelector("#claudeKeyInput"),
   claudeModelInput: document.querySelector("#claudeModelInput"),
   aiApplyStatus: document.querySelector("#aiApplyStatus"),
+  deleteOpenAiKeyButton: document.querySelector("#deleteOpenAiKeyButton"),
+  deleteClaudeKeyButton: document.querySelector("#deleteClaudeKeyButton"),
   sourceEditIndex: document.querySelector("#sourceEditIndex"),
   sourceNameInput: document.querySelector("#sourceNameInput"),
   sourceUrlInput: document.querySelector("#sourceUrlInput"),
@@ -729,6 +731,15 @@ async function saveRepositorySecret(owner, repo, secretName, secretValue) {
   return true;
 }
 
+async function deleteRepositorySecret(owner, repo, secretName) {
+  const existing = await getRepositorySecretInfo(owner, repo, secretName);
+  if (!existing) return false;
+  await githubRequest(`/repos/${owner}/${repo}/actions/secrets/${secretName}`, {
+    method: "DELETE"
+  });
+  return true;
+}
+
 async function upsertRepositoryVariable(owner, repo, name, value) {
   const existing = await githubRequestOptional(`/repos/${owner}/${repo}/actions/variables/${name}`);
   if (existing) {
@@ -759,6 +770,21 @@ async function getRepositorySecretInfo(owner, repo, name) {
   return githubRequestOptional(`/repos/${owner}/${repo}/actions/secrets/${name}`);
 }
 
+function activeAiSecretStatus(provider, openAiSecret, claudeSecret) {
+  const selectedProvider = provider === "claude" ? "claude" : "openai";
+  const selectedSecret = selectedProvider === "claude" ? claudeSecret : openAiSecret;
+  if (selectedSecret) {
+    return {
+      tone: "success",
+      message: `현재 제공자 ${selectedProvider}의 API key가 등록되어 있습니다. 다음 수집부터 AI 분석을 사용할 수 있습니다.`
+    };
+  }
+  return {
+    tone: "error",
+    message: `현재 제공자 ${selectedProvider}의 API key가 없습니다. 수집은 계속되지만 AI 요약/RA Action/영향 검토는 규칙 기반으로 생성됩니다.`
+  };
+}
+
 async function loadAiSettings() {
   const { owner, repo } = getRepoInfo();
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI 설정을 확인할 수 있습니다.");
@@ -780,7 +806,8 @@ async function loadAiSettings() {
     `OpenAI key: ${openAiSecret ? `등록됨 (${openAiSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`,
     `Claude key: ${claudeSecret ? `등록됨 (${claudeSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`
   ].join(" / ");
-  setAiStatus(`현재 제공자: ${elements.aiProviderSelect.value}. ${secretStatus}`, "success");
+  const activeStatus = activeAiSecretStatus(elements.aiProviderSelect.value, openAiSecret, claudeSecret);
+  setAiStatus(`현재 제공자: ${elements.aiProviderSelect.value}. ${secretStatus}. ${activeStatus.message}`, activeStatus.tone);
 }
 
 async function saveAiSettings() {
@@ -806,7 +833,37 @@ async function saveAiSettings() {
     savedOpenAi ? "OpenAI key 갱신" : "",
     savedClaude ? "Claude key 갱신" : ""
   ].filter(Boolean).join(", ") || "기존 key 유지";
-  setAiStatus(`AI 설정 저장 완료. 제공자=${provider}, ${savedKeys}. 다음 수집 실행부터 반영됩니다.`, "success");
+  const [openAiSecret, claudeSecret] = await Promise.all([
+    getRepositorySecretInfo(owner, repo, "OPENAI_API_KEY"),
+    getRepositorySecretInfo(owner, repo, "ANTHROPIC_API_KEY")
+  ]);
+  const activeStatus = activeAiSecretStatus(provider, openAiSecret, claudeSecret);
+  setAiStatus(`AI 설정 저장 완료. 제공자=${provider}, ${savedKeys}. ${activeStatus.message}`, activeStatus.tone);
+}
+
+async function deleteAiKey(provider) {
+  const { owner, repo } = getRepoInfo();
+  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI key를 삭제할 수 있습니다.");
+
+  const isClaude = provider === "claude";
+  const label = isClaude ? "Claude" : "OpenAI";
+  const secretName = isClaude ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
+  const confirmed = window.confirm(`${label} API key를 GitHub Secret에서 삭제할까요? 삭제 후 해당 제공자를 선택한 상태로 수집하면 규칙 기반 분석만 실행됩니다.`);
+  if (!confirmed) return;
+
+  setAiStatus(`${label} API key 삭제를 요청하는 중입니다.`, "muted");
+  const deleted = await deleteRepositorySecret(owner, repo, secretName);
+  if (!deleted) {
+    setAiStatus(`${label} API key는 이미 등록되어 있지 않습니다.`, "error");
+    return;
+  }
+
+  if (isClaude) {
+    elements.claudeKeyInput.value = "";
+  } else {
+    elements.openAiKeyInput.value = "";
+  }
+  setAiStatus(`${label} API key를 삭제했습니다. 현재 제공자가 ${provider}이면 다음 수집부터 AI 분석 대신 규칙 기반 분석이 사용됩니다.`, "error");
 }
 
 async function loadSourcesConfig() {
@@ -920,9 +977,16 @@ async function loadFeed(useCacheFirst = false) {
     await loadPublishedSourcesForFilters();
     elements.lastCollected.textContent = payload.collectedAt ? payload.collectedAt.slice(0, 10) : "-";
     elements.collectionMode.textContent = payload.mode?.includes("ai") ? "RSS + AI" : "RSS";
-    elements.aiStatus.textContent = payload.aiEnabled ? "활성" : "비활성";
-    elements.aiFooter.textContent = payload.aiEnabled ? "AI 분석 활성" : "규칙 기반 분석";
-    elements.aiDot.classList.toggle("success", Boolean(payload.aiEnabled));
+    if (payload.aiKeyMissing) {
+      const provider = payload.aiProvider || "openai";
+      elements.aiStatus.textContent = "키 필요";
+      elements.aiFooter.textContent = `${provider} API key 필요`;
+      elements.aiDot.classList.remove("success");
+    } else {
+      elements.aiStatus.textContent = payload.aiEnabled ? "활성" : "비활성";
+      elements.aiFooter.textContent = payload.aiEnabled ? `AI 분석 활성 (${payload.aiProvider || "AI"})` : "규칙 기반 분석";
+      elements.aiDot.classList.toggle("success", Boolean(payload.aiEnabled));
+    }
     renderDynamicFilters();
   } catch (error) {
     if (isLocalServer && !useCacheFirst) {
@@ -999,6 +1063,12 @@ document.querySelector("#loadAiSettingsButton").addEventListener("click", () => 
 });
 document.querySelector("#saveAiSettingsButton").addEventListener("click", () => {
   saveAiSettings().catch((error) => setAiStatus(error.message, "error"));
+});
+document.querySelector("#deleteOpenAiKeyButton").addEventListener("click", () => {
+  deleteAiKey("openai").catch((error) => setAiStatus(error.message, "error"));
+});
+document.querySelector("#deleteClaudeKeyButton").addEventListener("click", () => {
+  deleteAiKey("claude").catch((error) => setAiStatus(error.message, "error"));
 });
 document.querySelector("#loadDataButton").addEventListener("click", () => {
   loadDataConfig().catch((error) => setDataStatus(error.message, "error"));
