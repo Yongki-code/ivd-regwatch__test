@@ -42,8 +42,9 @@ jobs:
         run: node scripts/collect-mdcg.js
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-4o-mini
+          OPENAI_MODEL: gpt-5.5
           AI_ENRICH_LIMIT: 12
+          MAX_TOTAL_ITEMS: 500
 
       - name: Commit collected cache
         if: ${{ github.event.inputs.skip_collect != 'true' }}
