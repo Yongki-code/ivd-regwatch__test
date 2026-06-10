@@ -9,5 +9,56 @@
     "type": "Guidance",
     "url": "https://health.ec.europa.eu/node/12916/rss_en",
     "keywords": []
+  },
+  {
+    "id": "us-fda",
+    "enabled": true,
+    "source": "FDA",
+    "authority": "U.S. Food and Drug Administration",
+    "region": "US",
+    "country": "US",
+    "type": "Guidance",
+    "kind": "openfda-device-recall",
+    "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
+    "keywords": [
+      "medical device",
+      "device",
+      "diagnostic",
+      "ivd",
+      "recall",
+      "safety"
+    ]
+  },
+  {
+    "id": "ca-health-canada",
+    "enabled": true,
+    "source": "Health Canada",
+    "authority": "Health Canada",
+    "region": "CA",
+    "country": "CA",
+    "type": "Guidance",
+    "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
+    "keywords": [
+      "medical device",
+      "device",
+      "diagnostic",
+      "ivd",
+      "recall"
+    ]
+  },
+  {
+    "id": "global-anvisa",
+    "enabled": true,
+    "source": "ANVISA",
+    "authority": "EMERGO",
+    "region": "Global",
+    "country": "Global",
+    "type": "Guidance",
+    "kind": "html-page",
+    "url": "https://www.emergobyul.com/news/regulatory-updates",
+    "keywords": [
+      "Brazil",
+      "ANVISA"
+    ]
   }
 ]
