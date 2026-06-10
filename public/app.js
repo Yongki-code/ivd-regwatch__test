@@ -24,6 +24,8 @@ const elements = {
   githubTokenInput: document.querySelector("#githubTokenInput"),
   githubBranchInput: document.querySelector("#githubBranchInput"),
   aiProviderSelect: document.querySelector("#aiProviderSelect"),
+  openAiSettingsPanel: document.querySelector("#openAiSettingsPanel"),
+  claudeSettingsPanel: document.querySelector("#claudeSettingsPanel"),
   openAiKeyInput: document.querySelector("#openAiKeyInput"),
   openAiModelInput: document.querySelector("#openAiModelInput"),
   claudeKeyInput: document.querySelector("#claudeKeyInput"),
@@ -243,6 +245,18 @@ function setDataStatus(message, tone = "muted") {
 function setAiStatus(message, tone = "muted") {
   elements.aiApplyStatus.textContent = message;
   elements.aiApplyStatus.dataset.tone = tone;
+}
+
+function updateAiProviderPanel() {
+  const provider = elements.aiProviderSelect.value === "claude" ? "claude" : "openai";
+  elements.openAiSettingsPanel.hidden = provider !== "openai";
+  elements.claudeSettingsPanel.hidden = provider !== "claude";
+
+  if (provider === "openai") {
+    elements.claudeKeyInput.value = "";
+  } else {
+    elements.openAiKeyInput.value = "";
+  }
 }
 
 function toBase64(value) {
@@ -801,6 +815,7 @@ async function loadAiSettings() {
   elements.aiProviderSelect.value = provider === "claude" ? "claude" : "openai";
   if (openAiModel) elements.openAiModelInput.value = openAiModel;
   if (claudeModel) elements.claudeModelInput.value = claudeModel;
+  updateAiProviderPanel();
 
   const secretStatus = [
     `OpenAI key: ${openAiSecret ? `등록됨 (${openAiSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`,
@@ -817,28 +832,27 @@ async function saveAiSettings() {
   const provider = elements.aiProviderSelect.value === "claude" ? "claude" : "openai";
   const openAiModel = elements.openAiModelInput.value.trim() || "gpt-5.5";
   const claudeModel = elements.claudeModelInput.value.trim() || "claude-sonnet-4-5";
+  const selectedKeyValue = provider === "claude" ? elements.claudeKeyInput.value : elements.openAiKeyInput.value;
+  const selectedSecretName = provider === "claude" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
+  const selectedModelName = provider === "claude" ? "CLAUDE_MODEL" : "OPENAI_MODEL";
+  const selectedModelValue = provider === "claude" ? claudeModel : openAiModel;
 
   setAiStatus("AI 설정을 GitHub Secrets/Variables에 저장하는 중입니다.", "muted");
-  const savedOpenAi = await saveRepositorySecret(owner, repo, "OPENAI_API_KEY", elements.openAiKeyInput.value);
-  const savedClaude = await saveRepositorySecret(owner, repo, "ANTHROPIC_API_KEY", elements.claudeKeyInput.value);
+  const savedSelectedKey = await saveRepositorySecret(owner, repo, selectedSecretName, selectedKeyValue);
 
   await upsertRepositoryVariable(owner, repo, "AI_PROVIDER", provider);
-  await upsertRepositoryVariable(owner, repo, "OPENAI_MODEL", openAiModel);
-  await upsertRepositoryVariable(owner, repo, "CLAUDE_MODEL", claudeModel);
+  await upsertRepositoryVariable(owner, repo, selectedModelName, selectedModelValue);
 
   elements.openAiKeyInput.value = "";
   elements.claudeKeyInput.value = "";
 
-  const savedKeys = [
-    savedOpenAi ? "OpenAI key 갱신" : "",
-    savedClaude ? "Claude key 갱신" : ""
-  ].filter(Boolean).join(", ") || "기존 key 유지";
+  const savedKeys = savedSelectedKey ? `${provider} key 갱신` : `${provider} 기존 key 유지`;
   const [openAiSecret, claudeSecret] = await Promise.all([
     getRepositorySecretInfo(owner, repo, "OPENAI_API_KEY"),
     getRepositorySecretInfo(owner, repo, "ANTHROPIC_API_KEY")
   ]);
   const activeStatus = activeAiSecretStatus(provider, openAiSecret, claudeSecret);
-  setAiStatus(`AI 설정 저장 완료. 제공자=${provider}, ${savedKeys}. ${activeStatus.message}`, activeStatus.tone);
+  setAiStatus(`AI 설정 저장 완료. 제공자=${provider}, ${savedKeys}. 선택한 제공자만 다음 수집에 사용됩니다. ${activeStatus.message}`, activeStatus.tone);
 }
 
 async function deleteAiKey(provider) {
@@ -1060,6 +1074,11 @@ document.querySelector("#applySourcesButton").addEventListener("click", () => {
 });
 document.querySelector("#loadAiSettingsButton").addEventListener("click", () => {
   loadAiSettings().catch((error) => setAiStatus(error.message, "error"));
+});
+elements.aiProviderSelect.addEventListener("change", () => {
+  updateAiProviderPanel();
+  const provider = elements.aiProviderSelect.value === "claude" ? "Claude" : "OpenAI";
+  setAiStatus(`${provider} 설정만 입력/저장합니다. 다른 제공자의 key가 저장되어 있어도 선택하지 않으면 사용되지 않습니다.`, "muted");
 });
 document.querySelector("#saveAiSettingsButton").addEventListener("click", () => {
   saveAiSettings().catch((error) => setAiStatus(error.message, "error"));

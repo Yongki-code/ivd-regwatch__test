@@ -151,30 +151,34 @@
                 <option value="claude">Claude</option>
               </select>
             </label>
-            <label>
-              OpenAI API key
-              <input id="openAiKeyInput" type="password" autocomplete="off" placeholder="sk-... 새로 등록/변경할 때만 입력" />
-            </label>
-            <div class="key-action-row">
-              <span>저장된 OpenAI key는 GitHub Secret에만 보관됩니다.</span>
-              <button class="danger-button" id="deleteOpenAiKeyButton" type="button">OpenAI key 삭제</button>
+            <div class="ai-provider-panel" id="openAiSettingsPanel">
+              <label>
+                OpenAI API key
+                <input id="openAiKeyInput" type="password" autocomplete="off" placeholder="sk-... 새로 등록/변경할 때만 입력" />
+              </label>
+              <div class="key-action-row">
+                <span>저장된 OpenAI key는 GitHub Secret에만 보관됩니다.</span>
+                <button class="danger-button" id="deleteOpenAiKeyButton" type="button">OpenAI key 삭제</button>
+              </div>
+              <label>
+                OpenAI model
+                <input id="openAiModelInput" type="text" value="gpt-5.5" />
+              </label>
             </div>
-            <label>
-              OpenAI model
-              <input id="openAiModelInput" type="text" value="gpt-5.5" />
-            </label>
-            <label>
-              Claude API key
-              <input id="claudeKeyInput" type="password" autocomplete="off" placeholder="sk-ant-... 새로 등록/변경할 때만 입력" />
-            </label>
-            <div class="key-action-row">
-              <span>저장된 Claude key는 GitHub Secret에만 보관됩니다.</span>
-              <button class="danger-button" id="deleteClaudeKeyButton" type="button">Claude key 삭제</button>
+            <div class="ai-provider-panel" id="claudeSettingsPanel" hidden>
+              <label>
+                Claude API key
+                <input id="claudeKeyInput" type="password" autocomplete="off" placeholder="sk-ant-... 새로 등록/변경할 때만 입력" />
+              </label>
+              <div class="key-action-row">
+                <span>저장된 Claude key는 GitHub Secret에만 보관됩니다.</span>
+                <button class="danger-button" id="deleteClaudeKeyButton" type="button">Claude key 삭제</button>
+              </div>
+              <label>
+                Claude model
+                <input id="claudeModelInput" type="text" value="claude-sonnet-4-5" />
+              </label>
             </div>
-            <label>
-              Claude model
-              <input id="claudeModelInput" type="text" value="claude-sonnet-4-5" />
-            </label>
             <div class="source-admin-actions">
               <button class="primary-action" id="saveAiSettingsButton" type="button">AI 설정 저장</button>
             </div>

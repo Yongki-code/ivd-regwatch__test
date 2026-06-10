@@ -683,6 +683,10 @@ button {
   line-height: 1.5;
 }
 
+.ai-provider-panel[hidden] {
+  display: none;
+}
+
 .key-action-row {
   display: flex;
   align-items: center;
