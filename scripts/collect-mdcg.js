@@ -5,8 +5,13 @@ const ROOT_DIR = path.join(__dirname, "..");
 const SOURCES_PATH = path.join(ROOT_DIR, "config", "sources.json");
 const OUTPUT = path.join(ROOT_DIR, "public", "data", "mdcg-cache.json");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || "";
+const AI_PROVIDER = (process.env.AI_PROVIDER || (ANTHROPIC_API_KEY ? "claude" : "openai")).toLowerCase();
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.5";
-const USE_AI = Boolean(OPENAI_API_KEY);
+const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-5";
+const ACTIVE_AI_MODEL = AI_PROVIDER === "claude" ? CLAUDE_MODEL : OPENAI_MODEL;
+const ACTIVE_AI_KEY = AI_PROVIDER === "claude" ? ANTHROPIC_API_KEY : OPENAI_API_KEY;
+const USE_AI = Boolean(ACTIVE_AI_KEY);
 const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
 const MAX_AI_SOURCE_CHARS = Number(process.env.MAX_AI_SOURCE_CHARS || 6000);
 const MIN_RICH_SUMMARY_CHARS = Number(process.env.MIN_RICH_SUMMARY_CHARS || 260);
@@ -413,7 +418,7 @@ function isThinAiOutput(parsed, sourceText) {
   return summaryLength < MIN_RICH_SUMMARY_CHARS || actionLength < 120 || impactLength < 120;
 }
 
-async function requestAiAnalysis(systemPrompt, userPrompt, retryNote = "") {
+async function requestOpenAiAnalysis(systemPrompt, userPrompt, retryNote = "") {
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
@@ -470,6 +475,47 @@ async function requestAiAnalysis(systemPrompt, userPrompt, retryNote = "") {
   const data = await response.json();
   const outputText = data.output_text || data.output?.flatMap((entry) => entry.content || []).map((part) => part.text || "").join("\n") || "";
   return parseAiJson(outputText);
+}
+
+async function requestClaudeAnalysis(systemPrompt, userPrompt, retryNote = "") {
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: 1400,
+      system: [
+        systemPrompt,
+        "Return only one valid JSON object with exactly these keys: summaryKo, raActionKo, severity, impactPointsKo.",
+        "severity must be one of high, medium, low. impactPointsKo must be an array of exactly 3 Korean strings."
+      ].join("\n"),
+      messages: [
+        {
+          role: "user",
+          content: retryNote ? `${userPrompt}\n\n${retryNote}` : userPrompt
+        }
+      ]
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Claude API failed: ${response.status} ${await response.text()}`);
+  }
+
+  const data = await response.json();
+  const outputText = (data.content || []).map((part) => part.text || "").join("\n");
+  return parseAiJson(outputText);
+}
+
+async function requestAiAnalysis(systemPrompt, userPrompt, retryNote = "") {
+  if (AI_PROVIDER === "claude") {
+    return requestClaudeAnalysis(systemPrompt, userPrompt, retryNote);
+  }
+  return requestOpenAiAnalysis(systemPrompt, userPrompt, retryNote);
 }
 
 async function enrichWithAi(item) {
@@ -665,7 +711,10 @@ async function main() {
         collectedAt: new Date().toISOString(),
         mode: USE_AI ? "github-actions-rss-ai" : "github-actions-rss-rules",
         aiEnabled: USE_AI,
-        openAiModel: USE_AI ? OPENAI_MODEL : null,
+        aiProvider: USE_AI ? AI_PROVIDER : null,
+        aiModel: USE_AI ? ACTIVE_AI_MODEL : null,
+        openAiModel: USE_AI && AI_PROVIDER === "openai" ? OPENAI_MODEL : null,
+        claudeModel: USE_AI && AI_PROVIDER === "claude" ? CLAUDE_MODEL : null,
         count: enriched.length,
         sources: sourceSnapshot(sources),
         staleCache: usingStaleCache,
