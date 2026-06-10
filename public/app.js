@@ -24,15 +24,13 @@ const elements = {
   githubTokenInput: document.querySelector("#githubTokenInput"),
   githubBranchInput: document.querySelector("#githubBranchInput"),
   aiProviderSelect: document.querySelector("#aiProviderSelect"),
-  openAiSettingsPanel: document.querySelector("#openAiSettingsPanel"),
-  claudeSettingsPanel: document.querySelector("#claudeSettingsPanel"),
-  openAiKeyInput: document.querySelector("#openAiKeyInput"),
-  openAiModelInput: document.querySelector("#openAiModelInput"),
-  claudeKeyInput: document.querySelector("#claudeKeyInput"),
-  claudeModelInput: document.querySelector("#claudeModelInput"),
+  aiKeyLabel: document.querySelector("#aiKeyLabel"),
+  aiKeyInput: document.querySelector("#aiKeyInput"),
+  aiKeyHint: document.querySelector("#aiKeyHint"),
+  aiModelLabel: document.querySelector("#aiModelLabel"),
+  aiModelInput: document.querySelector("#aiModelInput"),
   aiApplyStatus: document.querySelector("#aiApplyStatus"),
-  deleteOpenAiKeyButton: document.querySelector("#deleteOpenAiKeyButton"),
-  deleteClaudeKeyButton: document.querySelector("#deleteClaudeKeyButton"),
+  deleteAiKeyButton: document.querySelector("#deleteAiKeyButton"),
   sourceEditIndex: document.querySelector("#sourceEditIndex"),
   sourceNameInput: document.querySelector("#sourceNameInput"),
   sourceUrlInput: document.querySelector("#sourceUrlInput"),
@@ -247,16 +245,41 @@ function setAiStatus(message, tone = "muted") {
   elements.aiApplyStatus.dataset.tone = tone;
 }
 
-function updateAiProviderPanel() {
-  const provider = elements.aiProviderSelect.value === "claude" ? "claude" : "openai";
-  elements.openAiSettingsPanel.hidden = provider !== "openai";
-  elements.claudeSettingsPanel.hidden = provider !== "claude";
-
-  if (provider === "openai") {
-    elements.claudeKeyInput.value = "";
-  } else {
-    elements.openAiKeyInput.value = "";
+function aiProviderConfig(provider = elements.aiProviderSelect.value) {
+  const normalized = provider === "claude" ? "claude" : "openai";
+  if (normalized === "claude") {
+    return {
+      provider: "claude",
+      label: "Claude",
+      secretName: "ANTHROPIC_API_KEY",
+      modelName: "CLAUDE_MODEL",
+      defaultModel: "claude-sonnet-4-5",
+      keyPlaceholder: "sk-ant-... 새로 등록/변경할 때만 입력"
+    };
   }
+  return {
+    provider: "openai",
+    label: "OpenAI",
+    secretName: "OPENAI_API_KEY",
+    modelName: "OPENAI_MODEL",
+    defaultModel: "gpt-5.5",
+    keyPlaceholder: "sk-... 새로 등록/변경할 때만 입력"
+  };
+}
+
+function updateAiProviderFields(modelValue = "") {
+  const config = aiProviderConfig();
+  elements.aiKeyLabel.textContent = `${config.label} API key`;
+  elements.aiKeyInput.placeholder = config.keyPlaceholder;
+  elements.aiKeyInput.value = "";
+  elements.aiKeyHint.textContent = `저장된 ${config.label} key는 GitHub Secret에만 보관됩니다.`;
+  elements.aiModelLabel.textContent = `${config.label} model`;
+  elements.aiModelInput.value = modelValue || config.defaultModel;
+  elements.deleteAiKeyButton.textContent = `${config.label} key 삭제`;
+}
+
+function updateAiProviderPanel() {
+  updateAiProviderFields();
 }
 
 function toBase64(value) {
@@ -813,38 +836,33 @@ async function loadAiSettings() {
   ]);
 
   elements.aiProviderSelect.value = provider === "claude" ? "claude" : "openai";
-  if (openAiModel) elements.openAiModelInput.value = openAiModel;
-  if (claudeModel) elements.claudeModelInput.value = claudeModel;
-  updateAiProviderPanel();
+  const selectedModel = elements.aiProviderSelect.value === "claude" ? claudeModel : openAiModel;
+  updateAiProviderFields(selectedModel);
 
-  const secretStatus = [
-    `OpenAI key: ${openAiSecret ? `등록됨 (${openAiSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`,
-    `Claude key: ${claudeSecret ? `등록됨 (${claudeSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`
-  ].join(" / ");
+  const config = aiProviderConfig(elements.aiProviderSelect.value);
+  const selectedSecret = config.provider === "claude" ? claudeSecret : openAiSecret;
+  const inactiveLabel = config.provider === "claude" ? "OpenAI" : "Claude";
+  const secretStatus = `${config.label} key: ${selectedSecret ? `등록됨 (${selectedSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`;
   const activeStatus = activeAiSecretStatus(elements.aiProviderSelect.value, openAiSecret, claudeSecret);
-  setAiStatus(`현재 제공자: ${elements.aiProviderSelect.value}. ${secretStatus}. ${activeStatus.message}`, activeStatus.tone);
+  setAiStatus(`현재 제공자: ${config.label}. ${secretStatus}. ${inactiveLabel} key는 선택하지 않으면 현재 수집에 사용되지 않습니다. ${activeStatus.message}`, activeStatus.tone);
 }
 
 async function saveAiSettings() {
   const { owner, repo } = getRepoInfo();
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI 설정을 저장할 수 있습니다.");
 
-  const provider = elements.aiProviderSelect.value === "claude" ? "claude" : "openai";
-  const openAiModel = elements.openAiModelInput.value.trim() || "gpt-5.5";
-  const claudeModel = elements.claudeModelInput.value.trim() || "claude-sonnet-4-5";
-  const selectedKeyValue = provider === "claude" ? elements.claudeKeyInput.value : elements.openAiKeyInput.value;
-  const selectedSecretName = provider === "claude" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
-  const selectedModelName = provider === "claude" ? "CLAUDE_MODEL" : "OPENAI_MODEL";
-  const selectedModelValue = provider === "claude" ? claudeModel : openAiModel;
+  const config = aiProviderConfig();
+  const provider = config.provider;
+  const selectedKeyValue = elements.aiKeyInput.value;
+  const selectedModelValue = elements.aiModelInput.value.trim() || config.defaultModel;
 
   setAiStatus("AI 설정을 GitHub Secrets/Variables에 저장하는 중입니다.", "muted");
-  const savedSelectedKey = await saveRepositorySecret(owner, repo, selectedSecretName, selectedKeyValue);
+  const savedSelectedKey = await saveRepositorySecret(owner, repo, config.secretName, selectedKeyValue);
 
   await upsertRepositoryVariable(owner, repo, "AI_PROVIDER", provider);
-  await upsertRepositoryVariable(owner, repo, selectedModelName, selectedModelValue);
+  await upsertRepositoryVariable(owner, repo, config.modelName, selectedModelValue);
 
-  elements.openAiKeyInput.value = "";
-  elements.claudeKeyInput.value = "";
+  elements.aiKeyInput.value = "";
 
   const savedKeys = savedSelectedKey ? `${provider} key 갱신` : `${provider} 기존 key 유지`;
   const [openAiSecret, claudeSecret] = await Promise.all([
@@ -859,25 +877,19 @@ async function deleteAiKey(provider) {
   const { owner, repo } = getRepoInfo();
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI key를 삭제할 수 있습니다.");
 
-  const isClaude = provider === "claude";
-  const label = isClaude ? "Claude" : "OpenAI";
-  const secretName = isClaude ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
-  const confirmed = window.confirm(`${label} API key를 GitHub Secret에서 삭제할까요? 삭제 후 해당 제공자를 선택한 상태로 수집하면 규칙 기반 분석만 실행됩니다.`);
+  const config = aiProviderConfig(provider);
+  const confirmed = window.confirm(`${config.label} API key를 GitHub Secret에서 삭제할까요? 삭제 후 해당 제공자를 선택한 상태로 수집하면 규칙 기반 분석만 실행됩니다.`);
   if (!confirmed) return;
 
-  setAiStatus(`${label} API key 삭제를 요청하는 중입니다.`, "muted");
-  const deleted = await deleteRepositorySecret(owner, repo, secretName);
+  setAiStatus(`${config.label} API key 삭제를 요청하는 중입니다.`, "muted");
+  const deleted = await deleteRepositorySecret(owner, repo, config.secretName);
   if (!deleted) {
-    setAiStatus(`${label} API key는 이미 등록되어 있지 않습니다.`, "error");
+    setAiStatus(`${config.label} API key는 이미 등록되어 있지 않습니다.`, "error");
     return;
   }
 
-  if (isClaude) {
-    elements.claudeKeyInput.value = "";
-  } else {
-    elements.openAiKeyInput.value = "";
-  }
-  setAiStatus(`${label} API key를 삭제했습니다. 현재 제공자가 ${provider}이면 다음 수집부터 AI 분석 대신 규칙 기반 분석이 사용됩니다.`, "error");
+  elements.aiKeyInput.value = "";
+  setAiStatus(`${config.label} API key를 삭제했습니다. 현재 제공자가 ${config.provider}이면 다음 수집부터 AI 분석 대신 규칙 기반 분석이 사용됩니다.`, "error");
 }
 
 async function loadSourcesConfig() {
@@ -1083,11 +1095,8 @@ elements.aiProviderSelect.addEventListener("change", () => {
 document.querySelector("#saveAiSettingsButton").addEventListener("click", () => {
   saveAiSettings().catch((error) => setAiStatus(error.message, "error"));
 });
-document.querySelector("#deleteOpenAiKeyButton").addEventListener("click", () => {
-  deleteAiKey("openai").catch((error) => setAiStatus(error.message, "error"));
-});
-document.querySelector("#deleteClaudeKeyButton").addEventListener("click", () => {
-  deleteAiKey("claude").catch((error) => setAiStatus(error.message, "error"));
+document.querySelector("#deleteAiKeyButton").addEventListener("click", () => {
+  deleteAiKey(elements.aiProviderSelect.value).catch((error) => setAiStatus(error.message, "error"));
 });
 document.querySelector("#loadDataButton").addEventListener("click", () => {
   loadDataConfig().catch((error) => setDataStatus(error.message, "error"));

@@ -151,32 +151,18 @@
                 <option value="claude">Claude</option>
               </select>
             </label>
-            <div class="ai-provider-panel" id="openAiSettingsPanel">
+            <div class="ai-provider-panel">
               <label>
-                OpenAI API key
-                <input id="openAiKeyInput" type="password" autocomplete="off" placeholder="sk-... 새로 등록/변경할 때만 입력" />
+                <span id="aiKeyLabel">OpenAI API key</span>
+                <input id="aiKeyInput" type="password" autocomplete="off" placeholder="sk-... 새로 등록/변경할 때만 입력" />
               </label>
               <div class="key-action-row">
-                <span>저장된 OpenAI key는 GitHub Secret에만 보관됩니다.</span>
-                <button class="danger-button" id="deleteOpenAiKeyButton" type="button">OpenAI key 삭제</button>
+                <span id="aiKeyHint">저장된 OpenAI key는 GitHub Secret에만 보관됩니다.</span>
+                <button class="danger-button" id="deleteAiKeyButton" type="button">OpenAI key 삭제</button>
               </div>
               <label>
-                OpenAI model
-                <input id="openAiModelInput" type="text" value="gpt-5.5" />
-              </label>
-            </div>
-            <div class="ai-provider-panel" id="claudeSettingsPanel" hidden>
-              <label>
-                Claude API key
-                <input id="claudeKeyInput" type="password" autocomplete="off" placeholder="sk-ant-... 새로 등록/변경할 때만 입력" />
-              </label>
-              <div class="key-action-row">
-                <span>저장된 Claude key는 GitHub Secret에만 보관됩니다.</span>
-                <button class="danger-button" id="deleteClaudeKeyButton" type="button">Claude key 삭제</button>
-              </div>
-              <label>
-                Claude model
-                <input id="claudeModelInput" type="text" value="claude-sonnet-4-5" />
+                <span id="aiModelLabel">OpenAI model</span>
+                <input id="aiModelInput" type="text" value="gpt-5.5" />
               </label>
             </div>
             <div class="source-admin-actions">
