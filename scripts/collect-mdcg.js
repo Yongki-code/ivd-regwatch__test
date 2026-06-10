@@ -6,7 +6,8 @@ const SOURCES_PATH = path.join(ROOT_DIR, "config", "sources.json");
 const OUTPUT = path.join(ROOT_DIR, "public", "data", "mdcg-cache.json");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || "";
-const AI_PROVIDER = (process.env.AI_PROVIDER || (ANTHROPIC_API_KEY ? "claude" : "openai")).toLowerCase();
+const REQUESTED_AI_PROVIDER = (process.env.AI_PROVIDER || (ANTHROPIC_API_KEY ? "claude" : "openai")).toLowerCase();
+const AI_PROVIDER = REQUESTED_AI_PROVIDER === "claude" ? "claude" : "openai";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.5";
 const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-5";
 const ACTIVE_AI_MODEL = AI_PROVIDER === "claude" ? CLAUDE_MODEL : OPENAI_MODEL;
@@ -645,6 +646,12 @@ function formatError(error) {
   return cause ? `${error.message}: ${cause}` : error.message;
 }
 
+function aiKeyWarning() {
+  if (USE_AI) return "";
+  const secretName = AI_PROVIDER === "claude" ? "ANTHROPIC_API_KEY" : "OPENAI_API_KEY";
+  return `AI_PROVIDER=${AI_PROVIDER} is selected, but ${secretName} is not registered. Collection continued with rule-based analysis.`;
+}
+
 async function main() {
   const sources = JSON.parse(fs.readFileSync(SOURCES_PATH, "utf8")).filter((source) => source.enabled !== false);
   const previousPayload = readPreviousPayload();
@@ -652,6 +659,12 @@ async function main() {
   const hasPreviousItems = previousItems.length > 0;
   const results = [];
   const errors = [];
+  const missingAiKeyMessage = aiKeyWarning();
+
+  if (missingAiKeyMessage) {
+    errors.push({ source: "ai", message: missingAiKeyMessage });
+    console.warn(missingAiKeyMessage);
+  }
 
   await Promise.all(sources.map(async (source) => {
     try {
@@ -711,8 +724,10 @@ async function main() {
         collectedAt: new Date().toISOString(),
         mode: USE_AI ? "github-actions-rss-ai" : "github-actions-rss-rules",
         aiEnabled: USE_AI,
-        aiProvider: USE_AI ? AI_PROVIDER : null,
+        aiProvider: AI_PROVIDER,
         aiModel: USE_AI ? ACTIVE_AI_MODEL : null,
+        aiKeyMissing: Boolean(missingAiKeyMessage),
+        aiKeyMissingMessage: missingAiKeyMessage || null,
         openAiModel: USE_AI && AI_PROVIDER === "openai" ? OPENAI_MODEL : null,
         claudeModel: USE_AI && AI_PROVIDER === "claude" ? CLAUDE_MODEL : null,
         count: enriched.length,
