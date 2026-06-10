@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-10T12:23:50.994Z",
+  "collectedAt": "2026-06-10T12:26:11.388Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -9,47 +9,13 @@
   "openAiModel": "gpt-5.5",
   "claudeModel": null,
   "count": 25,
-  "sources": [
-    {
-      "id": "eu-mdcg",
-      "source": "MDCG",
-      "authority": "MDCG",
-      "region": "Global",
-      "country": "Global",
-      "type": "Guidance",
-      "url": "https://health.ec.europa.eu/medical-devices-sector/latest-updates_en",
-      "enabled": true,
-      "kind": "html-page"
-    },
-    {
-      "id": "us-fda-device-recalls",
-      "source": "FDA",
-      "authority": "U.S. Food and Drug Administration",
-      "region": "US",
-      "country": "United States",
-      "type": "Recall",
-      "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
-      "enabled": true,
-      "kind": "openfda-device-recall"
-    },
-    {
-      "id": "global-anvisa",
-      "source": "ANVISA",
-      "authority": "EMERGO",
-      "region": "Global",
-      "country": "Global",
-      "type": "News",
-      "url": "https://www.emergobyul.com/news/regulatory-updates",
-      "enabled": true,
-      "kind": "html-page"
-    }
-  ],
-  "staleCache": false,
-  "previousCollectedAt": null,
+  "sources": [],
+  "staleCache": true,
+  "previousCollectedAt": "2026-06-10T12:23:50.994Z",
   "errors": [
     {
-      "source": "ai",
-      "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
+      "source": "cache",
+      "message": "All live fetches failed. Previous cache was preserved."
     }
   ],
   "items": [
