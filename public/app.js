@@ -23,6 +23,12 @@ const elements = {
   sourceFilters: document.querySelector("#sourceFilters"),
   githubTokenInput: document.querySelector("#githubTokenInput"),
   githubBranchInput: document.querySelector("#githubBranchInput"),
+  aiProviderSelect: document.querySelector("#aiProviderSelect"),
+  openAiKeyInput: document.querySelector("#openAiKeyInput"),
+  openAiModelInput: document.querySelector("#openAiModelInput"),
+  claudeKeyInput: document.querySelector("#claudeKeyInput"),
+  claudeModelInput: document.querySelector("#claudeModelInput"),
+  aiApplyStatus: document.querySelector("#aiApplyStatus"),
   sourceEditIndex: document.querySelector("#sourceEditIndex"),
   sourceNameInput: document.querySelector("#sourceNameInput"),
   sourceUrlInput: document.querySelector("#sourceUrlInput"),
@@ -230,6 +236,11 @@ function setApplyStatus(message, tone = "muted") {
 function setDataStatus(message, tone = "muted") {
   elements.dataApplyStatus.textContent = message;
   elements.dataApplyStatus.dataset.tone = tone;
+}
+
+function setAiStatus(message, tone = "muted") {
+  elements.aiApplyStatus.textContent = message;
+  elements.aiApplyStatus.dataset.tone = tone;
 }
 
 function toBase64(value) {
@@ -672,6 +683,132 @@ async function githubRequest(path, options = {}) {
   return response.json();
 }
 
+async function githubRequestOptional(path, options = {}) {
+  try {
+    return await githubRequest(path, options);
+  } catch (error) {
+    if (error.message.includes("GitHub API 오류 404")) return null;
+    throw error;
+  }
+}
+
+async function loadSodium() {
+  if (window.sodium?.crypto_box_seal) {
+    await window.sodium.ready;
+    return window.sodium;
+  }
+  const module = await import("https://cdn.jsdelivr.net/npm/libsodium-wrappers-sumo@0.7.15/+esm");
+  const sodium = module.default || module;
+  await sodium.ready;
+  window.sodium = sodium;
+  return sodium;
+}
+
+async function encryptSecretValue(secretValue, publicKey) {
+  const sodium = await loadSodium();
+  const keyBytes = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL);
+  const valueBytes = sodium.from_string(secretValue);
+  const encryptedBytes = sodium.crypto_box_seal(valueBytes, keyBytes);
+  return sodium.to_base64(encryptedBytes, sodium.base64_variants.ORIGINAL);
+}
+
+async function saveRepositorySecret(owner, repo, secretName, secretValue) {
+  if (!secretValue.trim()) return false;
+  const publicKey = await githubRequest(`/repos/${owner}/${repo}/actions/secrets/public-key`);
+  const encryptedValue = await encryptSecretValue(secretValue.trim(), publicKey.key);
+  await githubRequest(`/repos/${owner}/${repo}/actions/secrets/${secretName}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      encrypted_value: encryptedValue,
+      key_id: publicKey.key_id
+    })
+  });
+  return true;
+}
+
+async function upsertRepositoryVariable(owner, repo, name, value) {
+  const existing = await githubRequestOptional(`/repos/${owner}/${repo}/actions/variables/${name}`);
+  if (existing) {
+    await githubRequest(`/repos/${owner}/${repo}/actions/variables/${name}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ name, value })
+    });
+    return;
+  }
+  await githubRequest(`/repos/${owner}/${repo}/actions/variables`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ name, value })
+  });
+}
+
+async function getRepositoryVariable(owner, repo, name) {
+  const variable = await githubRequestOptional(`/repos/${owner}/${repo}/actions/variables/${name}`);
+  return variable?.value || "";
+}
+
+async function getRepositorySecretInfo(owner, repo, name) {
+  return githubRequestOptional(`/repos/${owner}/${repo}/actions/secrets/${name}`);
+}
+
+async function loadAiSettings() {
+  const { owner, repo } = getRepoInfo();
+  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI 설정을 확인할 수 있습니다.");
+
+  setAiStatus("GitHub 저장소의 AI 설정을 확인하는 중입니다.", "muted");
+  const [provider, openAiModel, claudeModel, openAiSecret, claudeSecret] = await Promise.all([
+    getRepositoryVariable(owner, repo, "AI_PROVIDER"),
+    getRepositoryVariable(owner, repo, "OPENAI_MODEL"),
+    getRepositoryVariable(owner, repo, "CLAUDE_MODEL"),
+    getRepositorySecretInfo(owner, repo, "OPENAI_API_KEY"),
+    getRepositorySecretInfo(owner, repo, "ANTHROPIC_API_KEY")
+  ]);
+
+  elements.aiProviderSelect.value = provider === "claude" ? "claude" : "openai";
+  if (openAiModel) elements.openAiModelInput.value = openAiModel;
+  if (claudeModel) elements.claudeModelInput.value = claudeModel;
+
+  const secretStatus = [
+    `OpenAI key: ${openAiSecret ? `등록됨 (${openAiSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`,
+    `Claude key: ${claudeSecret ? `등록됨 (${claudeSecret.updated_at?.slice(0, 10) || "날짜 확인"})` : "미등록"}`
+  ].join(" / ");
+  setAiStatus(`현재 제공자: ${elements.aiProviderSelect.value}. ${secretStatus}`, "success");
+}
+
+async function saveAiSettings() {
+  const { owner, repo } = getRepoInfo();
+  if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 AI 설정을 저장할 수 있습니다.");
+
+  const provider = elements.aiProviderSelect.value === "claude" ? "claude" : "openai";
+  const openAiModel = elements.openAiModelInput.value.trim() || "gpt-5.5";
+  const claudeModel = elements.claudeModelInput.value.trim() || "claude-sonnet-4-5";
+
+  setAiStatus("AI 설정을 GitHub Secrets/Variables에 저장하는 중입니다.", "muted");
+  const savedOpenAi = await saveRepositorySecret(owner, repo, "OPENAI_API_KEY", elements.openAiKeyInput.value);
+  const savedClaude = await saveRepositorySecret(owner, repo, "ANTHROPIC_API_KEY", elements.claudeKeyInput.value);
+
+  await upsertRepositoryVariable(owner, repo, "AI_PROVIDER", provider);
+  await upsertRepositoryVariable(owner, repo, "OPENAI_MODEL", openAiModel);
+  await upsertRepositoryVariable(owner, repo, "CLAUDE_MODEL", claudeModel);
+
+  elements.openAiKeyInput.value = "";
+  elements.claudeKeyInput.value = "";
+
+  const savedKeys = [
+    savedOpenAi ? "OpenAI key 갱신" : "",
+    savedClaude ? "Claude key 갱신" : ""
+  ].filter(Boolean).join(", ") || "기존 key 유지";
+  setAiStatus(`AI 설정 저장 완료. 제공자=${provider}, ${savedKeys}. 다음 수집 실행부터 반영됩니다.`, "success");
+}
+
 async function loadSourcesConfig() {
   const { owner, repo } = getRepoInfo();
   const branch = elements.githubBranchInput.value.trim() || "main";
@@ -856,6 +993,12 @@ document.querySelector("#saveSourceFormButton").addEventListener("click", () => 
 });
 document.querySelector("#applySourcesButton").addEventListener("click", () => {
   applySourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+});
+document.querySelector("#loadAiSettingsButton").addEventListener("click", () => {
+  loadAiSettings().catch((error) => setAiStatus(error.message, "error"));
+});
+document.querySelector("#saveAiSettingsButton").addEventListener("click", () => {
+  saveAiSettings().catch((error) => setAiStatus(error.message, "error"));
 });
 document.querySelector("#loadDataButton").addEventListener("click", () => {
   loadDataConfig().catch((error) => setDataStatus(error.message, "error"));

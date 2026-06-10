@@ -138,6 +138,40 @@
             Branch
             <input id="githubBranchInput" type="text" value="main" />
           </label>
+          <div class="ai-secret-manager">
+            <div class="source-manager-head">
+              <h3>AI API 설정</h3>
+              <button class="ghost-button" id="loadAiSettingsButton" type="button">현재 AI 설정 확인</button>
+            </div>
+            <p>선택한 AI 제공자의 API key를 GitHub Repository Secret에 암호화 저장합니다. 키 값은 사이트에 저장되지 않습니다.</p>
+            <label>
+              AI 제공자
+              <select id="aiProviderSelect">
+                <option value="openai">OpenAI</option>
+                <option value="claude">Claude</option>
+              </select>
+            </label>
+            <label>
+              OpenAI API key
+              <input id="openAiKeyInput" type="password" autocomplete="off" placeholder="sk-... 새로 등록/변경할 때만 입력" />
+            </label>
+            <label>
+              OpenAI model
+              <input id="openAiModelInput" type="text" value="gpt-5.5" />
+            </label>
+            <label>
+              Claude API key
+              <input id="claudeKeyInput" type="password" autocomplete="off" placeholder="sk-ant-... 새로 등록/변경할 때만 입력" />
+            </label>
+            <label>
+              Claude model
+              <input id="claudeModelInput" type="text" value="claude-sonnet-4-5" />
+            </label>
+            <div class="source-admin-actions">
+              <button class="primary-action" id="saveAiSettingsButton" type="button">AI 설정 저장</button>
+            </div>
+            <p class="apply-status" id="aiApplyStatus">GitHub classic token 입력 후 AI 설정을 저장할 수 있습니다.</p>
+          </div>
           <div class="source-manager">
             <div class="source-manager-head">
               <h3>수집 소스 관리</h3>
