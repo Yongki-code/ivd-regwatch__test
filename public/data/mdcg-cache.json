@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-10T12:41:07.865Z",
+  "collectedAt": "2026-06-10T12:51:07.581Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": null,
   "openAiModel": "gpt-5.5",
   "claudeModel": null,
-  "count": 19,
+  "count": 33,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -20,6 +20,39 @@
       "url": "https://health.ec.europa.eu/node/12916/rss_en",
       "enabled": true,
       "kind": "rss"
+    },
+    {
+      "id": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "url": "https://api.fda.gov/device/recall.json?limit=20&sort=event_date_initiated:desc",
+      "enabled": true,
+      "kind": "openfda-device-recall"
+    },
+    {
+      "id": "ca-health-canada",
+      "source": "Health Canada",
+      "authority": "Health Canada",
+      "region": "CA",
+      "country": "CA",
+      "type": "Guidance",
+      "url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-33-eng.xml",
+      "enabled": true,
+      "kind": "rss"
+    },
+    {
+      "id": "global-anvisa",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "Guidance",
+      "url": "https://www.emergobyul.com/news/regulatory-updates",
+      "enabled": true,
+      "kind": "html-page"
     }
   ],
   "staleCache": false,
@@ -54,6 +87,182 @@
       "analysisMode": "ai"
     },
     {
+      "id": "us-fda:99044",
+      "title": "DeRoyal Industries Inc. Ref 46-406, Covaderm Plus, Vascular Access Dressing 6\"x6\" (15cmx15cm)",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-18",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 페이지에 DeRoyal Industries Inc.의 Covaderm Plus 혈관접근 드레싱 6\"x6\" 제품 관련 공지가 게시되었습니다. 해당 멸균 상처 드레싱은 멸균 보증 부족이 사유로 제시되었고, 대상 정보는 Product code NAC, Lot 63295141, UDI 없음입니다. IVD 제품에 직접 적용되는 공지는 아니며, 적용 일정·조치 기한은 확인 필요입니다.",
+      "rawSummary": "Sterile wound dressing, lacks sterility assurance | Firm: DeRoyal Industries Inc | Product code: NAC | Code info: Lot: 63295141/UDI: None",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에 대한 직접 RA 조치는 필요하지 않습니다. 다만 미국 FDA 리콜 동향 모니터링 차원에서 멸균 부자재·드레싱 등 비-IVD 공급망과 자사 제품 구성품 연계 여부를 확인하고, 관련성이 없으면 참고 기록으로 보관하십시오.",
+      "impactPoints": [
+        "자사 IVD 제품, 키트 구성품, 샘플채취/처치 보조물에 해당 DeRoyal 드레싱 또는 동일 Lot가 포함되어 있지 않은가?",
+        "미국 시장 유통 제품의 부자재 공급망에서 멸균 보증 이슈가 발생한 공급업체와 거래 관계가 있는지 확인했는가?",
+        "본 FDA 리콜 공지가 IVD 인허가, 기술문서, 라벨링 또는 고객 통지에 직접 영향을 주지 않는다는 근거를 내부 기록으로 남길 것인가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98913",
+      "title": "Medtronic 2x4 Pocket Adaptor Kit for Deep Brain Stimulation, Model 64002; Stimulator, electrical, implanted, for parkinsonian tremor",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-13",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미 FDA 의료기기 리콜 공지로, Medtronic Neuromodulation의 Deep Brain Stimulation용 Pocket Adaptor Kit 모델 64001 및 64002 일부가 잘못된 사용기한(Use-By-Date) 라벨로 표시되었다는 내용이다. 대상은 전기식 이식형 자극기 관련 제품이며 제품코드 MHY, 특정 GTIN 및 로트가 열거되어 있다. IVD 제품, 시약, 분석기 또는 체외진단 성능 요구사항에 직접 적용되는 내용은 아니다. 공지일은 2026-05-13으로 제시되나 리콜 등급, 고객 조치, 회수 완료기한 및 시행 일정은 확인 필요이다.",
+      "rawSummary": "A limited number of Pocket Adaptor Kits, Model 64001 and 64002, are labeled with incorrect Use-By-Dates. | Firm: Medtronic Neuromodulation | Product code: MHY | Code info: GTIN 00643169090866, Lot Number VA368G3; GTIN 00643169090866, Lot Number VA36V7T; GTIN 00643169936584, Lot Number VA3347Y; GTIN 00643169936584, Lot Number VA33481; GTIN 00643169936584, Lot Number VA33M8V; GTIN 00643169936584, Lot Number VA33M92; GTIN 00643169936584, Lot Number VA33T31; GTIN 00643169936584, Lot Number VA33T33; GTIN 00643169936584, Lot Number VA35B5D; GTIN 00643169936584, Lot Number VA35B5E; GTIN 00643169936584, Lot Number VA35WSP; GTIN 00643169936584, Lot Number VA35WSU; GTIN 00763000963040, Lot Number VA35TTU; GTIN 00763000963040, Lot Number VA35TTV; GTIN 00763000963040, Lot Number VA368FZ; GTIN 00763000963040, Lot Number VA368G3; GTIN 00763000963040, Lot Number VA36V7T; GTIN 00763000963040, Lot Number VA36V8Q; GTIN 00763000968427, Lot Number 0231980220; GTIN 00763000968427, Lot Number 0231980221; GTIN 00763000968427, Lot Number 0231980222; GTIN 00763000968434, Lot Number 0231493884; GTIN 00763000968434, Lot Number 0231493885; GTIN 00763000968434, Lot Number 0231494066; GTIN 00763000968434, Lot Number 0231928923; GTIN 00763000968434, Lot Number 0231929188; GTIN 00763000968434, Lot Number 0231929189; GTIN 00763000968434, Lot Number 0231929192; GTIN 00763000968441, Lot Number 0231367316; GTIN 00763000968441, Lot Number 0231367317.",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에는 직접적인 RA 조치가 요구되지 않는다. 다만 미국 시장 품질/규제 모니터링 로그에 ‘비-IVD FDA 리콜 사례’로 기록하고, 자사 라벨의 사용기한·로트·GTIN 검증 절차와 UDI/출하 승인 점검이 충분한지 정기 내부감사 항목에서 참고 확인한다. 해당 Medtronic 제품 취급 여부는 확인 필요이다.",
+      "impactPoints": [
+        "자사 또는 미국 대리점·서비스 조직이 열거된 Medtronic Pocket Adaptor Kit 모델 64001/64002, 해당 GTIN·로트를 구매·유통·설치하거나 IVD 사업과 함께 공급한 이력이 있는지 확인 필요인가?",
+        "본 건은 IVD에 직접 적용되지 않지만, 자사 IVD 라벨의 Use-By-Date, 로트번호, GTIN/UDI가 ERP·라벨 발행 시스템·출하 승인 기록과 일치하도록 검증하는 절차가 충분한가?",
+        "FDA 리콜 공지에서 리콜 등급, 고객 조치 및 회수 기한이 제시되지 않았으므로, 미국 시장 감시 절차상 비-IVD 안전성 공지를 어떤 기준으로 추적·종결 처리할지 확인 필요인가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98877",
+      "title": "Bicarby\" Dialysate; Model Numbers: RFP-400-G, RFP-401-G, RFP-402-G, RFP-404-G, RFP-407-G, and RFP-456-G;",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-12",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 공지로, 사용자 보고 누적에 따라 Bicarby Dialysate의 luer-lock 누액 가능성을 사용자에게 알리기 위한 내용이다. 준비 과정에서 frangible 및 튜빙을 조작할 때 누액이 발생할 수 있으며, 바닥의 유체로 인한 미끄러짐·낙상 위험이 제시되었다. 대상은 Fresenius Medical Care Holdings의 제품 코드 KPO, 모델 RFP-400-G 등 6개 및 기재된 UDI-DI이다. 영향 범위는 2025-01-13부터 2026-01-13 lot 26AG02019까지 생산된 전 로트로 제시되었으나, 시행일·회수 등급·사용자 조치 기한은 확인 필요이다. 해당 제품은 투석액으로, IVD에 대한 직접 적용성은 확인되지 않는다.",
+      "rawSummary": "Given the increased number of leaks reported by users, it was determined to be the appropriate course of action to notify users of the potential for the occurrence of Bicarby luer-lock leaks during manipulation of the frangible and tubing when preparing the product for use for treatment. This issue presents the potential of a slip and fall hazard associated with fluid on the floor. | Firm: Fresenius Medical Care Holdings, Inc. | Product code: KPO | Code info: Model Number: RFP-400-G; UDI-DI: 00840861102839; 2. Model Number: RFP-401-G; UDI-DI: 00840861102853; 3. Model Number: RFP-402-G; UDI-DI: 00840861102822; 4. Model Number: RFP-404-G; UDI-DI: 00840861102914; 5. Model Number: RFP-407-G; UDI-DI: 00840861102846: 6. Model Number: RFP-456-G; UDI-DI: 00840861102945; All lots produced from January 13, 2025, through lot 26AG02019 on January 13, 2026",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에는 직접적인 기술문서, 성능평가, 등록 변경 의무가 확인되지 않는다. RA는 규제정보 로그에 비적용 근거를 기록하고, 미국 판매 포트폴리오·유통품·부속 공급망에 해당 Fresenius 모델/UDI가 포함되는지 확인한다. FDA 리콜 등급, 사용자 지시, 추가 기한 공지는 모니터링한다.",
+      "impactPoints": [
+        "당사 미국 판매 또는 유통 제품, 키트 구성품, 서비스 제공 품목에 Bicarby Dialysate 모델 RFP-400-G/RFP-401-G/RFP-402-G/RFP-404-G/RFP-407-G/RFP-456-G 또는 해당 UDI-DI가 포함되어 있는가?",
+        "해당 투석액이 당사 IVD 장비 설치 고객, 병원 워크플로, 공동 공급 계약에서 함께 취급되어 누액 관련 불만·현장안전 보고가 당사 품질시스템으로 유입될 가능성이 있는가?",
+        "FDA 리콜 페이지에서 회수 등급, 사용자 통지문, 반환·폐기·라벨링 지시, 후속 일정이 추가될 경우 이를 추적하고 비적용 판단을 갱신할 책임자와 일정이 지정되어 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98914",
+      "title": "Atlan A350XL. Model Number: 8621600. anesthesia workstation",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 공지로, Draeger, Inc.의 Atlan A350XL 마취 워크스테이션(Model 8621600, product code BSZ)에 관한 특정 모델, UDI-DI 및 일련번호 목록이 제시되었다. 공지 내용은 사용 전 피스톤 ventilator 고장 표시 또는 사용 중 기계환기 실패가 발생했다는 제품 결함 정보이다. 대상은 마취 워크스테이션이며, 체외진단기기(IVD)나 IVD 제조공정·성능평가 요구사항에 직접 적용되는 내용은 확인되지 않는다. 제공 정보상 리콜 등급, 시정조치 방식, 고객 통지 기한, 시행 또는 종료 일정은 확인 필요이다. 입력일자는 2026-05-07이나, 실제 규제상 적용일·마감일은 본문에서 확인되지 않는다.",
+      "rawSummary": "The Atlan anesthesia workstation either indicated a failure of the piston ventilator before use or suffered a failure of the mechanical ventilation during use. | Firm: Draeger, Inc. | Product code: BSZ | Code info: Model Number: 8621600. UDI-DI Number: 04048675556183. Serial Numbers: ASSL-0354, ASSL-0357, ASSL-0360, ASSH-0240, ASSH-0242, ASSH-0243, ASSH-0245, ASSH-0246, ASSH-0247, ASSH-0248, ASSH-0249, ASSH-0250, ASSL-0355, ASSL-0356, ASSL-0358, ASSL-0359, ASSL-0361, ASSH-0239, ASSH-0241, ASSH-0244, ASSH-0251, ASSH-0252, ASSH-0253, ASSH-0254, ASTA-0308, ASTA-0310, ASTA-0312, ASTA-0271, ASTA-0272, ASTA-0273, ASTA-0274, ASTA-0275, ASTA-0276, ASTA-0352, ASTA-0354, ASTA-0364, ASTA-0395, ASTA-0396, ASTA-0397, ASTA-0407, ASSM-0464, ASSM-0465, ASSM-0466, ASSM-0467, ASSM-0468, ASSM-0469, ASSM-0491, ASSM-0492, ASSM-0493, ASSM-0494, ASSM-0495.",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체로서는 해당 마취 워크스테이션을 제조·판매하지 않는 한 등록, Technical File, 라벨링, 성능/임상근거 변경 등 직접 RA 조치는 필요하지 않다. 다만 미국 FDA 리콜 모니터링 로그에 참고로 기록하고, 자사 또는 계약시험·임상기관이 해당 장비를 사용하는지 확인 필요하다.",
+      "impactPoints": [
+        "자사 미국 포트폴리오에 Atlan A350XL 마취 워크스테이션 또는 Draeger 해당 모델과 결합·공급되는 IVD 제품, 액세서리, 서비스 계약이 있는가?",
+        "IVD 성능평가, 임상시험 또는 검체 처리 과정에서 대상 일련번호의 마취 워크스테이션이 사용되어 시험 일정, 피험자 안전 또는 데이터 무결성에 영향을 줄 가능성이 있는가?",
+        "FDA 리콜 정보가 직접 IVD 적용 사항은 아니지만, 미국 현지 대리인·유통사·고객지원팀의 불만/리콜 모니터링 절차에 참고 기록 및 내부 공유가 필요한가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98929",
+      "title": "LVP software of the Ivenix Infusion System (IIS); Product Code LVP-SW-0005.",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 공지로, Ivenix Infusion System(IIS)의 LVP 소프트웨어에서 배터리 상태값을 잘못 표시하고 배터리 고갈 알람 후 펌프가 정지될 수 있는 소프트웨어 이상을 설명합니다. 대상은 Fresenius Kabi USA, LLC의 Product Code LVP-SW-0005, Software Version 5.10.2이며 IVD 제품에 직접 적용되는 내용은 아닙니다. 공지일은 2026-05-06이나 구체적 조치 일정은 확인 필요입니다.",
+      "rawSummary": "Potential software anomaly that can cause the pump to report a false battery-health value (typically 69%) and trigger a battery-depletion alarm that will shut down the pump unless it is reconnected to AC mains power. | Firm: Fresenius Kabi USA, LLC | Product code: FRN | Code info: Product Code LVP-SW-0005. UDI-DI: 00811505030122. Software Version 5.10.2",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에 대한 직접 RA 조치는 필요하지 않습니다. 다만 미국 FDA 리콜 동향 모니터링 차원에서 소프트웨어 이상, 전원/배터리 관련 위험관리 및 CAPA 사례로 내부 참고하고, 자사 IVD 소프트웨어 제품과의 직접 관련성은 확인 필요입니다.",
+      "impactPoints": [
+        "자사 미국 판매 IVD 포트폴리오에 Fresenius Kabi IIS 또는 LVP-SW-0005와 연계·번들·부속되는 제품이 없는지 확인 필요합니까?",
+        "자사 IVD 장비 또는 소프트웨어에 배터리 상태 표시, 전원 상실 알람, AC 전원 재연결 조건 등 유사 위험관리 항목이 존재합니까?",
+        "이번 FDA 리콜 사례를 소프트웨어 이상 및 전원 관련 PMS/CAPA 트렌드 검토 자료로 품질 시스템에 참고할 필요가 있습니까?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98945",
+      "title": "Ivenix Infusion System (IIS), Large Volume Pump, Model Number: LVP-0004",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "제공 문서는 FDA 의료기기 리콜 페이지에 게시된 Fresenius Kabi USA, LLC의 Ivenix Infusion System 대용량 주입펌프(LVP-0004) 관련 안전 공지이다. 고객 불만을 통해 낙하 또는 강한 충격 후 내부 손상이 외관상 확인되지 않은 채 사용 지속될 수 있으며, 터치스크린 입력 케이블 이탈로 임의 터치나 입력 무반응이 발생할 수 있음이 설명된다. 대상은 제품코드 FRN, UDI-DI 00811505030320, 모든 일련/로트의 해당 모델로 제시되어 있고 IVD 제품 범위는 언급되지 않는다. IVD 제조업체에 직접 적용되는 규제 변경이나 등록·성능 요구사항은 확인되지 않으며, 시행일·조치기한은 확인 필요이다.",
+      "rawSummary": "Fresenius Kabi has been made aware via customer complaints that dropping or severe jarring of the Ivenix LVP may cause damage to internal components that may not be apparent or readily visible and the devices therefore remained in service. More specifically, drops or jarring on a hard surface can cause the touchscreen input cable to loosen, resulting in unintended touchscreen behavior on the LVP, including random screen touches and/or lack of screen responsiveness to user input. Under the reported failure condition, unintended touch inputs may register at arbitrary screen locations without user interaction. These inputs occur intermittently and without a predictable pattern. | Firm: Fresenius Kabi USA, LLC | Product code: FRN | Code info: Model Number: LVP-0004; UDI-DI: 00811505030320; All Serial/Lot Numbers:",
+      "severity": "low",
+      "read": false,
+      "action": "본 건은 주입펌프 리콜로 IVD에 직접 적용되는 RA 조치는 없다. 다만 미국 판매 제품, OEM/부속품 포트폴리오, 임상 또는 서비스 현장 장비에 해당 펌프 또는 Fresenius Kabi 공급품이 포함되는지 확인하고, 내부 규제동향 로그에 ‘IVD 직접 영향 없음, 모니터링 지속’으로 기록한다.",
+      "impactPoints": [
+        "미국 시장에 판매 중인 IVD 시스템, 액세서리, 서비스 장비 또는 임상시험 현장 장비에 Ivenix LVP-0004 또는 동일 공급망 제품이 포함되어 있지 않은가?",
+        "본 리콜은 IVD 성능자료, 임상근거, 라벨링, UDI/등록 갱신에 직접 요구사항을 만들지 않는 것으로 판단되나, 예외적 조합 사용 여부는 확인되었는가?",
+        "공급업체/고객 불만 모니터링 절차에서 비-IVD 의료기기 리콜을 참고 정보로 분류하고, IVD 직접 영향 없음 및 추가 조치 불필요 근거를 문서화했는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98838",
+      "title": "Design Options Spinal Tray Material Description (Material Number): SSK HACKENSACK MEDICAL CTR 20061890 (560074), SSK SUTTER COMMUNITY HOSPITAL (560214), SSK BJC HEALTH SYSTEMS (ORIGINAL CUST) (560272), SSK CA PACIFIC MED. CTR (ORIGINAL CUST) (560327), SSK TORRANCE MEMORIAL HOSPITAL (560394), SSK SURGERY ONE 20070208 (560428), SSK LUTHERN GENERAL HOSP (ORIGINAL CUST) (560462), SSK HOAG MEMORIAL HOSPITAL (560465), SSK BUPIVACAINE TRAY 2068824 (560476), SSK KAISER FOUNDATION HOSPITAL (560497), SSK THOMAS JEFFERSON UNIV HOSP (560513), SSK OVERLAKE MEDICAL CENTER (560521), SSK CUSTOM SPINAL TRAY (560523), SSK ORLANDO REGIONAL MED CENTER (560533), SSK BON SECOURS HEALTH SYS 20115122 (560538), SSK MANATEE MEMORIAL (560572), SSK MOUNT SINAI 27GA PENCAN SPINAL TRAY (560580), SSK SHANDS TEACHING HOSP. & CLINICS, INC (560584), SSK UNIVERSITY OF COLORADO (560587), SSK P25BKG (560603), SSK P24BKG (560606), SSK S25BKG (560607), SSK MAYO CLINIC - BUPIVACAINE TRAY (560609), SSK THE MEDICAL CENTER (560613), SSK PENCIL POINT SPINAL TRAY (560619), SSK EMORY ORTHO & SPINE HOSPITAL-SPINAL (560621), SSK BSW SPINAL TRAY (560628), SSK MAYO CLINIC OB DEPT - SPINAL (560645), SSK BAPTIST HOSPITAL OF MIAMI (560646), SSK MERCY GILBERT MEDICAL CENTER (560647), SSK ST.MARY'S HOSPITAL (560648), SSK HARRIS HEALTH SYSTEM (560660), OHIO STATE U MEDICAL CTR SPINAL TRAY SSK (560667), ALBANY MEDICAL CENTER, SSK (560670), STONY BROOK HOSPITAL - SPINAL TRAY SSK (560672);",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 페이지에 게시된 B. Braun Medical Inc.의 Design Options Spinal Tray 하위 리콜 정보이다. 원 리콜은 Huons Co., Ltd.가 제조한 Bupivacaine Hydrochloride in Dextrose Injection, USP의 잠재적 품질 이슈에 따른 자발적 리콜로 설명된다. 대상은 다수의 척추마취 트레이 물질번호, UDI-DI 및 배치번호로 한정되어 있으며 IVD 제품은 직접 언급되지 않는다. 따라서 IVD 제조업체에 대한 직접 적용성은 확인되지 않는다. 리콜 등급, 고객 조치, 시행·완료 일정은 제공되지 않아 확인 필요하다.",
+      "rawSummary": "A sub-recall of a product recall from Huons Co, Ltd., the manufacturer of Bupivacaine Hydrochloride in Dextrose Injection, USP. Huon Co, Ltd. has issued a voluntary recall due to potential quality issues. | Firm: B Braun Medical Inc | Product code: OFU | Code info: 1. Material: 560074; UDI-DI Primary/Individual Unit of Use: 04046964317873/04046964317859; Batch Numbers: 0061960383, 0061972565; 2. Material: 560214; UDI-DI Primary/Individual Unit of Use: 04046964318061/04046964318054; Batch Numbers: 0061971346, 0061977782; 3. Material: 560272; UDI-DI Primary/Individual Unit of Use: 04046964318108/04046964318085; Batch Numbers: 0061960367, 0061971330; 4. Material: 560327; UDI-DI Primary/Individual Unit of Use: 04046964318221/04046964318207; Batch Numbers: 0061960420, 0061977751; 5. Material: 560394; UDI-DI Primary/Individual Unit of Use: 04046964318429/04046964318405; Batch Numbers: 0061964747, 0061976985, 0061983313; 6. Material: 560428; UDI-DI Primary/Individual Unit of Use: 04046964318610/04046964318597; Batch Numbers: 0061976150, 0061979927; 7. Material: 560462; UDI-DI Primary/Individual Unit of Use: 04046964318764/04046964318740; Batch Number: 0061977772; 8. Material: 560465; UDI-DI Primary/Individual Unit of Use: 04046964318801/04046964318788; Batch Numbers: 0061976120, 0061976122, 0062024615; 9. Material: 560476; UDI-DI Primary/Individual Unit of Use: 04046964318948/04046964318931; Batch Numbers: 0061964879, 0061977776, 0061985361; 10. Material: 560497; UDI-DI Primary/Individual Unit of Use: 04046964319136/04046964319112; Batch Numbers: 0061967077, 0061985362; 11. Material: 560513; UDI-DI Primary/Individual Unit of Use: 04046964319273/04046964319259; Batch Numbers: 0061961836, 0061977766; 12. Material: 560521; UDI-DI Primary/Individual Unit of Use: 04046964319440/04046964319426; Batch Numbers: 0061967083, 0061977226; 13. Material: 560523; UDI-DI Primary/Individual Unit of Use: 04046964319471/04046964319457; Batch Numbers: 0061952176, 0061971321; 14. Material: 560533; UDI-DI Primary/Individual Unit of Use: 04046964319518/04046964319495; Batch Numbers: 0061954120, 0061971287, 0061971288; 15. Material: 560538; UDI-DI Primary/Individual Unit of Use: 04046964319587/04046964319563; Batch Numbers: 0061971325, 0061973771; 16. Material: 560572; UDI-DI Primary/Individual Unit of Use: 04046964319990/04046964319976; Batch Number: 0061961001; 17. Material: 560580; UDI-DI Primary/Individual Unit of Use: 04046964320194/04046964320170; Batch Number: 0061967090; 18. Material: 560584; UDI-DI Primary/Individual Unit of Use: 04046964320293/04046964320286; Batch Number: 0061961847; 19. Material: 560587; UDI-DI Primary/Individual Unit of Use: 04046964320408/04046964320378; Batch Number: 0061972579; 20. Material: 560603; UDI-DI Primary/Individual Unit of Use: 04046964320842/04046964320828; Batch Numbers: 0061951279, 0061954147, 0061958274, 0061969404, 0061969405, 0061970744, 0061974805; 21. Material: 560606; UDI-DI Primary/Individual Unit of Use: 04046964320958/04046964320927; Batch Numbers: 0061965746, 0061965762, 0061971283, 0061971284, 0061971285; 22. Material: 560607; UDI-DI Primary/Individual Unit of Use: 04046964320989/04046964320965; Batch Numbers: 0061958137, 0061972577, 0061985364; 23. Material: 560609; UDI-DI Primary/Individual Unit of Use: 04046964321047/04046964321030; Batch Numbers: 0061958142, 0061975207, 0061985374; 24. Material: 560613; UDI-DI Primary/Individual Unit of Use: 04046964321153/04046964321146; Batch Number: 0061972578; 25. Material: 560619; UDI-DI Primary/Individual Unit of Use: 04046964321306/04046964321290; Batch Numbers: 0061954114, 0061971313; 26. Material: 560621; UDI-DI Primary/Individual Unit of Use: 04046964321375/04046964321368; Batch Numbers: 0061961853, 0061976112, 0061977798; 27. Material: 560628; UDI-DI Primary/Individual Unit of Use: 04046964526749/04046964526732; Batch Numbers: 0061954111, 0061959460; 28. Material: 560645; UDI-DI Primary/Individual Unit of Use: 04046964809088/04046964809071; Batch Numbers: 0061967991, 0061977778; 29. Material: 560646; UDI-DI Primary/Individual Unit of Use: 04046964809101/04046964809095; Batch Number: 0061957394; 30. Material: 560647; UDI-DI Primary/Individual Unit of Use: 04046964809125/04046964809118; Batch Numbers: 0061971336, 0061977571, 0061985370; 31. Material: 560648; UDI-DI Primary/Individual Unit of Use: 04046964809149/04046964809132; Batch Numbers: 0061961002, 0061977800, 0061977801; 32. Material: 560660; UDI-DI Primary/Individual Unit of Use: 04046955331864/04046955331857; Batch Number: 0061958133; 33. Material: 560667; UDI-DI Primary/Individual Unit of Use: 04046955595891/04046955595884; Batch Numbers: 0061966001, 0061976124, 0061977803; 34. Material: 560670; UDI-DI Primary/Individual Unit of Use: 04046955595945/04046955595938; Batch Number: 0061972569; 35. Material: 560672; UDI-DI Primary/Individual Unit of Use: 04046955595983/04046955595976; Batch Numbers: 0061967078, 0061977783;",
+      "severity": "low",
+      "read": false,
+      "action": "직접 IVD 적용 문서는 아니므로 즉시 등록변경, 기술문서 개정, 라벨 변경 조치는 필요하지 않다. 다만 PMS/리콜 모니터링 기록에 비적용 근거를 남기고, 자사 IVD 키트·부속품·유통 품목에 B. Braun 척추 트레이 또는 Huons 해당 주사제가 포함되지 않는지 공급망 확인을 수행한다.",
+      "impactPoints": [
+        "자사 미국 판매 IVD 제품, 시료채취·시술 보조 구성품, 번들 공급품 중 공지된 B. Braun 물질번호 또는 UDI-DI와 연결된 품목이 없는가?",
+        "미국 대리인, 유통업체, 병원 고객으로부터 해당 척추 트레이 리콜 관련 문의나 반품·격리 요청이 접수될 가능성이 있는가?",
+        "PMS/FSCA 스크리닝 절차에서 비-IVD 리콜을 검토 후 비적용으로 종결하는 기록, 근거 및 후속 모니터링 책임자가 지정되어 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98894",
+      "title": "Neptune Smart Docking Station (120V), Catalog Number 0770-100-000, part of the Neptune Waste Management System",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미국 FDA 의료기기 리콜 공지로, Stryker Neptune Waste Management System의 Neptune Smart Docking Station 120V 특정 1대(SN 2521008873)가 제조 출하 승인 및 필수 시험 완료 여부가 확인되지 않은 상태로 배송되었을 가능성을 알립니다. 안전시험 확인 불가로 전기충격 위험이 언급되었습니다. IVD 제품에는 직접 적용되는 내용이 확인되지 않습니다. 시행일·대응기한은 확인 필요입니다.",
+      "rawSummary": "It has been identified that the impacted docking station (SN 2521008873) was not product released from manufacturing and may not have completed required testing prior to being shipped to your facility. There is a potential risk of electrical shock due to the device s safety testing being unverifiable. | Firm: Stryker Corporation | Product code: JCX | Code info: GTIN 07613327634914, Serial Number 2521008873",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에 대한 직접적인 RA 조치나 기술문서·허가 변경은 필요하지 않습니다. 다만 미국 사업장 또는 협력기관에서 해당 Stryker 장비를 사용하는지 확인하고, FDA 리콜 동향은 모니터링하십시오. IVD 제품 영향은 확인 필요입니다.",
+      "impactPoints": [
+        "당사 미국 사업장, 시험실, 위탁기관 또는 의료기관 고객이 Neptune Smart Docking Station 120V 해당 일련번호(SN 2521008873)를 사용하거나 보유하고 있는가?",
+        "해당 리콜이 당사 IVD 제품의 제조, 시험, 보관, 임상평가 또는 고객 사용 환경에 간접적으로 영향을 줄 가능성이 있는가?",
+        "이번 공지는 IVD에 직접 적용되지 않지만, FDA 리콜 모니터링 절차와 공급업체/시설 장비 확인 프로세스에 반영할 필요가 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
       "id": "eu-ivdr:https://eur-lex.europa.eu/eli/reg_impl/2026/977/oj",
       "title": "Implementing Regulation (EU) 2026/977 – uniform requirements for conformity assessment and notified bodies (Annex VII)",
       "source": "IVDR",
@@ -72,6 +281,72 @@
         "우리 제품의 EU 적합성평가 경로 또는 지정 인증기관이 시행규정 2026/977의 Annex VII 요건 변경 대상인지 확인 필요인가?",
         "시행일, 적용일, 전환기간이 확인될 경우 현재 진행 중인 CE 인증, 갱신, 변경심사 일정에 지연 또는 추가자료 요구 위험이 있는가?",
         "인증기관 운영요건 변경이 기술문서 형식, 심사 대응 SOP, NB 계약·커뮤니케이션 절차에 영향을 주는지 확인했는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98820",
+      "title": "Pediatric care bed; Product Designation: KayserBett IDA;",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 게시 정보로 보이며, 제공자료상 별도 가이던스 변경이나 신규 규제요건은 확인 필요입니다. 대상은 KAYSERBETTEN GMBH & CO. KG의 소아용 케어 침대 KayserBett IDA, 제품코드 FNL, UDI-DI 426038961IDAGU 및 열거된 일련번호 제품입니다. 설명서 지시에 따라 보호자 부재 시 핸드컨트롤 조정 기능을 제공 키로 잠그지 않으면 아동 또는 제3자가 조작하여 침대 프레임 아래나 바닥 사이에 끼일 위험이 있고, 중상 또는 사망 가능성이 언급됩니다. IVD 제품·시약·분석기 성능 또는 인허가 요건에 직접 적용되는 내용은 아닙니다. 게시일은 2026-05-04이나 리콜 개시일, 종료일, FDA 분류 등 구체 일정은 확인 필요입니다.",
+      "rawSummary": "If the adjustment functions of the hand control, as instructed in the Manual, are not locked with the provided key when the patient (child) is unattended, there is an increased risk that the patient (child) or third parties (children) will operate the hand control and trap themselves or others under the bed frame or between the bed frame and the floor. This can lead to serious injuries or even death of the patient (child) or third parties (children). | Firm: KAYSERBETTEN GMBH & CO. KG Rieper Str. 12 Bad Fallingbostel Germany | Product code: FNL | Code info: Product Designation: KayserBett IDA; UDI-DI: 426038961IDAGU; Serial Number: 386, 387, 388, 389, 390, 391, 392, 635, 636, 637, 638, 639, 641, 642, 643, 644, 645, 646, 647, 1072, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1085, 1086, 1087, 1088, 1089, 1090, 1110, 1111, 1446, 1447, 1448, 1449, 1648, 1649, 1950, 1975, 1976, 1982, 1983, 1998, 2001, 2003, 2004, 2337, 2338, 2339, 2340, 2341, 2342, 2343, 2344, 2345, 2396, 2763, 2764, 2765, 2766, 2767, 2770, 2771, 2772, 2773, 2774, 3087, 3088, 3089, 3090, 3091, 3092, 3167, 3299, 3300, 3301, 3302, 3303, 3304, 3305, 3306, 3309, 3310, 3311, 3312, 3313, 3314, 3740, 3741, 3760, 4223, 4232, 4233, 4234, 4235, 4236, 4237, 4239, 4240, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249, 4250, 4567, 4568, 4569, 4570, 4571, 4572, 4573, 4574, 4575, 4576, 4577, 4578, 4579, 4580, 4581, 4582, 4583, 4584, 4986, 5238, 5254, 5255, 5256, 5257, 5258, 5259, 5637, 5919, 5920, 5921, 5922, 5923, 5924, 5925, 5926, 5937, 5938, 5939, 5940, 5948, 6332, 6338, 6339, 6340, 6341, 6342, 6343, 6344, 6345, 6346, 6347, 6351, 6355, 6795, 6796, 7176, 7177, 7178, 7179, 7180, 7181, 7182, 7183, 7184, 7185, 7186, 7187, 7188, 7189, 7190, 7191, 7192, 7193, 7194, 7195, 7617, 7618, 7619, 7620, 7621, 7622, 7623, 8242, 8243, 8244, 8245, 8588, 8589, 8590, 8591, 8592, 8593, 8594, 8595, 8596, 8597, 8598, 8599, 8600, 8601, 8602, 8603, 8608, 8609, 8691, 8704, 8912, 8921, 8922, 8923, 8924, 8925, 8926, 8927, 8928, 8929, 8930, 9725, 9726, 9727, 10350, 10351, 10352, 10819, 10820, 10821, 10822, 10823, 10824, 10825, 11186, 11367, 11368, 11369, 11370, 11371, 11372, 11797, 11798, 11799, 11800, 11801, 11802, 11803, 11804, 11805, 11806, 11807, 11808, 12247, 12248, 12249, 12250, 12251, 12252, 12253, 12254, 12255, 12256, 12257, 12397, 12398, 12399, 12782, 12783, 12963, 12964, 12965, 12966, 12967, 12968, 12969, 12970, 12971, 12972, 13486, 13487, 13488, 13489, 13490, 13491, 13492, 13493, 13494, 13495, 13496, 13497, 13912, 13913, 13914, 13915, 13916, 13917, 13918, 14942, 14944, 14952, 14953, 15912, 15913, 15914, 16403, 16404, 16405, 16406, 16407, 16408, 16409, 16410, 16411, 16984, 16985, 16986, 16987, 16988, 16989, 16990, 16991, 16992, 16993, 16994, 17577, 17578, 17579, 17580, 17581, 17582, 17583, 17584, 17585, 17586, 17587, 18494, 19112, 19113, 19114, 20151, 20152, 20153, 20154, 20155, 20156, 20157, 20158, 20963, 20964, 20965, 20966, 20967, 20968, 20969, 20970, 20972, 21192, 21193, 21194;",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체로서 직접적인 IVD 기술문서, 등록, 성능평가, 라벨링 변경 조치는 요구되지 않는 것으로 보입니다. RA는 본 건을 비-IVD 안전 리콜 참고정보로 기록하고, 미국 유통 제품·서비스 계약·고객 설치 장비에 KayserBett IDA 또는 제품코드 FNL 관련 취급이 없는지 확인한 뒤 FDA 리콜 페이지 모니터링을 유지하십시오.",
+      "impactPoints": [
+        "당사 미국 판매 IVD, 부속장비, 번들 장비 또는 고객 설치 환경에 KayserBett IDA, 제품코드 FNL, UDI-DI 426038961IDAGU가 포함되어 시장 접근 또는 현장조치 영향이 발생할 가능성은 없는가?",
+        "미국 대리인, 유통업체, 서비스 협력사가 해당 소아용 케어 침대의 판매·유지보수·고객 통지를 수행하고 있어 당사 불만처리, 리콜 커뮤니케이션 또는 공급망 책임으로 연결될 여지는 없는가?",
+        "본 건은 IVD에 직접 적용되지 않지만, 전동 부속품·사용자 조작 잠금 기능이 있는 당사 장비의 위험관리파일, 사용설명서 경고, 고객 교육 자료에 유사한 사용자 오조작 방지 문구가 충분한지 확인할 필요가 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98924",
+      "title": "SD LTM 64 PLUS, EEG Amplifier/recorder, Model/Catalog Number: SD LTM 64 PLUS, Software Version: firmware 2021.02, 2022.01 or 2022.02",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 페이지의 제품별 안전 공지로, 대상은 Natus의 SD LTM 64 PLUS EEG 증폭/기록장치이며 IVD에 직접 적용되는 문서는 아니다. 다중 증폭기 구성에서 64채널 블록 간 EEG trace가 1초 지연되어 표시될 수 있다는 불만 2건이 언급되었다. 해당 현상은 firmware 2021.02, 2022.01 또는 2022.02의 다중 모듈 SEEG 구성에서 결과 오해를 유발할 가능성이 있다. 적용 범위는 제품코드 GWQ, 특정 UDI-DI와 열거된 일련번호 장치로 제시되었다. 제공일은 2026-05-04이나 시정조치 일정, 고객 조치, FDA 분류 등은 확인 필요하다.",
+      "rawSummary": "Natus has become aware of two complaints related to the SD LTM 64 PLUS where the EEG traces acquired from two or four different amplifiers used in a multiple amplifier configuration (128 or 256 channels) running firmware version 2022.02 were displayed with a shift of 1 second between the 64channels blocks. In rare circumstances, a fixed 1-second temporal delay may appear between two 64-channel modules with firmware 2021.02, 2022.01 or 2022.02 in a multi-module SEEG configuration, potentially leading to misinterpretation of results. | Product code: GWQ | Code info: UDI-DI: 8033928120897; Lot Code: Model No SD LTM 64 PLUS; UDI-DI 8033928120897; Serial Numbers BAA-0051/01-19, BAA-0069/02-19, BAA-0070/02-19, BAA-0071/02-19, BAA-0082/02-19, BAA-0083/02-19, BAA-0084/02-19, BAA-0085/02-19, BAA-0086/02-19, BAA-0087/02-19, BAA-0088/02-19, BAA-0089/02-19, BAA-0090/02-19, BAA-0091/02-19, BAA-0092/02-19, BAA-0093/02-19, BAA-0095/02-19, BAA-0096/02-19, BAA-0098/02-19, BAA-0104/02-19, BAA-0105/02-19, BAA-0106/02-19, BAA-0107/02-19, BAA-0108/02-19, BAA-0109/02-19, BAA-0110/02-19, BAA-0111/02-19, BAA-0112/02-19, BAA-0113/02-19, BAA-0115/02-19, BAA-0116/02-19, BAA-0117/02-19, BAA-0118/02-19, BAA-0119/02-19, BAA-0121/02-19, BAA-0122/02-19, BAA-0142/03-19, BAA-0155/03-20, BAA-0156/03-20, BAA-0191/04-20, BAA-0192/04-20, BAA-0193/04-20, BAA-0194/04-20, BAA-0286/04-21, BAA-0287/04-21, BAA-0288/04-21, BAA-0289/04-21, BAA-0329/04-22",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에는 직접적인 인허가, Technical File, 라벨링 또는 성능평가 변경 조치가 요구되는 근거가 없다. 다만 미국 유통 제품 중 해당 EEG 장비를 취급하거나 임상/검사 환경에서 연계 사용하는 경우가 있는지 확인하고, FDA 리콜 모니터링 기록에 참고로 보관한다.",
+      "impactPoints": [
+        "당사 미국 판매·서비스 포트폴리오에 SD LTM 64 PLUS 또는 Natus EEG 장비가 포함되어 IVD 외 사업부 차원의 고객 통지가 필요한가?",
+        "당사 IVD 성능평가, 임상시험 또는 검사 서비스에서 해당 EEG 장비의 출력 데이터를 사용하거나 의사결정에 연계하는 절차가 있는가?",
+        "본 건은 직접 IVD 적용은 아니나, 소프트웨어 시간 동기화 오류 관련 리콜 사례로서 당사 IVD 소프트웨어 위험관리 또는 PMS 검토에 참고할 필요가 있는가?"
+      ],
+      "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98922",
+      "title": "CGuard Prime Carotid Stent System, 135cm, 10mmx40mm Model/Catalog Number: CND1040",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-01",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "미 FDA 의료기기 리콜 공지로, INSPIREMD Inc의 CGuard Prime Carotid Stent System 특정 모델(CND1040)에 관한 배포 문제를 알린 내용입니다. 스텐트 전달 시스템 전개 중 높은 저항 또는 전개 불능이 발생할 수 있다고 설명합니다. 대상은 제품코드 NIM, UDI 07290120281783 및 2025-02-03~2026-02-23 제조 전 로트/일련번호로 기재되어 있습니다. IVD에는 직접 적용되지 않으며, 시행일·조치 일정은 확인 필요입니다.",
+      "rawSummary": "Stent delivery system may encounter complications during deployment which may result in high resistance or inability to deploy the stent. | Firm: INSPIREMD Inc | Product code: NIM | Code info: UDI: 07290120281783; all lots/serial numbers manufactured between 02/03/2025 and 02/23/2026",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에 대한 직접 RA 조치는 필요하지 않습니다. 다만 미국 FDA 리콜 동향 모니터링 차원에서 기록하고, 자사 제품·공급망에 해당 스텐트 또는 관련 구성품이 포함되는지 확인 필요합니다.",
+      "impactPoints": [
+        "자사 IVD 제품, 키트, 부속품 또는 서비스 공급망에 INSPIREMD CGuard Prime Carotid Stent System 또는 해당 UDI 제품이 포함되어 있지 않은가?",
+        "미국 시장에서 자사 제품 리콜·현장조치 모니터링 절차가 FDA 의료기기 리콜 공지를 주기적으로 확인하도록 운영되고 있는가?",
+        "본 공지가 IVD 성능자료, 라벨링, 등록사항 또는 기술문서에 영향을 주지 않는다는 내부 근거를 문서화할 필요가 있는가?"
       ],
       "analysisMode": "ai"
     },
@@ -305,17 +580,17 @@
       "type": "Guidance",
       "date": "2026-02-03",
       "link": "https://ec.europa.eu/newsroom/sante/newsletter-archives/71729",
-      "summary": "IVDR의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "MDCG/EU 관련 공지로, 2026년 3월 16일 개최되는 의료기기 고위급 회의 등록 안내라는 사실만 확인됩니다. 제공 문구상 규제 변경, 지침 내용, 적용 대상 기기 또는 제조업체 범위, 시행일은 확인 필요합니다. IVD에 대한 직접 적용성도 확인 필요하며, 현재로서는 일반 행사 안내에 가깝습니다.",
       "rawSummary": "Medical Devices: Register now for high-level conference on 16 March 2026",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "현재 제공 정보만으로는 IVD 제조업체에 대한 직접 규제 조치가 확인되지 않으므로 즉각적인 RA 변경은 필요하지 않습니다. 다만 회의 의제에 IVDR, EUDAMED, 전환일정 등 IVD 관련 안건이 포함되는지 모니터링하십시오.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "해당 회의 의제에 IVDR 이행, EUDAMED, 인증기관 역량 등 IVD 시장 접근에 영향을 줄 주제가 포함되는가?",
+        "회의 결과물 또는 후속 MDCG 문서가 기술문서, 성능평가, PMS/PMCF 절차 변경을 요구할 가능성이 있는가?",
+        "EU 판매 제품의 인증·등록·변경 일정에 영향을 줄 발표가 있는지 추적할 담당자와 모니터링 절차가 정해져 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
@@ -442,6 +717,72 @@
       "severity": "medium",
       "read": false,
       "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "ca-health-canada:https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/76233a-eng.php",
+      "title": "Recall of EcoGel 200 Ultrasound Gel - MediChoice (M500812) – Contamination with Burkholderia stabilis",
+      "source": "Health Canada",
+      "authority": "Health Canada",
+      "region": "CA",
+      "country": "CA",
+      "type": "Guidance",
+      "date": "2021-08-13",
+      "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/76233a-eng.php",
+      "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
+        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
+        "CAPA 및 변경관리 착수 필요성 확인"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "ca-health-canada:https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/75905a-eng.php",
+      "title": "Medtronic Heartware Ventricular Assist Device System - Recall Due to Risk of Neurological Adverse Events, Mortality and Delay or Failure to Restart",
+      "source": "Health Canada",
+      "authority": "Health Canada",
+      "region": "CA",
+      "country": "CA",
+      "type": "Guidance",
+      "date": "2021-06-25",
+      "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/75905a-eng.php",
+      "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
+        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
+        "CAPA 및 변경관리 착수 필요성 확인"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "title": "Regulatory Update May 22, 2026 ANVISA Updates Hospitalar 2026 Attendees about Regulatory Reliance At the February ABIMED meeting, ANVISA Director Marcelo Mario Matos Moreira shared the Brazil medical device...",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "Guidance",
+      "date": "",
+      "link": "https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
+      "summary": "ANVISA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
