@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-10T12:51:07.581Z",
+  "collectedAt": "2026-06-10T23:30:15.707Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -602,17 +602,17 @@
       "type": "Guidance",
       "date": "2026-02-02",
       "link": "https://health.ec.europa.eu/events/high-level-conference-medical-devices-innovation-and-patient-safety-16-march-2026-brussels-belgium-2026-03-16_en",
-      "summary": "IVDR의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "이 문서는 유럽 Commission이 브뤼셀에서 개최한 ‘Medical Devices: Innovation and Patient Safety’ 고위급 회의 공지/자료 페이지이다. 회의는 2026년 3월 16일 09:00~17:00 CET에 진행되었고, 2025년 12월 16일 채택된 의료기기 및 체외진단의료기기 규정 개정 제안 이후의 분야 동향을 점검하는 목적이다. 적합성평가 예측가능성, 근거 기반 의료기기와 IVD, 혁신기술 실행 등이 논의 주제로 제시되었다. IVD가 명시적으로 언급되지만, 본 문서 자체는 제조업체에 직접 적용되는 법적 요구사항이나 지침 변경이 아니다. 시행일, 의무 적용범위, 제출기한은 확인 필요이다.",
       "rawSummary": "Registration - High-level Conference on Medical Devices: Innovation and Patient Safety - 16 March 2026, 9.00 - 17.00 CET",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "본 공지는 회의 안내/자료 페이지이므로 IVD 제조업체에 대한 직접적인 RA 조치, 기술문서 개정, 등록 변경, SOP 업데이트는 현재 요구되지 않는다. 다만 회의 보고서, EUDAMED 발표자료, 2025년 12월 16일 IVDR 개정 제안 관련 후속 공식 문서를 별도로 추적하고, 실제 법령·가이던스 변경 시 영향평가 항목으로 전환한다.",
       "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
+        "직접 IVD 의무는 없으나, 회의 보고서 또는 발표자료에 향후 IVDR 개정 제안의 시장접근 일정·전환조치·EUDAMED 사용 시점에 대한 단서가 포함되어 있는가?",
+        "직접 기술문서 변경 요구는 없으나, ‘근거 기반 의료기기와 IVD’ 세션 내용이 성능평가, 임상적 증거, PMS/PMCF 계획의 향후 기대수준 변화로 이어질 가능성이 있는가?",
+        "직접 라벨링·공급망 조치는 없으나, 적합성평가 예측가능성 및 혁신기술 관련 논의가 인증기관 심사 리드타임, 비용, 제품 출시 일정 리스크에 영향을 줄 수 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://ec.europa.eu/commission/presscorner/detail/en/fs_25_3072",
@@ -624,17 +624,17 @@
       "type": "Guidance",
       "date": "2026-01-19",
       "link": "https://ec.europa.eu/commission/presscorner/detail/en/fs_25_3072",
-      "summary": "IVDR의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "EU 집행위원회 보도자료 형식의 ‘Factsheet - Better rules for medical devices, better outcomes for EU patients’ 공지로 확인된다. 제공된 원문에는 제목과 출처 외 세부 규제 변경, 적용 범위, IVD 직접 적용 여부, 시행일·전환일정이 제시되어 있지 않아 확인 필요이다. 현재 근거만으로는 IVD 제조업체에 대한 직접 의무를 판단할 수 없다.",
       "rawSummary": "Factsheet - Better rules for medical devices, better outcomes for EU patients",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "제공 정보만으로는 직접 IVD 적용 여부와 구체 조치가 확인되지 않으므로 즉시 변경 filing이나 TF/SOP 개정은 보류한다. 원문 링크에서 IVD 관련 조항, 적용일, 전환조치 유무를 확인하고 EU 규제 모니터링 항목으로 관리한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "해당 factsheet가 IVDR 또는 IVD 제조업체 의무를 직접 언급하는지 원문 확인이 필요한가?",
+        "EU 시장 판매·인증 유지 일정에 영향을 줄 시행일, 전환기간, 갱신기한이 포함되어 있는가?",
+        "기술문서, 성능평가, 라벨링, EUDAMED 또는 공급망 관리 절차 변경을 요구하는 내용이 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
@@ -646,17 +646,17 @@
       "type": "MDCG Guidance",
       "date": "2025-12-19",
       "link": "https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
-      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "summary": "EU 집행위원회 보건식품안전총국이 2025년 12월 19일 ‘MDCG 2025-10: 의료기기 및 체외진단의료기기 post-market surveillance 지침’을 공표했다는 공지이다. 제목상 MDR/IVDR 체계의 시판 후 감시(PMS)에 관한 MDCG 가이던스로, IVD가 명시적으로 포함된다. 다만 제공 본문은 웹 공지와 PDF 링크 정보만 포함하며, 구체 요구사항, 변경점, 양식, 전환기간 또는 적용일은 확인 필요이다. 발행일은 2025년 12월 19일로 제시되나, 실제 적용 시점과 기존 PMS 절차 대비 영향은 원문 PDF 검토가 필요하다.",
       "rawSummary": "MDCG 2025–10: Guidance on post-market surveillance of medical devices and in vitro diagnostic medical devices (December 2025)",
       "severity": "medium",
       "read": false,
-      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "action": "RA는 MDCG 2025-10 PDF 원문을 확보해 IVDR PMS 계획, PMS 보고서/PSUR, PMPF 연계, 불만·트렌드·vigilance 절차와의 차이를 갭분석해야 한다. EU 기술문서 및 QMS SOP 개정 필요성, 인증기관 제출 또는 심사 대응 영향, 내부 적용 일정은 확인 필요로 관리한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "당사 EU 판매 IVD별 PMS 계획, PSUR 또는 PMS 보고서가 MDCG 2025-10의 권고 구조·내용·데이터 출처 요구와 일치하는지 확인 필요인가?",
+        "새 지침이 PMPF, 성능평가, 위험관리 업데이트 및 vigilance/트렌드 보고 입력자료의 연결성에 추가 문서화 부담을 발생시키는지 확인 필요인가?",
+        "진행 중인 CE 인증, 변경심사, 갱신심사 또는 인증기관 질의 대응 일정에 본 지침 반영 요구가 생겨 기술문서 개정 및 비용·일정 리스크가 있는지 확인 필요인가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
@@ -668,17 +668,17 @@
       "type": "MDCG Guidance",
       "date": "2025-12-17",
       "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec18",
-      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "summary": "이 문서는 EU 집행위 의료기기 안내 페이지에 등재된 MDCG 2025-7 Rev.1로, ‘Master UDI-DI’의 적용 일정을 콘택트렌즈, 안경테, 안경렌즈 및 기성 돋보기 안경에 대해 설명하는 지침으로 제시되어 있다. 해당 페이지는 MDR 및 IVDR 적용을 지원하는 MDCG 문서가 법적 구속력은 없지만 조화된 실행 이해를 제공한다고 설명한다. 명시된 제품 범위는 안과·광학 의료기기이며 IVD 제품은 직접 범위에 포함되지 않는다. 제공 자료만으로 구체 적용일, 전환기한, Rev.1의 변경점은 확인 필요이다. IVD 제조업체에는 직접 적용성은 낮으나 EU UDI 정책 동향 참고 자료로 볼 수 있다.",
       "rawSummary": "MDCG 2025-7 - Rev. 1: Timelines of the implementation of ‘Master UDI-DI’ to contact lenses and spectacle frames, spectacle lenses and ready-to-wear reading spectacles",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "action": "IVD 제품에는 직접 IVD 적용성이 확인되지 않으므로 즉시 기술문서, 라벨, 등록 또는 성능평가 변경 조치는 필요하지 않다. 다만 EU UDI/Basic UDI-DI 운영 SOP에서 ‘Master UDI-DI’ 개념이 IVD에 오인 적용되지 않도록 범위를 확인하고, 향후 IVDR UDI 관련 별도 MDCG 개정 여부를 모니터링한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "당사 EU 판매 제품 포트폴리오에 콘택트렌즈, 안경테, 안경렌즈, 기성 돋보기 안경 등 비-IVD 광학 의료기기가 포함되어 있어 별도 MDR UDI 검토가 필요한가?",
+        "EU 라벨링·UDI SOP 또는 마스터데이터 관리 절차에서 Master UDI-DI를 IVD에도 적용하는 것으로 잘못 해석될 여지가 없는지 문서 범위와 용어를 점검했는가?",
+        "이번 MDCG 안내와 별개로 당사 IVD의 IVDR UDI, EUDAMED 등록, Basic UDI-DI 관리 일정에 영향을 줄 수 있는 EU 후속 지침을 추적하는 담당자와 주기가 정해져 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://ec.europa.eu/commission/presscorner/detail/en/ip_25_3077",
@@ -690,17 +690,17 @@
       "type": "Guidance",
       "date": "2025-12-16",
       "link": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_3077",
-      "summary": "IVDR의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "유럽위원회 보도자료 제목상 EU 보건 분야의 혁신성, 경쟁력, 회복력 강화를 위한 신규 조치 발표로 보입니다. 제공된 본문에는 구체적 규제 변경, IVD 또는 의료기기 적용 범위, 제조업체 의무, 시행일·적용 일정이 포함되어 있지 않아 확인 필요입니다. 현재 근거만으로는 IVD 제조업체에 대한 직접 적용성을 확인할 수 없습니다.",
       "rawSummary": "New measures to make EU health sector more innovative, competitive and resilient",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "현재 제공된 정보만으로는 직접적인 IVD RA 조치가 필요하다고 판단할 근거가 부족합니다. 원문 전문을 확인하여 IVDR, 인증기관, 시장접근, 공급망 또는 혁신 지원 조치와의 관련성을 모니터링하십시오.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "해당 신규 조치에 IVDR 또는 IVD 제조업체를 직접 대상으로 하는 내용이 포함되어 있는지 확인 필요?",
+        "EU 시장 접근, 인증기관 심사, 등록 또는 갱신 일정에 영향을 줄 수 있는 발표인지 확인 필요?",
+        "기술문서, 성능평가, 라벨링, 공급망 또는 비용 계획에 반영할 구체 의무가 있는지 확인 필요?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "eu-ivdr:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec13",
@@ -712,17 +712,17 @@
       "type": "MDCG Guidance",
       "date": "2025-12-15",
       "link": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec13",
-      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "summary": "MDCG 2025-9는 Regulation (EU) 2017/745 및 2017/746 하의 Breakthrough Devices(BtX)에 관한 MDCG 지침으로 공지되었으며, IVDR 대상 IVD도 문서 범위에 포함된다. MDCG 지침은 법적 구속력은 없지만 MDR/IVDR의 조화된 적용을 위한 공통 이해를 제시하는 자료로 설명된다. 제공된 본문은 지침 목록 페이지 중심이어서 BtX의 정의, 신청·평가 절차, 혜택 또는 의무 변화는 확인 필요이다. 적용 대상은 BtX에 해당할 수 있는 의료기기 및 IVD 제조업체로 보이나 구체 제품 범위는 확인 필요이다. 문서일은 2025-12-15로 제시되나 별도 시행일·전환기한은 확인 필요이다.",
       "rawSummary": "MDCG 2025-9: Guidance on Breakthrough Devices (BtX) under Regulations 2017/745 &amp; 2017/746",
       "severity": "medium",
       "read": false,
-      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "action": "RA는 MDCG 2025-9 원문을 확보해 BtX 정의·자격요건·절차가 자사 IVD 파이프라인 또는 CE 인증 제품에 적용되는지 매핑해야 한다. 해당 가능 제품은 기술문서, 성능평가/성능시험 전략, Notified Body 커뮤니케이션 및 EU 시장진입 일정에 미치는 영향을 검토하고, 필요한 SOP 반영 여부와 기한은 확인 필요로 관리한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "자사 IVD 중 혁신성, 미충족 의료수요, 환자·공중보건 영향 등 BtX 해당 가능성을 평가해야 할 제품 또는 개발 프로젝트가 있는가?",
+        "BtX 지침이 성능평가보고서, 과학적 타당성·분석/임상 성능 근거, 성능시험 설계 또는 기술문서 구성에 추가 검토를 요구하는가?",
+        "BtX 절차가 Notified Body 심사 전략, CE 인증 일정, EU 시장 출시 우선순위 및 관련 비용·리소스 계획에 영향을 줄 수 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "ca-health-canada:https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/76233a-eng.php",
@@ -734,17 +734,17 @@
       "type": "Guidance",
       "date": "2021-08-13",
       "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/76233a-eng.php",
-      "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "summary": "Health Canada는 2021년 8월 13일 의료전문가 대상 안전서한으로 Eco-Med Pharmaceuticals의 EcoGel 200 Ultrasound Gel–MediChoice 일부 로트가 Burkholderia stabilis 오염으로 자발적 회수·격리됨을 공지했다. 8월 19일 갱신에서는 오염원이 확인되지 않아 Eco-Med 제조 초음파 젤 전 제품의 즉시 사용 중지 및 폐기를 권고했다. 적용 대상은 캐나다 및 일부 해외 브랜드로 유통된 초음파 젤이며, IVD 제품에 직접 적용되는 요구사항은 확인되지 않는다. 조치는 즉시이며, 환자 감염 가능성 평가와 안전정보 모니터링이 안내되었다.",
       "rawSummary": "",
-      "severity": "high",
+      "severity": "low",
       "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "action": "IVD 제조업체에 대한 직접 규제 조치나 허가·기술문서 변경 의무는 확인되지 않는다. 다만 캐나다 임상시험, 성능평가, 서비스 활동에서 Eco-Med 제조 초음파 젤 또는 해당 브랜드를 사용·보관하는지 확인하고, 해당 시 사용 중지·격리·폐기 및 현지 기관/대리점 보고 필요성을 점검한다.",
       "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
+        "당사 IVD 제품의 캐나다 시장 허가, 라벨링, 기술문서 또는 성능/임상 근거에서 초음파 젤 사용을 전제로 한 절차가 있는지 확인 필요.",
+        "캐나다 내 임상시험기관, 평가기관, 서비스 협력업체 또는 고객지원 현장에서 Eco-Med 제조 초음파 젤을 보유·사용했는지 공급망 추적 확인 필요.",
+        "이번 회수는 IVD 직접 적용 문서가 아니므로, 유사한 보조재·소모품 오염 이슈가 당사 품질시스템의 공급업체 관리 및 현장 안전 커뮤니케이션 절차에 반영되어 있는지 점검 필요."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "ca-health-canada:https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/75905a-eng.php",
@@ -756,17 +756,17 @@
       "type": "Guidance",
       "date": "2021-06-25",
       "link": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/hc-sc/2021/75905a-eng.php",
-      "summary": "Health Canada의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "summary": "Health Canada는 Medtronic HeartWare Ventricular Assist Device(HVAD) System 리콜 관련 보건전문가 서한을 2021년 6월 25일 게시했으며, 시작일은 2021년 6월 24일로 제시됐다. 대상은 진행성 심부전 환자용 좌심실 보조장치(LVAD)인 HVAD System model 1104이며, 10개 초과 로트는 제조사 확인이 필요하다. 주요 사유는 신경학적 이상사례 및 사망 증가, 내부 펌프 재시작 지연 또는 실패 불만이다. 의료진은 신규 이식을 즉시 중단하고 대체기기를 고려하도록 안내받았다. 본 공지는 치료용 심장 보조 의료기기 리콜로, IVD에 대한 직접 적용성은 확인되지 않는다.",
       "rawSummary": "",
-      "severity": "high",
+      "severity": "low",
       "read": false,
-      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "action": "IVD 제조업체에는 본 리콜로 인한 직접적인 기술문서, 허가갱신, 변경신고 또는 라벨 개정 조치는 요구되지 않는 것으로 판단된다. 다만 캐나다 판매 포트폴리오에 HVAD 관련 제품·부속품·유통 역할이 없는지 확인하고, Health Canada 안전성 공지 모니터링 및 no-impact 평가 기록을 RA 파일에 보관한다.",
       "impactPoints": [
-        "영향 제품, 로트, UDI, 고객 출하 이력과 매칭",
-        "고객 통지, 회수, FSCA 또는 보고 의무 발생 여부 검토",
-        "CAPA 및 변경관리 착수 필요성 확인"
+        "캐나다 시장에서 자사 또는 현지 대리인이 Medtronic HVAD System, Pioneer controller, 배터리, AC/DC 어댑터 등 관련 비-IVD 의료기기나 부속품을 취급·유통하지 않는지 확인했는가?",
+        "본 Health Canada 리콜은 IVD 성능평가, 임상적 근거, 분석적 성능 또는 IVD 라벨링 요구사항 변경을 포함하지 않으므로, 관련 기술문서 영향 없음 판단 근거가 문서화되었는가?",
+        "캐나다 고객지원·불만처리·vigilance 담당자가 해당 공지를 IVD 제품 안전성 신호로 오인하지 않도록, 비-IVD 리콜이며 직접 적용성 없음이라는 내부 커뮤니케이션이 필요한가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
@@ -778,17 +778,17 @@
       "type": "Guidance",
       "date": "",
       "link": "https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
-      "summary": "ANVISA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "본 Emergo 업데이트는 브라질 ANVISA가 Hospitalar 2026에서 설명한 AREE(동등 외국 규제기관) 활용 현황과 과제를 다룬다. 배경 규정은 IN 290/2024로, 2024년 4월 공표되어 2024년 6월 시행되었으며 호주·캐나다·미국·일본 허가를 활용할 수 있다고 설명된다. 적용 범위는 해당 AREE에서 허가된 Class III·IV 의료기기 및 IVD로, 브라질 제출 제품과 의도한 사용목적이 동일해야 한다. ANVISA는 활용률이 기대보다 낮아 추가 AREE 지정 가능성을 검토 중이나 구체 일정은 확인 필요이다. 주요 쟁점은 사용목적 불일치, 동일 그룹 내 다른 법인 명의 허가 증빙, 허가증의 공증·아포스티유 부담이다.",
       "rawSummary": "",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "브라질 등록 예정 또는 변경 예정인 Class III·IV IVD가 미국·캐나다·호주·일본 허가를 보유했는지 목록화하고, 브라질 신청 사용목적·제조자 법인·기술문서가 AREE 허가와 동일한지 갭 분석한다. BRH와 RDC 830/2023 제출자료, 법인관계 증빙, 공증·아포스티유 비용·일정을 확인하고 추가 AREE 발표는 추적한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "브라질에 신규 등록 또는 변경 신청할 Class III·IV IVD 중 AREE 국가 허가를 보유하고, 동일한 제품 및 사용목적으로 제출 가능한 품목이 있는가?",
+        "AREE 허가 보유 법인명과 브라질 신청서의 제조자/그룹 법인명이 다를 경우, 동일 제조그룹임을 입증할 문서와 BRH 제출 절차가 준비되어 있는가?",
+        "RDC 830/2023 기준 기술문서, 사용목적 문구, 라벨링/IFU 및 AREE 허가증의 공증·아포스티유 비용과 일정이 브라질 출시 계획에 미치는 영향은 무엇인가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     }
   ]
 }
