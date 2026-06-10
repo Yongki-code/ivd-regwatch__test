@@ -5,11 +5,12 @@ const ROOT_DIR = path.join(__dirname, "..");
 const SOURCES_PATH = path.join(ROOT_DIR, "config", "sources.json");
 const OUTPUT = path.join(ROOT_DIR, "public", "data", "mdcg-cache.json");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.5";
 const USE_AI = Boolean(OPENAI_API_KEY);
 const AI_ENRICH_LIMIT = Number(process.env.AI_ENRICH_LIMIT || 12);
 const MAX_AI_SOURCE_CHARS = Number(process.env.MAX_AI_SOURCE_CHARS || 6000);
 const MIN_RICH_SUMMARY_CHARS = Number(process.env.MIN_RICH_SUMMARY_CHARS || 260);
+const MAX_TOTAL_ITEMS = Number(process.env.MAX_TOTAL_ITEMS || 500);
 
 function stripTags(value = "") {
   return value
@@ -66,10 +67,37 @@ async function fetchArticleText(url) {
   return truncateForPrompt(stripTags(decodeEntities(html)));
 }
 
-function normalizeDate(value) {
-  const date = value ? new Date(value) : new Date();
-  if (Number.isNaN(date.getTime())) return new Date().toISOString().slice(0, 10);
+function normalizeDate(value, fallback = "") {
+  if (!value) return fallback;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return fallback;
   return date.toISOString().slice(0, 10);
+}
+
+function extractDateFromText(value = "") {
+  const text = String(value || "");
+  const isoMatch = text.match(/\b(20\d{2})[-_/](0?[1-9]|1[0-2])[-_/](0?[1-9]|[12]\d|3[01])\b/);
+  if (isoMatch) {
+    return normalizeDate(`${isoMatch[1]}-${isoMatch[2].padStart(2, "0")}-${isoMatch[3].padStart(2, "0")}`);
+  }
+
+  const compactMatch = text.match(/\b(20\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\b/);
+  if (compactMatch) {
+    return normalizeDate(`${compactMatch[1]}-${compactMatch[2]}-${compactMatch[3]}`);
+  }
+
+  const monthNameMatch = text.match(/\b([0-9]{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+20\d{2})\b/i);
+  return monthNameMatch ? normalizeDate(monthNameMatch[1]) : "";
+}
+
+function resolveItemDate(...candidates) {
+  for (const candidate of candidates) {
+    const direct = normalizeDate(candidate);
+    if (direct) return direct;
+    const extracted = extractDateFromText(candidate);
+    if (extracted) return extracted;
+  }
+  return "";
 }
 
 function readHtmlHeading(html) {
@@ -80,7 +108,7 @@ function readHtmlHeading(html) {
 
 function inferHtmlDate(text) {
   const match = text.match(/(?:published|last updated)\s+([0-9]{1,2}\s+[a-z]+\s+[0-9]{4})/i);
-  return normalizeDate(match?.[1]);
+  return resolveItemDate(match?.[1], text);
 }
 
 function inferSourceKind(url = "") {
@@ -102,10 +130,13 @@ function inferType(title, sourceType) {
 
 function classifySeverity(title, summary, sourceType) {
   const text = `${title} ${summary} ${sourceType}`.toLowerCase();
-  if (/(class i recall|death|serious injury|incident|mir|vigilance|urgent|recall|field safety|hazard|shortage|discontinuation|interruption)/.test(text)) {
+  if (/(class i recall|death|serious injury|serious risk|life-threatening|urgent|immediate|critical|field safety|hazard|recall|shortage|discontinuation|interruption)/.test(text)) {
     return "high";
   }
-  if (/(regulation|implementing|classification|borderline|mdcg|guidance|q&a|manual|advisory|market action)/.test(text)) {
+  if (/(effective from|applies from|application date|transition period|deadline|within 6 months|incident|mir|vigilance)/.test(text)) {
+    return "high";
+  }
+  if (/(ivd|in vitro|regulation|implementing|classification|borderline|mdcg|guidance|q&a|manual|conformity assessment|notified bod|technical documentation|performance evaluation|market action)/.test(text)) {
     return "medium";
   }
   return "low";
@@ -180,12 +211,20 @@ function parseFeed(xml, source) {
     const title = stripTags(readTag(block, "title") || "Untitled update");
     const rawSummary = stripTags(readTag(block, "description") || readTag(block, "summary") || readTag(block, "content"));
     const link = readTag(block, "link") || decodeEntities(atomLink) || source.url;
-    const date = normalizeDate(readTag(block, "pubDate") || readTag(block, "updated") || readTag(block, "published") || readTag(block, "dc:date"));
+    const date = resolveItemDate(
+      readTag(block, "pubDate"),
+      readTag(block, "updated"),
+      readTag(block, "published"),
+      readTag(block, "dc:date"),
+      link,
+      title,
+      rawSummary
+    );
     const type = inferType(title, source.type);
     const severity = classifySeverity(title, rawSummary, type);
 
     const item = {
-      id: `${source.id}:${readTag(block, "guid") || link || `${date}-${index}-${title}`}`,
+      id: `${source.id}:${readTag(block, "guid") || link || `${date || "undated"}-${index}-${title}`}`,
       title,
       source: source.source,
       authority: source.authority,
@@ -219,13 +258,13 @@ function parseOpenFdaDeviceRecalls(data, source) {
       entry.product_code ? `Product code: ${entry.product_code}` : "",
       entry.code_info ? `Code info: ${entry.code_info}` : ""
     ].filter(Boolean).join(" | "));
-    const date = normalizeDate(entry.event_date_initiated || entry.report_date || entry.recall_initiation_date);
+    const date = resolveItemDate(entry.event_date_initiated, entry.report_date, entry.recall_initiation_date, title, rawSummary);
     const type = inferType(title, source.type);
     const severity = classifySeverity(title, rawSummary, type);
     const link = "https://www.fda.gov/medical-devices/medical-device-recalls";
 
     const item = {
-      id: `${source.id}:${entry.res_event_number || entry.recall_number || `${date}-${index}-${title}`}`,
+      id: `${source.id}:${entry.res_event_number || entry.recall_number || `${date || "undated"}-${index}-${title}`}`,
       title,
       source: source.source,
       authority: source.authority,
@@ -270,6 +309,7 @@ function parseHtmlPage(html, source) {
 
       const type = inferType(title, source.type);
       const severity = classifySeverity(title, "", type);
+      const date = resolveItemDate(link, title, pageDate);
       const item = {
         id: `${source.id}:${link || `${index}-${title}`}`,
         title,
@@ -278,7 +318,7 @@ function parseHtmlPage(html, source) {
         region: source.region,
         country: source.country,
         type,
-        date: pageDate,
+        date,
         link,
         summary: "",
         rawSummary: "",
@@ -310,7 +350,7 @@ function parseHtmlPage(html, source) {
     region: source.region,
     country: source.country,
     type,
-    date: pageDate,
+    date: resolveItemDate(pageDate, source.url, pageTitle, pageText),
     link: source.url,
     summary: "",
     rawSummary,
@@ -453,6 +493,7 @@ async function enrichWithAi(item) {
     "If information is missing or unclear, say '확인 필요' in Korean.",
     "If the document is not directly applicable to IVDs, clearly state the lack of direct IVD applicability in the summary, action, and impact points.",
     "Separate the three outputs by purpose: summaryKo explains the document, raActionKo gives concrete RA work, impactPointsKo lists internal applicability questions.",
+    "Classify urgency strictly. high means urgent: implementation/application timing is very near, immediate action is required, or severe safety, quality, or business risk is expected. medium means important: the document is applicable to IVD manufacturers and the company should analyze and plan implementation. low means reference: all other regulatory updates that are neither urgent nor important.",
     "Use enough detail when the source_text is long. Do not produce one-line generic output for long source_text.",
     "Keep the output factual and in Korean."
   ].join("\n");
@@ -472,7 +513,7 @@ async function enrichWithAi(item) {
     "Output requirements:",
     "- summaryKo: If source_text_length is 500 or more, write 4 to 6 Korean sentences and use 350 to 500 Korean characters. If source_text is shorter than 500 characters, write a proportionate summary. Include regulatory background/purpose, key change or announcement, applicable device or manufacturer scope, and effective date/timeline. Use '확인 필요' for unknown elements.",
     "- raActionKo: If source_text_length is 500 or more and the update is relevant, use 180 to 300 Korean characters. Give concrete RA work for an IVD manufacturer, such as Technical File impact, registration renewal/change filing, SOP update, local representative check, or deadline tracking. If not directly IVD-applicable, write that no direct IVD action is required and monitoring should continue.",
-    "- severity: high, medium, or low. High only when the update is directly mandatory for IVD products and near-term action is likely required. Most general news, draft guidance, system updates, and indirect items should be medium or low.",
+    "- severity: high, medium, or low. high=긴급: 시행/적용일정이 임박했거나 즉시 대응이 필요하거나 심각한 안전·품질·사업 위험이 예상되는 경우. medium=중요: IVD 제조업체에 적용될 가능성이 높아 내용을 분석하고 적용 계획을 세워야 하는 규제 문서. low=참고: 긴급/중요에 해당하지 않는 나머지 공지, 일반 뉴스, 간접 관련 문서.",
     "- impactPointsKo: exactly 3 Korean questions or checkpoints for company-specific impact assessment. If source_text_length is 500 or more, each point should be specific and substantive, not a generic phrase. Focus on market access, technical documentation, performance/clinical evidence, labeling, supply chain, cost, or timeline risk."
   ].join("\n");
 
@@ -519,6 +560,40 @@ function sourceSnapshot(sources) {
   }));
 }
 
+function dateSortValue(item) {
+  const time = Date.parse(item.date || "");
+  return Number.isNaN(time) ? 0 : time;
+}
+
+function mergeFreshItem(fresh, previous) {
+  if (!previous) return fresh;
+  const preserveAi = previous.analysisMode === "ai" && previous.summary && previous.action && Array.isArray(previous.impactPoints) && previous.impactPoints.length;
+  return {
+    ...previous,
+    ...fresh,
+    date: fresh.date || previous.date || "",
+    read: Boolean(previous.read),
+    ...(preserveAi ? {
+      summary: previous.summary,
+      action: previous.action,
+      severity: previous.severity,
+      impactPoints: previous.impactPoints,
+      analysisMode: previous.analysisMode
+    } : {})
+  };
+}
+
+function mergeCollectedItems(results, previousItems) {
+  const previousById = new Map(previousItems.map((item) => [item.id, item]));
+  const mergedById = new Map(previousItems.map((item) => [item.id, item]));
+  for (const fresh of results) {
+    mergedById.set(fresh.id, mergeFreshItem(fresh, previousById.get(fresh.id)));
+  }
+  return [...mergedById.values()]
+    .sort((a, b) => dateSortValue(b) - dateSortValue(a))
+    .slice(0, MAX_TOTAL_ITEMS);
+}
+
 function formatError(error) {
   const cause = error.cause?.code || error.cause?.message;
   return cause ? `${error.message}: ${cause}` : error.message;
@@ -545,10 +620,11 @@ async function main() {
   }));
 
   const liveItemIds = new Set(results.map((item) => item.id));
-  const mergedItems = results.length ? [...results, ...previousItems] : previousItems;
-  const uniqueItems = [...new Map(mergedItems.map((item) => [item.id, item])).values()]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 80);
+  const uniqueItems = results.length
+    ? mergeCollectedItems(results, previousItems)
+    : previousItems
+        .sort((a, b) => dateSortValue(b) - dateSortValue(a))
+        .slice(0, MAX_TOTAL_ITEMS);
 
   const enriched = [];
   const usingStaleCache = results.length === 0 && hasPreviousItems;
