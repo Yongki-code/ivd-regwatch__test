@@ -1,9 +1,11 @@
 {
-  "collectedAt": "2026-06-10T11:59:25.793Z",
+  "collectedAt": "2026-06-10T12:09:51.555Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
   "aiModel": "gpt-5.5",
+  "aiKeyMissing": false,
+  "aiKeyMissingMessage": null,
   "openAiModel": "gpt-5.5",
   "claudeModel": null,
   "count": 25,
