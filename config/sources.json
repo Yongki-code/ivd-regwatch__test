@@ -62,15 +62,23 @@
     ]
   },
   {
-    "id": "uk-uk",
+    "id": "global-johner-institute",
     "enabled": true,
-    "source": "UK",
-    "authority": "MHRA",
-    "region": "UK",
-    "country": "UK",
-    "type": "Update",
+    "source": "Johner Institute",
+    "authority": "Johner Institute",
+    "region": "Global",
+    "country": "Global",
+    "type": "Guidance",
     "kind": "html-page",
-    "url": "https://www.gov.uk/guidance/covid-19-test-approval-how-to-apply",
-    "keywords": []
+    "url": "https://blog.johner-institute.com/",
+    "keywords": [
+      "medical",
+      "device",
+      "ivd",
+      "in vitro",
+      "clinical",
+      "performance",
+      "regulation"
+    ]
   }
 ]
