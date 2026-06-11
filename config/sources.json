@@ -62,18 +62,6 @@
     ]
   },
   {
-    "id": "uk-uk",
-    "enabled": true,
-    "source": "UK",
-    "authority": "MHRA",
-    "region": "UK",
-    "country": "UK",
-    "type": "Update",
-    "kind": "html-page",
-    "url": "https://www.gov.uk/guidance/covid-19-test-approval-how-to-apply",
-    "keywords": []
-  },
-  {
     "id": "global-johner-institute",
     "enabled": true,
     "source": "Johner Institute",
