@@ -62,20 +62,15 @@
     ]
   },
   {
-    "id": "kr-source",
+    "id": "uk-uk",
     "enabled": true,
-    "source": "법제처",
-    "authority": "법제처",
-    "region": "KR",
-    "country": "KR",
-    "type": "Guidance",
+    "source": "UK",
+    "authority": "MHRA",
+    "region": "UK",
+    "country": "UK",
+    "type": "Update",
     "kind": "html-page",
-    "url": "https://www.moleg.go.kr/lawinfo/molegMakingList.mo?mid=a10514020000",
-    "keywords": [
-      "의료",
-      "의료기기",
-      "체외진단",
-      "체외진단의료기기"
-    ]
+    "url": "https://www.gov.uk/guidance/covid-19-test-approval-how-to-apply",
+    "keywords": []
   }
 ]
