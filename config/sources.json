@@ -82,17 +82,5 @@
       "cyber",
       "software"
     ]
-  },
-  {
-    "id": "uk-uk",
-    "enabled": true,
-    "source": "UK",
-    "authority": "MHRA",
-    "region": "UK",
-    "country": "UK",
-    "type": "Update",
-    "kind": "html-page",
-    "url": "https://www.gov.uk/search/guidance-and-regulation?parent=%2Fhealth-and-social-care%2Fmedicines-medical-devices-blood-medical-devices-regulation-safety&topic=974db797-6c7c-4c79-a92e-182dadb62362",
-    "keywords": []
   }
 ]
