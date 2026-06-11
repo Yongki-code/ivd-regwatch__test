@@ -232,6 +232,7 @@ function parseFeed(xml, source) {
     const item = {
       id: `${source.id}:${readTag(block, "guid") || link || `${date || "undated"}-${index}-${title}`}`,
       title,
+      sourceId: source.id,
       source: source.source,
       authority: source.authority,
       region: source.region,
@@ -272,6 +273,7 @@ function parseOpenFdaDeviceRecalls(data, source) {
     const item = {
       id: `${source.id}:${entry.res_event_number || entry.recall_number || `${date || "undated"}-${index}-${title}`}`,
       title,
+      sourceId: source.id,
       source: source.source,
       authority: source.authority,
       region: source.region,
@@ -319,6 +321,7 @@ function parseHtmlPage(html, source) {
       const item = {
         id: `${source.id}:${link || `${index}-${title}`}`,
         title,
+        sourceId: source.id,
         source: source.source,
         authority: source.authority,
         region: source.region,
@@ -351,6 +354,7 @@ function parseHtmlPage(html, source) {
   const pageItem = {
     id: `${source.id}:${source.url}`,
     title: pageTitle,
+    sourceId: source.id,
     source: source.source,
     authority: source.authority,
     region: source.region,
@@ -630,9 +634,20 @@ function mergeFreshItem(fresh, previous) {
   };
 }
 
-function mergeCollectedItems(results, previousItems) {
-  const previousById = new Map(previousItems.map((item) => [item.id, item]));
-  const mergedById = new Map(previousItems.map((item) => [item.id, item]));
+function itemSourceId(item) {
+  return item.sourceId || String(item.id || "").split(":")[0] || "";
+}
+
+function filterItemsForActiveSources(items, sources) {
+  const activeSourceIds = new Set(sources.map((source) => source.id).filter(Boolean));
+  if (!activeSourceIds.size) return items;
+  return items.filter((item) => activeSourceIds.has(itemSourceId(item)));
+}
+
+function mergeCollectedItems(results, previousItems, sources) {
+  const activePreviousItems = filterItemsForActiveSources(previousItems, sources);
+  const previousById = new Map(activePreviousItems.map((item) => [item.id, item]));
+  const mergedById = new Map(activePreviousItems.map((item) => [item.id, item]));
   for (const fresh of results) {
     mergedById.set(fresh.id, mergeFreshItem(fresh, previousById.get(fresh.id)));
   }
@@ -679,9 +694,10 @@ async function main() {
   }));
 
   const liveItemIds = new Set(results.map((item) => item.id));
+  const activePreviousItems = filterItemsForActiveSources(previousItems, sources);
   const uniqueItems = results.length
-    ? mergeCollectedItems(results, previousItems)
-    : previousItems
+    ? mergeCollectedItems(results, previousItems, sources)
+    : activePreviousItems
         .sort((a, b) => dateSortValue(b) - dateSortValue(a))
         .slice(0, MAX_TOTAL_ITEMS);
 
