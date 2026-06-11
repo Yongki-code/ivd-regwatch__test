@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-11T02:12:50.739Z",
+  "collectedAt": "2026-06-11T06:21:51.688Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -70,8 +70,8 @@
   "previousCollectedAt": null,
   "errors": [
     {
-      "source": "eu-ivdr",
-      "message": "eu-ivdr failed: 403 Forbidden"
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     },
     {
       "source": "ai",
