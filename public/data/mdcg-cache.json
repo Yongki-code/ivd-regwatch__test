@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-11T06:21:51.688Z",
+  "collectedAt": "2026-06-11T06:28:45.918Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -70,38 +70,11 @@
   "previousCollectedAt": null,
   "errors": [
     {
-      "source": "ca-health-canada",
-      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
-    },
-    {
       "source": "ai",
       "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
     }
   ],
   "items": [
-    {
-      "id": "global-johner-institute:https://blog.johner-institute.com/category/iec-62304-medical-software/",
-      "title": "Software &amp; IEC 62304",
-      "source": "Johner Institute",
-      "authority": "Johner Institute",
-      "region": "Global",
-      "country": "Global",
-      "type": "Guidance",
-      "date": "+062304-01",
-      "link": "https://blog.johner-institute.com/category/iec-62304-medical-software/",
-      "summary": "Johner Institute의 ‘Software & IEC 62304’ 페이지는 의료기기 소프트웨어 생명주기 프로세스 표준 IEC 62304의 적용범위와 구현 참고자료를 정리한 안내성 자료이다. IEC 62304가 MDD/IVDD 및 MDR/IVDR에서 조화표준으로 언급되며, 독립형 소프트웨어와 기기 내장 소프트웨어, IEC 82304-1을 통한 일부 헬스 소프트웨어 관련성이 설명된다. 내용은 MDR/IVDR의 소프트웨어 적격성·분류, UDI, 임상평가, IT 보안, MDCG 지침, 개발계획·요구사항·아키텍처·검증·릴리스·유지보수 활동을 포괄한다. 특정 신규 규제 변경, 의무 시행일, 전환기한은 제시되지 않아 적용 일정은 확인 필요이다.",
-      "rawSummary": "",
-      "severity": "low",
-      "read": false,
-      "action": "IVD 소프트웨어 또는 소프트웨어 포함 IVD가 있는 경우 IEC 62304 적용성을 제품별로 재확인하고, 기술문서의 소프트웨어 개발계획, 요구사항 추적성, 아키텍처, 검증·릴리스, 유지보수·변경관리 증거가 IVDR 기대사항과 연결되는지 갭평가한다. 신규 의무나 기한은 확인 필요이므로 공식 조화표준 목록 및 관할 지침을 별도 추적한다.",
-      "impactPoints": [
-        "당사 IVD 포트폴리오 중 독립형 소프트웨어 또는 분석기 내장 소프트웨어가 IEC 62304 생명주기 적용 대상으로 식별되어 있는가?",
-        "각 소프트웨어의 안전등급, SOUP 사용, 요구사항-아키텍처-시험-릴리스 추적성이 기술문서와 QMS 절차에 일관되게 반영되어 있는가?",
-        "EU IVDR 시장 접근을 위해 소프트웨어 UDI, IT 보안, 성능평가·임상적 근거 및 변경·버그수정 관리 자료의 갭과 보완 일정이 관리되고 있는가?"
-      ],
-      "analysisMode": "ai",
-      "sourceId": "global-johner-institute"
-    },
     {
       "id": "eu-ivdr:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
       "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
@@ -837,6 +810,29 @@
       ],
       "analysisMode": "ai",
       "sourceId": "ca-health-canada"
+    },
+    {
+      "id": "global-johner-institute:https://blog.johner-institute.com/category/iec-62304-medical-software/",
+      "title": "Software &amp; IEC 62304",
+      "source": "Johner Institute",
+      "authority": "Johner Institute",
+      "region": "Global",
+      "country": "Global",
+      "type": "Guidance",
+      "date": "",
+      "link": "https://blog.johner-institute.com/category/iec-62304-medical-software/",
+      "summary": "Johner Institute의 ‘Software & IEC 62304’ 페이지는 의료기기 소프트웨어 생명주기 프로세스 표준 IEC 62304의 적용범위와 구현 참고자료를 정리한 안내성 자료이다. IEC 62304가 MDD/IVDD 및 MDR/IVDR에서 조화표준으로 언급되며, 독립형 소프트웨어와 기기 내장 소프트웨어, IEC 82304-1을 통한 일부 헬스 소프트웨어 관련성이 설명된다. 내용은 MDR/IVDR의 소프트웨어 적격성·분류, UDI, 임상평가, IT 보안, MDCG 지침, 개발계획·요구사항·아키텍처·검증·릴리스·유지보수 활동을 포괄한다. 특정 신규 규제 변경, 의무 시행일, 전환기한은 제시되지 않아 적용 일정은 확인 필요이다.",
+      "rawSummary": "",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 소프트웨어 또는 소프트웨어 포함 IVD가 있는 경우 IEC 62304 적용성을 제품별로 재확인하고, 기술문서의 소프트웨어 개발계획, 요구사항 추적성, 아키텍처, 검증·릴리스, 유지보수·변경관리 증거가 IVDR 기대사항과 연결되는지 갭평가한다. 신규 의무나 기한은 확인 필요이므로 공식 조화표준 목록 및 관할 지침을 별도 추적한다.",
+      "impactPoints": [
+        "당사 IVD 포트폴리오 중 독립형 소프트웨어 또는 분석기 내장 소프트웨어가 IEC 62304 생명주기 적용 대상으로 식별되어 있는가?",
+        "각 소프트웨어의 안전등급, SOUP 사용, 요구사항-아키텍처-시험-릴리스 추적성이 기술문서와 QMS 절차에 일관되게 반영되어 있는가?",
+        "EU IVDR 시장 접근을 위해 소프트웨어 UDI, IT 보안, 성능평가·임상적 근거 및 변경·버그수정 관리 자료의 갭과 보완 일정이 관리되고 있는가?"
+      ],
+      "analysisMode": "ai",
+      "sourceId": "global-johner-institute"
     },
     {
       "id": "global-anvisa:https://www.emergobyul.com/news/anvisa-updates-hospitalar-2026-attendees-about-regulatory-reliance",
