@@ -59,10 +59,16 @@ function escapeHtml(value = "") {
   })[char]);
 }
 
+function isReasonableYear(year) {
+  return Number.isInteger(year) && year >= 1990 && year <= 2100;
+}
+
 function formatDate(value) {
   if (!value) return "날짜 확인 필요";
+  if (/^\+?\d{5,}(?:-\d{1,2})?$/.test(String(value).trim())) return "날짜 확인 필요";
   const parsed = new Date(`${value}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) return "날짜 확인 필요";
+  if (!isReasonableYear(parsed.getUTCFullYear())) return "날짜 확인 필요";
   return new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
     month: "2-digit",
@@ -72,13 +78,19 @@ function formatDate(value) {
 
 function isThisWeek(value) {
   if (!value) return false;
+  if (/^\+?\d{5,}(?:-\d{1,2})?$/.test(String(value).trim())) return false;
   const date = new Date(`${value}T00:00:00`);
   if (Number.isNaN(date.getTime())) return false;
+  if (!isReasonableYear(date.getUTCFullYear())) return false;
   const now = new Date();
   const start = new Date(now);
   start.setDate(now.getDate() - now.getDay());
   start.setHours(0, 0, 0, 0);
   return date >= start && date <= now;
+}
+
+function normalizeDisplayDate(value) {
+  return formatDate(value) === "날짜 확인 필요" ? "" : value;
 }
 
 function getCheckedValues(filterName) {
@@ -564,7 +576,7 @@ function normalizeDataItem(item, index = 0) {
   const region = (item.region || "Global").trim();
   const type = (item.type || "Update").trim();
   const severity = ["high", "medium", "low"].includes(item.severity) ? item.severity : "medium";
-  const date = item.date || todayIso();
+  const date = normalizeDisplayDate(item.date) || "";
   const summary = item.summary || item.rawSummary || "테스트용 규제 업데이트 요약입니다.";
   const action = item.action || "RA 담당자는 해당 변경사항의 적용 범위와 내부 절차 반영 필요성을 검토하세요.";
   const link = item.link || "https://example.com";
@@ -604,7 +616,7 @@ function renderManagedData() {
     <article class="managed-source data-row">
       <button class="managed-source-main" type="button" data-data-preview="${index}">
         <strong>${escapeHtml(item.title)}</strong>
-        <small>${escapeHtml(item.source)} · ${escapeHtml(item.region)} · ${escapeHtml(item.type)} · ${escapeHtml(item.date)}</small>
+        <small>${escapeHtml(item.source)} · ${escapeHtml(item.region)} · ${escapeHtml(item.type)} · ${escapeHtml(item.date || "날짜 확인 필요")}</small>
       </button>
       <span class="source-chip">${escapeHtml(severityLabel(item.severity))}</span>
       <button class="source-delete" type="button" data-data-delete="${index}" aria-label="데이터 삭제">⌫</button>
