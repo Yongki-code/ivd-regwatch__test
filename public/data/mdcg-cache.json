@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-10T23:30:15.707Z",
+  "collectedAt": "2026-06-11T01:02:20.499Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -53,11 +53,30 @@
       "url": "https://www.emergobyul.com/news/regulatory-updates",
       "enabled": true,
       "kind": "html-page"
+    },
+    {
+      "id": "kr-source",
+      "source": "법제처",
+      "authority": "법제처",
+      "region": "KR",
+      "country": "KR",
+      "type": "Guidance",
+      "url": "https://www.moleg.go.kr/lawinfo/molegMakingList.mo?mid=a10514020000",
+      "enabled": true,
+      "kind": "html-page"
     }
   ],
   "staleCache": false,
   "previousCollectedAt": null,
   "errors": [
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+      "source": "kr-source",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
+    },
     {
       "source": "ai",
       "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
