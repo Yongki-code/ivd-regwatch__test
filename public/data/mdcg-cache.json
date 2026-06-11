@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-11T01:28:45.097Z",
+  "collectedAt": "2026-06-11T01:31:37.608Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -1614,17 +1614,17 @@
       "type": "Guidance",
       "date": "",
       "link": "https://blog.johner-institute.com/regulatory-affairs/regulatory-requirements-for-medical-devices-with-machine-learning/",
-      "summary": "Johner Institute의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "Johner Institute의 안내문은 머신러닝(ML)을 사용하는 의료기기 및 IVD가 기존 MDR/IVDR, 검증·밸리데이션, 위험관리, 정보보안, 성능/임상근거 요구를 우선 충족해야 한다고 설명한다. AI/ML 특화 법·표준은 아직 일관되지 않고 빠르게 변하며, 시장별 요구가 크게 다르다고 한다. IVD에는 진단 민감도·특이도 등 성능 입증, 명확한 intended purpose, IVDR Annex I/II/XIII 관련 문서화가 언급된다. 조화표준은 없고 IEC 62366-3, ISO 24971-2가 개발 중이라고 한다. 게시일은 원문상 2026-01-29이나 실제 시행일·전환기한은 확인 필요이다.",
       "rawSummary": "",
       "severity": "medium",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "ML 적용 IVD가 있는 경우 RA는 기술문서에서 intended purpose, 알고리즘 검증/밸리데이션, 성능평가 계획·보고서, 위험관리 및 정보보안 근거가 IVDR 요구와 연결되는지 갭분석해야 한다. EU AI Act 세부 적용, TeamNB/Johner 체크리스트 활용 여부, 표준 개발 동향은 확인 필요로 추적한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "당사 IVD 소프트웨어가 ML/AI 기능을 포함하며, EU 또는 기타 시장에서 의료기기/IVD 규제와 AI 관련 요구의 중복 적용 대상인지 확인했는가?",
+        "기술문서에 ML 모델의 intended purpose, 학습·검증 데이터, 알고리즘 변경관리, 반복성·신뢰성·성능 검증 방법이 명확히 연결되어 있는가?",
+        "임상/성능평가에서 진단 민감도·특이도 등 IVD 성능 근거가 ML 알고리즘 특성을 반영하며, 비교제품 기반 근거 사용 시 기술적 동등성 입증이 가능한가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "global-johner-institute:https://www.johner-institute.com/outsourcing/legal-manufacturer",
@@ -1636,17 +1636,17 @@
       "type": "Guidance",
       "date": "",
       "link": "https://www.johner-institute.com/outsourcing/legal-manufacturer",
-      "summary": "Johner Institute의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "Johner Institute의 ‘Legal Manufacturer EU’ 페이지로, EU 내 의료기기 법적 제조자 관련 아웃소싱/컨설팅 서비스를 소개하는 성격의 자료로 보인다. 제공된 본문은 대부분 웹사이트 메뉴와 서비스 목록이며, 법령 개정, 신규 지침, 의무사항 또는 구체 요건은 확인되지 않는다. IVD가 사이트 메뉴에는 언급되지만 이 문서가 IVDR상 IVD 제조자에게 직접 적용된다는 근거는 확인 필요하다. 적용 대상 기기, 제조자 범위, 시행일 또는 전환 일정도 확인 필요하다. 따라서 현재로서는 규제 변경 공지가 아니라 참고성 정보로 평가된다.",
       "rawSummary": "",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "직접적인 IVD RA 조치나 제출·갱신·라벨 변경은 요구되지 않는 것으로 보이며 확인 필요하다. EU IVD 사업에서 제3자를 법적 제조자로 활용하거나 역할 이전을 검토 중인 경우에만 별도 근거자료로 IVDR상 책임, 기술문서 소유, 계약·QMS 인터페이스를 내부 점검하고 원문 업데이트를 모니터링한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "당사 EU IVD 제품 중 제3자 또는 관계사가 법적 제조자 역할을 수행하거나 수행 예정인 모델이 있는가, 있다면 IVDR 적용 여부와 책임 배분 근거가 별도로 확보되어 있는가?",
+        "법적 제조자 변경 또는 아웃소싱을 검토 중인 제품의 기술문서, 성능평가, PMS/PMPF, 라벨·IFU 명의와 주소 관리 책임이 현재 계약과 QMS 절차에 명확히 반영되어 있는가?",
+        "본 자료에는 시행일·기한·구체 요건이 확인되지 않으므로, EU 시장 진입 일정·인증기관 심사·등록 변경 비용에 영향을 줄 수 있는 공식 규제 근거를 별도로 추적하고 있는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "global-johner-institute:https://blog.johner-institute.com/tag/fda/",
@@ -1658,17 +1658,17 @@
       "type": "Guidance",
       "date": "",
       "link": "https://blog.johner-institute.com/tag/fda/",
-      "summary": "Johner Institute의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "Johner Institute의 FDA 태그/안내 페이지로, 미국 FDA가 21 CFR에 근거해 의료기기 승인 및 시판 후 감시를 수행한다는 배경과 관련 글 링크를 정리한 자료이다. 510(k), Abbreviated/Special 510(k), PMA, De novo, IDE 등 승인 경로와 Pre-Sub, RFI, Warning Letter/Form 483, eCopy/eSTAR 등 FDA 소통·제출 채널을 개괄한다. QSR/21 CFR Part 820 및 QMSR, ISO 13485와의 정렬, QSIT 등 품질시스템 주제도 언급된다. 다만 본문은 일반 의료기기 대상 설명이며 IVD 전용 요구사항·제품군·전환일정은 확인 필요하다. 발행일 및 적용일정도 확인 필요하다.",
       "rawSummary": "",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "미국 진출 또는 변경을 계획 중인 IVD 제품에 대해 FDA 분류, predicate 존재 여부, 510(k)/De novo/PMA 등 가능한 경로를 예비 매핑한다. 본 자료는 IVD 전용 지침이 아니므로 공식 FDA IVD·QMSR 자료로 요구사항을 재확인하고, Pre-Sub 필요성, eSTAR 제출 형식, US Agent/Official Correspondent 지정 여부를 내부 체크리스트에 반영한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "당사 IVD 제품의 미국 판매 계획이 있는 경우, 해당 제품의 FDA 패널·분류·predicate 존재 여부를 공식 데이터베이스로 확인했는가?",
+        "기존 ISO 13485 기반 QMS가 FDA QSR/QMSR 및 FDA 검사(QSIT 언급) 관점에서 추가 갭 분석이 필요한 영역은 무엇인가?",
+        "미국 제출 시 Pre-Sub 활용, eSTAR/eCopy 형식, US Agent 및 Official Correspondent 지정에 따른 일정·비용 리스크를 반영했는가?"
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     },
     {
       "id": "global-johner-institute:https://blog.johner-institute.com/author/katharinakeutgen/",
@@ -1680,17 +1680,17 @@
       "type": "Guidance",
       "date": "",
       "link": "https://blog.johner-institute.com/author/katharinakeutgen/",
-      "summary": "Johner Institute의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "summary": "제공 문서는 Johner Institute 웹사이트의 ‘Katharina Keutgen’ 저자 아카이브로, 의료기기 개발·승인 관련 블로그 글 목록과 서비스 메뉴를 보여준다. Class IIa 의료기기, EU UDI, EUDAMED, MDR/IVDR 2.0 제안 관련 글 제목과 게시일 일부가 보이나, 본문 수준의 규제 요구사항·변경사항은 제시되지 않았다. IVD는 메뉴 및 MDR/IVDR 2.0 제목에서 간접 언급되지만, 특정 IVD 제품군 또는 제조업체 의무가 직접 확인되지는 않는다. 시행일, 전환기한, 적용 범위는 확인 필요이다. 따라서 IVD 제조업체에는 직접 적용 가능한 규제 문서라기보다 참고·모니터링 대상이다.",
       "rawSummary": "",
-      "severity": "medium",
+      "severity": "low",
       "read": false,
-      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "action": "현재 문서만으로는 IVD 기술문서, 성능평가, 라벨링, 등록 또는 SOP 변경을 착수할 근거가 확인되지 않는다. RA는 해당 링크를 규제 원문으로 취급하지 말고, MDR/IVDR 2.0, EU UDI, EUDAMED 관련 실제 법령·가이던스 원문 및 적용일을 별도 확인하여 규제정보 추적 목록에 반영한다.",
       "impactPoints": [
-        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
-        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
-        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+        "해당 저자 페이지에 언급된 MDR/IVDR 2.0 내용 중 당사 IVD 제품의 EU 시장 접근, 인증 유지 또는 전환 일정에 영향을 주는 공식 원문이 별도로 존재하는지 확인 필요.",
+        "EU UDI 및 EUDAMED 관련 언급이 당사 IVD의 Basic UDI-DI, 기기 등록, 경제운영자 정보 입력 또는 라벨 데이터 관리 계획에 영향을 주는지 공식 요구사항 기준으로 재검토 필요.",
+        "본 문서는 직접 IVD 적용 문서가 아니므로, RA 절차상 참고 블로그와 법적 구속력 있는 규정·가이던스를 구분하고 내부 규제정보 출처 등급을 어떻게 기록할지 확인 필요."
       ],
-      "analysisMode": "rules"
+      "analysisMode": "ai"
     }
   ]
 }
