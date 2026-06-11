@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-11T02:08:39.198Z",
+  "collectedAt": "2026-06-11T02:10:07.877Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -80,6 +80,10 @@
   "staleCache": false,
   "previousCollectedAt": null,
   "errors": [
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
+    },
     {
       "source": "ai",
       "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
