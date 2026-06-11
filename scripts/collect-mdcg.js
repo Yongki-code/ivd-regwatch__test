@@ -73,10 +73,28 @@ async function fetchArticleText(url) {
   return truncateForPrompt(stripTags(decodeEntities(html)));
 }
 
+function isReasonableYear(year) {
+  return Number.isInteger(year) && year >= 1990 && year <= 2100;
+}
+
+function isParseableDateText(value) {
+  const text = String(value || "").trim();
+  if (!text) return false;
+  if (/^\+?\d{5,}(?:-\d{1,2})?$/.test(text)) return false;
+  if (/^\d{8}$/.test(text)) return false;
+  if (/^(?:19|20)\d{2}[-/]\d{1,2}[-/]\d{1,2}(?:[t\s].*)?$/i.test(text)) return true;
+  if (/\b\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+(?:19|20)\d{2}\b/i.test(text)) return true;
+  if (/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+\d{1,2},?\s+(?:19|20)\d{2}\b/i.test(text)) return true;
+  if (/,\s*\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+(?:19|20)\d{2}/i.test(text)) return true;
+  return false;
+}
+
 function normalizeDate(value, fallback = "") {
   if (!value) return fallback;
+  if (!isParseableDateText(value)) return fallback;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return fallback;
+  if (!isReasonableYear(date.getUTCFullYear())) return fallback;
   return date.toISOString().slice(0, 10);
 }
 
@@ -612,8 +630,11 @@ function sourceSnapshot(sources) {
 }
 
 function dateSortValue(item) {
+  if (!isParseableDateText(item.date)) return 0;
   const time = Date.parse(item.date || "");
-  return Number.isNaN(time) ? 0 : time;
+  if (Number.isNaN(time)) return 0;
+  const year = new Date(time).getUTCFullYear();
+  return isReasonableYear(year) ? time : 0;
 }
 
 function mergeFreshItem(fresh, previous) {
@@ -622,7 +643,7 @@ function mergeFreshItem(fresh, previous) {
   return {
     ...previous,
     ...fresh,
-    date: fresh.date || previous.date || "",
+    date: fresh.date || normalizeDate(previous.date) || "",
     read: Boolean(previous.read),
     ...(preserveAi ? {
       summary: previous.summary,
@@ -638,10 +659,19 @@ function itemSourceId(item) {
   return item.sourceId || String(item.id || "").split(":")[0] || "";
 }
 
+function sanitizeCachedItem(item) {
+  return {
+    ...item,
+    date: normalizeDate(item.date) || ""
+  };
+}
+
 function filterItemsForActiveSources(items, sources) {
   const activeSourceIds = new Set(sources.map((source) => source.id).filter(Boolean));
-  if (!activeSourceIds.size) return items;
-  return items.filter((item) => activeSourceIds.has(itemSourceId(item)));
+  const sourceItems = activeSourceIds.size
+    ? items.filter((item) => activeSourceIds.has(itemSourceId(item)))
+    : items;
+  return sourceItems.map(sanitizeCachedItem);
 }
 
 function mergeCollectedItems(results, previousItems, sources) {
