@@ -89,6 +89,16 @@ function configuredSources() {
   return [...payloadSources, ...sourceDrafts].filter((source) => source && source.enabled !== false);
 }
 
+function itemSourceId(item) {
+  return item.sourceId || String(item.id || "").split(":")[0] || "";
+}
+
+function filterItemsForConfiguredSources(items, sources) {
+  const sourceIds = new Set((sources || []).map((source) => source.id).filter(Boolean));
+  if (!sourceIds.size) return items;
+  return items.filter((item) => sourceIds.has(itemSourceId(item)));
+}
+
 function uniqueValues(key) {
   const itemValues = allItems.map((item) => item[key]).filter(Boolean);
   const sourceValues = configuredSources().map((source) => source[key]).filter(Boolean);
@@ -501,6 +511,7 @@ function normalizeDataItem(item, index = 0) {
   return {
     id: item.id || `manual-test:${Date.now()}:${index}`,
     title,
+    sourceId: item.sourceId || item.id?.split(":")?.[0] || "",
     source,
     authority: item.authority || source,
     region,
@@ -999,7 +1010,7 @@ async function loadFeed(useCacheFirst = false) {
     if (!response.ok) throw new Error("feed unavailable");
     const payload = await response.json();
     currentPayload = payload;
-    allItems = payload.items || [];
+    allItems = filterItemsForConfiguredSources(payload.items || [], payload.sources || []);
     await loadPublishedSourcesForFilters();
     elements.lastCollected.textContent = payload.collectedAt ? payload.collectedAt.slice(0, 10) : "-";
     elements.collectionMode.textContent = payload.mode?.includes("ai") ? "RSS + AI" : "RSS";
