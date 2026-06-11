@@ -48,6 +48,14 @@ button {
   cursor: pointer;
 }
 
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -924,6 +932,9 @@ button {
 }
 
 .apply-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   min-height: 22px;
   margin-top: 14px;
   padding: 10px 12px;
@@ -933,12 +944,29 @@ button {
   color: var(--muted);
 }
 
+.apply-status[data-busy="true"]::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border: 2px solid rgba(143, 162, 189, 0.35);
+  border-top-color: var(--accent);
+  border-radius: 999px;
+  animation: status-spin 800ms linear infinite;
+}
+
 .apply-status[data-tone="success"] {
   color: #91f0b9;
 }
 
 .apply-status[data-tone="error"] {
   color: #ffb2b5;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .source-help h3 {

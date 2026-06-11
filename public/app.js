@@ -4,6 +4,7 @@ let selectedItemId = null;
 let currentPayload = null;
 let sourceDrafts = [];
 let dataDraftItems = [];
+let operationInProgress = false;
 
 const elements = {
   feedList: document.querySelector("#feedList"),
@@ -240,19 +241,78 @@ function getRepoInfo() {
   return { owner, repo };
 }
 
+function setStatus(element, message, tone = "muted") {
+  element.textContent = message;
+  element.dataset.tone = tone === "busy" ? "muted" : tone;
+  element.dataset.busy = tone === "busy" ? "true" : "false";
+}
+
 function setApplyStatus(message, tone = "muted") {
-  elements.sourceApplyStatus.textContent = message;
-  elements.sourceApplyStatus.dataset.tone = tone;
+  setStatus(elements.sourceApplyStatus, message, tone);
 }
 
 function setDataStatus(message, tone = "muted") {
-  elements.dataApplyStatus.textContent = message;
-  elements.dataApplyStatus.dataset.tone = tone;
+  setStatus(elements.dataApplyStatus, message, tone);
 }
 
 function setAiStatus(message, tone = "muted") {
-  elements.aiApplyStatus.textContent = message;
-  elements.aiApplyStatus.dataset.tone = tone;
+  setStatus(elements.aiApplyStatus, message, tone);
+}
+
+function setInterfaceBusy(isBusy) {
+  operationInProgress = isBusy;
+  document.body.classList.toggle("operation-busy", isBusy);
+  const selectors = [
+    "#refreshButton",
+    "#modalRefresh",
+    "#loadAiSettingsButton",
+    "#saveAiSettingsButton",
+    "#deleteAiKeyButton",
+    "#newSourceButton",
+    "#clearSourceFormButton",
+    "#saveSourceFormButton",
+    "#loadSourcesButton",
+    "#applySourcesButton",
+    "#loadDataButton",
+    "#runCollectButton",
+    "#clearDataButton",
+    "#applyDataButton",
+    "#saveSettings",
+    "[data-source-toggle]",
+    "[data-source-edit]",
+    "[data-source-delete]",
+    "[data-data-preview]",
+    "[data-data-delete]"
+  ];
+
+  document.querySelectorAll(selectors.join(",")).forEach((control) => {
+    if (isBusy) {
+      if (!control.disabled) control.dataset.busyDisabled = "true";
+      control.disabled = true;
+      control.setAttribute("aria-disabled", "true");
+    } else if (control.dataset.busyDisabled === "true") {
+      control.disabled = false;
+      control.removeAttribute("aria-disabled");
+      delete control.dataset.busyDisabled;
+    }
+  });
+}
+
+async function runWithBusy(setStatusFn, busyMessage, task) {
+  if (operationInProgress) {
+    setStatusFn("다른 작업이 아직 진행 중입니다. 완료 메시지가 나올 때까지 기다려 주세요.", "busy");
+    return;
+  }
+
+  setInterfaceBusy(true);
+  setStatusFn(busyMessage, "busy");
+  try {
+    await task();
+  } catch (error) {
+    setStatusFn(error.message, "error");
+  } finally {
+    setInterfaceBusy(false);
+  }
 }
 
 function aiProviderConfig(provider = elements.aiProviderSelect.value) {
@@ -461,6 +521,7 @@ function renderManagedSources() {
       <button class="source-delete" type="button" data-source-delete="${index}" aria-label="소스 삭제">⌫</button>
     </article>
   `).join("");
+  if (operationInProgress) setInterfaceBusy(true);
 }
 
 function saveSourceForm() {
@@ -549,6 +610,7 @@ function renderManagedData() {
       <button class="source-delete" type="button" data-data-delete="${index}" aria-label="데이터 삭제">⌫</button>
     </article>
   `).join("");
+  if (operationInProgress) setInterfaceBusy(true);
 }
 
 async function loadDataConfig() {
@@ -581,6 +643,7 @@ async function loadDataConfig() {
 }
 
 async function dispatchWorkflow(owner, repo, branch, inputs) {
+  await assertNoActiveWorkflowRun(owner, repo, branch);
   const startedAt = Date.now();
   await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/dispatches`, {
     method: "POST",
@@ -592,14 +655,35 @@ async function dispatchWorkflow(owner, repo, branch, inputs) {
   return startedAt;
 }
 
+async function getWorkflowRuns(owner, repo, branch, options = {}) {
+  const query = new URLSearchParams({
+    branch,
+    per_page: String(options.perPage || 10)
+  });
+  if (options.event) query.set("event", options.event);
+  return githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/runs?${query.toString()}`);
+}
+
+async function getActiveWorkflowRun(owner, repo, branch) {
+  const data = await getWorkflowRuns(owner, repo, branch, { perPage: 10 });
+  return (data.workflow_runs || []).find((run) => ["queued", "in_progress"].includes(run.status));
+}
+
+async function assertNoActiveWorkflowRun(owner, repo, branch) {
+  const activeRun = await getActiveWorkflowRun(owner, repo, branch);
+  if (activeRun) {
+    throw new Error(`이미 Actions 실행 #${activeRun.run_number}이 ${workflowStatusText(activeRun)}입니다. 완료 후 다시 실행하세요.`);
+  }
+}
+
 async function runManualCollection() {
   const { owner, repo } = getRepoInfo();
   const branch = elements.githubBranchInput.value.trim() || "main";
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 수동 수집을 실행할 수 있습니다.");
 
-  setDataStatus("수동 수집을 요청하는 중입니다. 저장된 수집 소스 기준으로 크롤링합니다.", "muted");
+  setDataStatus("수동 수집을 요청하는 중입니다. 저장된 수집 소스 기준으로 크롤링합니다.", "busy");
   const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false" });
-  setDataStatus("수동 수집을 시작했습니다. 삭제했던 데이터는 조건에 맞으면 복구되며, AI 결과가 없는 항목만 AI 처리합니다.", "muted");
+  setDataStatus("수동 수집을 시작했습니다. Actions 완료까지 다른 버튼은 잠시 잠깁니다.", "busy");
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setDataStatus(message, tone),
     successMessage: (run) => `수동 수집 완료. 최신 데이터를 다시 불러오는 중입니다. 실행 #${run.run_number}`,
@@ -624,23 +708,20 @@ async function pollWorkflowRun(owner, repo, branch, startedAt, options = {}) {
   let targetRun = null;
 
   for (let attempt = 1; attempt <= 90; attempt += 1) {
-    const query = new URLSearchParams({
-      branch,
-      event: "workflow_dispatch",
-      per_page: "5"
-    });
-    const data = await githubRequest(`/repos/${owner}/${repo}/actions/workflows/update-and-deploy.yml/runs?${query.toString()}`);
+    const data = await getWorkflowRuns(owner, repo, branch, { event: "workflow_dispatch", perPage: 10 });
     const candidateRuns = (data.workflow_runs || []).filter((run) => new Date(run.created_at).getTime() >= startedAt - 10000);
-    targetRun = targetRun || candidateRuns[0];
+    const activeCandidate = candidateRuns.find((run) => ["queued", "in_progress"].includes(run.status));
+    targetRun = activeCandidate || targetRun || candidateRuns[0];
     if (!targetRun) {
-      onUpdate(`Actions 실행을 찾는 중입니다. (${attempt}/90)`, "muted");
+      onUpdate(`Actions 실행을 찾는 중입니다. (${attempt}/90)`, "busy");
       await wait(4000);
       continue;
     }
 
     const freshRun = data.workflow_runs?.find((run) => run.id === targetRun.id) || targetRun;
     const text = workflowStatusText(freshRun);
-    onUpdate(`Actions ${text}. 실행 #${freshRun.run_number} 확인 중입니다.`, freshRun.conclusion === "failure" ? "error" : "muted");
+    const isRunning = ["queued", "in_progress"].includes(freshRun.status);
+    onUpdate(`Actions ${text}. 실행 #${freshRun.run_number} 확인 중입니다. 이 창을 닫지 말고 기다려 주세요.`, freshRun.conclusion === "failure" ? "error" : isRunning ? "busy" : "muted");
 
     if (freshRun.status === "completed") {
       if (freshRun.conclusion === "success") {
@@ -681,7 +762,8 @@ async function applyDataConfig() {
   const branch = elements.githubBranchInput.value.trim() || "main";
   if (!owner || !repo) throw new Error("GitHub Pages URL에서 접속해야 데이터를 저장/배포할 수 있습니다.");
 
-  setDataStatus("GitHub에 현재 데이터 목록을 저장하는 중입니다. 이 기능은 LLM/UI 테스트용입니다.", "muted");
+  await assertNoActiveWorkflowRun(owner, repo, branch);
+  setDataStatus("GitHub에 현재 데이터 목록을 저장하는 중입니다. 이 기능은 LLM/UI 테스트용입니다.", "busy");
 
   const latest = await githubRequest(`/repos/${owner}/${repo}/contents/public/data/mdcg-cache.json?ref=${encodeURIComponent(branch)}&ts=${Date.now()}`);
   const sha = latest.sha;
@@ -700,7 +782,7 @@ async function applyDataConfig() {
   });
   elements.managedDataList.dataset.sha = saved.content?.sha || sha;
 
-  setDataStatus("데이터 저장 완료. RSS 재수집 없이 현재 목록 그대로 Pages 배포를 요청합니다.", "muted");
+  setDataStatus("데이터 저장 완료. RSS 재수집 없이 현재 목록 그대로 Pages 배포를 요청합니다.", "busy");
   const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "true" });
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setDataStatus(message, tone),
@@ -867,7 +949,7 @@ async function saveAiSettings() {
   const selectedKeyValue = elements.aiKeyInput.value;
   const selectedModelValue = elements.aiModelInput.value.trim() || config.defaultModel;
 
-  setAiStatus("AI 설정을 GitHub Secrets/Variables에 저장하는 중입니다.", "muted");
+  setAiStatus("AI 설정을 GitHub Secrets/Variables에 저장하는 중입니다.", "busy");
   const savedSelectedKey = await saveRepositorySecret(owner, repo, config.secretName, selectedKeyValue);
 
   await upsertRepositoryVariable(owner, repo, "AI_PROVIDER", provider);
@@ -892,7 +974,7 @@ async function deleteAiKey(provider) {
   const confirmed = window.confirm(`${config.label} API key를 GitHub Secret에서 삭제할까요? 삭제 후 해당 제공자를 선택한 상태로 수집하면 규칙 기반 분석만 실행됩니다.`);
   if (!confirmed) return;
 
-  setAiStatus(`${config.label} API key 삭제를 요청하는 중입니다.`, "muted");
+  setAiStatus(`${config.label} API key 삭제를 요청하는 중입니다.`, "busy");
   const deleted = await deleteRepositorySecret(owner, repo, config.secretName);
   if (!deleted) {
     setAiStatus(`${config.label} API key는 이미 등록되어 있지 않습니다.`, "error");
@@ -959,7 +1041,8 @@ async function applySourcesConfig() {
     throw new Error("GitHub Pages URL에서 접속해야 저장소에 바로 적용할 수 있습니다.");
   }
 
-  setApplyStatus("GitHub에 설정을 저장하는 중입니다. 잠시만 기다려 주세요.", "muted");
+  await assertNoActiveWorkflowRun(owner, repo, branch);
+  setApplyStatus("GitHub에 설정을 저장하는 중입니다. 잠시만 기다려 주세요.", "busy");
   let sha = elements.managedSourceList.dataset.sha;
   if (!sha) {
     const data = await githubRequest(`/repos/${owner}/${repo}/contents/config/sources.json?ref=${encodeURIComponent(branch)}`);
@@ -979,7 +1062,7 @@ async function applySourcesConfig() {
     })
   });
 
-  setApplyStatus("설정 저장 완료. GitHub Actions 수집을 요청하는 중입니다.", "muted");
+  setApplyStatus("설정 저장 완료. GitHub Actions 수집을 요청하는 중입니다.", "busy");
   const startedAt = await dispatchWorkflow(owner, repo, branch, { skip_collect: "false" });
   await pollWorkflowRun(owner, repo, branch, startedAt, {
     onUpdate: (message, tone) => setApplyStatus(message, tone),
@@ -1078,7 +1161,7 @@ document.querySelector("#cancelSettings").addEventListener("click", closeSetting
 document.querySelector("#saveSettings").addEventListener("click", closeSettings);
 elements.sourceUrlInput.addEventListener("input", () => updateSourceKindPreview());
 document.querySelector("#loadSourcesButton").addEventListener("click", () => {
-  loadSourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+  runWithBusy(setApplyStatus, "현재 수집 소스 설정을 불러오는 중입니다.", loadSourcesConfig);
 });
 document.querySelector("#newSourceButton").addEventListener("click", newSourceForm);
 document.querySelector("#clearSourceFormButton").addEventListener("click", () => {
@@ -1093,10 +1176,10 @@ document.querySelector("#saveSourceFormButton").addEventListener("click", () => 
   }
 });
 document.querySelector("#applySourcesButton").addEventListener("click", () => {
-  applySourcesConfig().catch((error) => setApplyStatus(error.message, "error"));
+  runWithBusy(setApplyStatus, "소스 설정을 저장하고 GitHub Actions 실행을 준비 중입니다.", applySourcesConfig);
 });
 document.querySelector("#loadAiSettingsButton").addEventListener("click", () => {
-  loadAiSettings().catch((error) => setAiStatus(error.message, "error"));
+  runWithBusy(setAiStatus, "현재 AI 설정을 확인하는 중입니다.", loadAiSettings);
 });
 elements.aiProviderSelect.addEventListener("change", () => {
   updateAiProviderPanel();
@@ -1104,16 +1187,16 @@ elements.aiProviderSelect.addEventListener("change", () => {
   setAiStatus(`${provider} 설정만 입력/저장합니다. 다른 제공자의 key가 저장되어 있어도 선택하지 않으면 사용되지 않습니다.`, "muted");
 });
 document.querySelector("#saveAiSettingsButton").addEventListener("click", () => {
-  saveAiSettings().catch((error) => setAiStatus(error.message, "error"));
+  runWithBusy(setAiStatus, "AI 설정을 저장하는 중입니다.", saveAiSettings);
 });
 document.querySelector("#deleteAiKeyButton").addEventListener("click", () => {
-  deleteAiKey(elements.aiProviderSelect.value).catch((error) => setAiStatus(error.message, "error"));
+  runWithBusy(setAiStatus, "AI key 삭제를 준비하는 중입니다.", () => deleteAiKey(elements.aiProviderSelect.value));
 });
 document.querySelector("#loadDataButton").addEventListener("click", () => {
-  loadDataConfig().catch((error) => setDataStatus(error.message, "error"));
+  runWithBusy(setDataStatus, "수집 데이터를 불러오는 중입니다.", loadDataConfig);
 });
 document.querySelector("#runCollectButton").addEventListener("click", () => {
-  runManualCollection().catch((error) => setDataStatus(error.message, "error"));
+  runWithBusy(setDataStatus, "수동 수집을 시작하는 중입니다.", runManualCollection);
 });
 document.querySelector("#clearDataButton").addEventListener("click", () => {
   dataDraftItems = [];
@@ -1121,7 +1204,7 @@ document.querySelector("#clearDataButton").addEventListener("click", () => {
   setDataStatus("수집 데이터 목록을 비웠습니다. 배포하려면 데이터만 저장/배포를 누르세요.", "success");
 });
 document.querySelector("#applyDataButton").addEventListener("click", () => {
-  applyDataConfig().catch((error) => setDataStatus(error.message, "error"));
+  runWithBusy(setDataStatus, "현재 데이터 목록을 저장하고 배포하는 중입니다.", applyDataConfig);
 });
 
 elements.managedSourceList.addEventListener("click", (event) => {
