@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-11T23:24:05.423Z",
+  "collectedAt": "2026-06-12T23:19:43.954Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": null,
   "openAiModel": "gpt-5.5",
   "claudeModel": null,
-  "count": 54,
+  "count": 57,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -70,11 +70,38 @@
   "previousCollectedAt": null,
   "errors": [
     {
+      "source": "eu-ivdr",
+      "message": "eu-ivdr failed: 403 Forbidden"
+    },
+    {
       "source": "ai",
       "message": "AI enrichment was limited to 12 newly collected items to keep GitHub Actions fast."
     }
   ],
   "items": [
+    {
+      "id": "us-fda:99105",
+      "title": "Advance Aluminum Chloride Gel Clear Hemostatic Gel Kit, Catalog number 504600-28",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-27",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 공지로, Inter-Med LLC의 Advance Aluminum Chloride Gel Clear Hemostatic Gel Kit 일부 로트에 Ferric Sulfate Gel용 잘못된 패키지 인서트가 포함된 사례를 알린 내용이다. 잘못된 인서트는 제품 식별 및 섭취 시 응급처치 지시가 달라 안전 위해가 있을 수 있다. 대상은 모델 504600-28, UDI-DI 및 로트 2026-0204로, IVD에 대한 직접 적용성은 확인되지 않는다. 리콜 개시일·기한은 확인 필요이다.",
+      "rawSummary": "Some units of Aluminum Chloride Gel contain the package insert for Ferric Sulfate Gel. The incorrect insert misidentifies the product and contains different first aid instructions, most critically in that the Ferric Sulfate insert instructs users to induce vomiting in the case of ingestion, while the correct Aluminum Chloride insert instructs users not to induce vomiting. | Firm: Inter-Med Llc | Product code: MVL | Code info: Model No. 504600-28; UDI-DI 00371347008104; Lot Number 2026-0204",
+      "severity": "low",
+      "read": false,
+      "action": "직접 IVD 적용 규제조치로 보이지 않으므로 즉시 변경신고나 Technical File 개정은 필요하지 않다. 다만 미국 판매 IVD의 라벨/IFU 오삽입 방지 관리, 관련 공급업체 사용 여부, 불만·리콜 모니터링 절차에 유사 위험이 반영되어 있는지 확인하고 추적한다.",
+      "impactPoints": [
+        "직접 IVD 적용은 아니나, 자사 미국 판매 IVD 제품 또는 키트 구성품에 Inter-Med LLC 제품, 모델 504600-28, 해당 UDI-DI/로트가 포함되거나 재포장되어 사용되는가?",
+        "직접 IVD 적용은 아니나, 자사 라벨링·IFU 포장 공정에서 다른 제품용 인서트가 혼입되지 않도록 라벨 대조, 라인 클리어런스, 최종검사 기록이 충분히 운영되는가?",
+        "직접 IVD 적용은 아니나, 유사한 IFU/응급처치 문구 오류가 발생할 경우 미국 고객 통지, 불만 처리, 리콜 평가 및 FDA 보고 필요성 검토 절차가 명확한가?"
+      ],
+      "analysisMode": "ai"
+    },
     {
       "id": "eu-ivdr:https://ec.europa.eu/newsroom/sante/newsletter-archives/75370",
       "title": "New Implementing Regulation sets out uniform requirements for conformity assessment and notified bodies",
@@ -168,6 +195,29 @@
       "sourceId": "us-fda"
     },
     {
+      "id": "us-fda:98978",
+      "title": "NeoSpan SuperElastic Compression Staple w/Instruments Catalog Number and Product Name T50 SN010 NeoSpan SuperElastic Compression Staple w/Instruments, Size 10x10x10 UDI-DI Code: 00817906020083 T50 SN012 NeoSpan SuperElastic Compression Staple w/Instruments, Size 12x12x12 UDI-DI Code: 00817906020090 T50 SN020 NeoSpan SuperElastic Compression Staple w/Instruments, Size 20x20x20 UDI-DI Code: 00817906020151 T50 SN110 NeoSpan SuperElastic Compression Staple w/Instruments, Size 10x15x13 UDI-DI Code: 00817906020113 T50 SN115 NeoSpan SuperElastic Compression Staple w/Instruments, Size 15Wx15x15 UDI-DI Code: 00817906020137 T50 SN118 NeoSpan SuperElastic Compression Staple w/Instruments, Size 18x14x14 UDI-DI Code: 00810021861364 Single/multiple component metallic bone fixation appliances and accessories The In2Bones USA NeoSpan\" Compression Staple Implant w/instruments is indicated for hand and foot bone fragments, osteotomy fixation and joint arthrodesis.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-11",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 공지로 보이며, In2bones USA, LLC의 NeoSpan SuperElastic Compression Staple w/Instruments에 대해 포장 상자, 내부 트레이 및 환자 라벨에 Magnetic Resonance Conditional Symbol이 누락된 사유가 제시되었습니다. 대상은 손·발 골편, 절골 고정 및 관절 유합에 사용되는 금속성 골고정 기기이며 IVD에 직접 적용되는 내용은 아닙니다. 적용 일정·시정조치 기한은 확인 필요입니다.",
+      "rawSummary": "Due to the Magnetic Resonance Conditional Symbol missing on the carton, inner tray, and patient label. | Firm: In2bones USA, LLC | Product code: JDR | Code info: Catalog No. Lot Code T50 SN010 1962242 1964665 2054541 2039361 T50 SN012 1963511 T50 SN020 1971252 1990642 2027441 T50 SN110 1971241 T50 SN115 19647210 T50 SN118 1990631",
+      "severity": "low",
+      "read": false,
+      "action": "IVD 제조업체에 대한 직접적인 등록, 기술문서, 성능평가 또는 라벨 변경 조치는 필요하지 않습니다. 다만 FDA 리콜 사례로서 MRI 조건부 기호 등 라벨 누락이 리콜 사유가 될 수 있음을 품질/라벨 관리 참고사항으로 모니터링하십시오.",
+      "impactPoints": [
+        "당사 미국 판매 제품 중 본 골고정 기기 또는 In2bones USA 관련 공급·유통 품목이 없어 IVD 사업에 직접 영향이 없는지 확인 필요",
+        "IVD 제품 라벨·포장·환자용 자료에 필수 기호 또는 안전 관련 표시 누락을 예방하는 내부 라벨 검토 절차가 충분한지 확인 필요",
+        "이번 공지는 IVD 직접 적용 사항은 아니나, FDA 리콜 모니터링 및 공급망 제품코드/UDI 확인 체계에 반영할 참고 필요성이 있는지 확인 필요"
+      ],
+      "analysisMode": "ai"
+    },
+    {
       "id": "us-fda:98914",
       "title": "Atlan A350XL. Model Number: 8621600. anesthesia workstation",
       "source": "FDA",
@@ -189,6 +239,29 @@
       ],
       "analysisMode": "ai",
       "sourceId": "us-fda"
+    },
+    {
+      "id": "us-fda:98985",
+      "title": "Siemens Dimension Tacrolimus Flex Reagent Cartridge (TAC), REF DF207, SMN 10700795; enzyme immunoassay",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA 의료기기 리콜 페이지에 게시된 제품별 공지로, Siemens Healthcare Diagnostics의 Dimension Tacrolimus Flex Reagent Cartridge(TAC) 3개 로트에서 QC 및 환자 검체 결과의 잠재적 양성 편향이 보고되었다. 대상은 REF DF207, SMN 10700795, product code MLM, 로트 FA6254/FA6260/FA6286 및 기재 UDI이다. 공지일은 2026-05-07로 제시되었으나 리콜 등급, 고객 조치, 적용 기한은 확인 필요하다.",
+      "rawSummary": "A potential positive bias in quality control (QC) and patient sample results in three lots of the Dimension Tacrolimus (TAC) Flex reagent cartridge. | Firm: Siemens Healthcare Diagnostics, Inc. | Product code: MLM | Code info: Manufacturing Lot/Serial Numbers: FA6254, FA6260, FA6286; UDIs: (01)00842768035425(10)FA6254(17)20260911; (01)00842768035425(10)FA6260(17)20260917; (01)00842768035425(10)FA6286(17)20261013.",
+      "severity": "high",
+      "read": false,
+      "action": "자사 또는 미국 유통망이 해당 Siemens TAC 카트리지를 제조·수입·판매·사용했는지 로트/UDI 기준으로 즉시 대조하고, 보유 재고·고객 출하 여부를 확인한다. 해당 시 격리, 고객 통지, 불만/CAPA 및 결과 영향평가 필요성을 검토하되 FDA가 요구한 구체 조치는 확인 필요하다.",
+      "impactPoints": [
+        "자사 제품, OEM/유통 제품 또는 사내 QC·비교평가에 해당 REF DF207, 로트 FA6254/FA6260/FA6286 카트리지가 포함되어 있는가?",
+        "잠재적 양성 편향이 이미 보고·출하된 tacrolimus 검사 결과, 성능 검증 자료, 고객 불만 또는 CAPA 기록에 영향을 줄 가능성이 있는가?",
+        "미국 대리점·고객·서비스 조직이 보유 재고와 출하 이력을 로트/UDI 단위로 추적할 수 있으며 FDA 후속 리콜 지시나 기한을 모니터링하고 있는가?"
+      ],
+      "analysisMode": "ai"
     },
     {
       "id": "us-fda:98929",
@@ -353,7 +426,7 @@
     },
     {
       "id": "us-fda:98922",
-      "title": "CGuard Prime Carotid Stent System, 135cm, 10mmx40mm Model/Catalog Number: CND1040",
+      "title": "CGuard Prime Carotid Stent System, 135cm, 9mx30mm Model/Catalog Number: CND0930",
       "source": "FDA",
       "authority": "U.S. Food and Drug Administration",
       "region": "US",
@@ -362,7 +435,7 @@
       "date": "2026-05-01",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "미 FDA 의료기기 리콜 공지로, INSPIREMD Inc의 CGuard Prime Carotid Stent System 특정 모델(CND1040)에 관한 배포 문제를 알린 내용입니다. 스텐트 전달 시스템 전개 중 높은 저항 또는 전개 불능이 발생할 수 있다고 설명합니다. 대상은 제품코드 NIM, UDI 07290120281783 및 2025-02-03~2026-02-23 제조 전 로트/일련번호로 기재되어 있습니다. IVD에는 직접 적용되지 않으며, 시행일·조치 일정은 확인 필요입니다.",
-      "rawSummary": "Stent delivery system may encounter complications during deployment which may result in high resistance or inability to deploy the stent. | Firm: INSPIREMD Inc | Product code: NIM | Code info: UDI: 07290120281783; all lots/serial numbers manufactured between 02/03/2025 and 02/23/2026",
+      "rawSummary": "Stent delivery system may encounter complications during deployment which may result in high resistance or inability to deploy the stent. | Firm: INSPIREMD Inc | Product code: NIM | Code info: UDI: 07290120281738; all lots/serial numbers manufactured between 02/03/2025 and 02/23/2026",
       "severity": "low",
       "read": false,
       "action": "IVD 제조업체에 대한 직접 RA 조치는 필요하지 않습니다. 다만 미국 FDA 리콜 동향 모니터링 차원에서 기록하고, 자사 제품·공급망에 해당 스텐트 또는 관련 구성품이 포함되는지 확인 필요합니다.",
