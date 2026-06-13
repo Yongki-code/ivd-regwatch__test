@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-12T23:19:43.954Z",
+  "collectedAt": "2026-06-13T23:07:57.589Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -70,8 +70,12 @@
   "previousCollectedAt": null,
   "errors": [
     {
-      "source": "eu-ivdr",
-      "message": "eu-ivdr failed: 403 Forbidden"
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+      "source": "global-johner-institute",
+      "message": "global-johner-institute failed: 502 Bad Gateway"
     },
     {
       "source": "ai",
