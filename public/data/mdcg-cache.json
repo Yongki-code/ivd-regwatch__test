@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-13T23:07:57.589Z",
+  "collectedAt": "2026-06-14T23:10:37.780Z",
   "mode": "github-actions-rss-ai",
   "aiEnabled": true,
   "aiProvider": "openai",
@@ -72,10 +72,6 @@
     {
       "source": "ca-health-canada",
       "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
-    },
-    {
-      "source": "global-johner-institute",
-      "message": "global-johner-institute failed: 502 Bad Gateway"
     },
     {
       "source": "ai",
