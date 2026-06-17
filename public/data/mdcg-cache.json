@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-16T23:25:11.781Z",
+  "collectedAt": "2026-06-17T23:26:29.525Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "eu-ivdr",
+      "message": "eu-ivdr failed: 403 Forbidden"
     }
   ],
   "items": [
