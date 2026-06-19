@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-18T23:47:25.814Z",
+  "collectedAt": "2026-06-19T23:00:11.725Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 71,
+  "count": 72,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -1702,6 +1702,29 @@
       ],
       "analysisMode": "ai",
       "sourceId": "global-johner-institute"
+    },
+    {
+      "id": "global-anvisa:https://www.emergobyul.com/news/regulatory-reliance-authorizations-brazils-revised-anvisa-process-june-2026",
+      "title": "new Regulatory Update Jun 18, 2026 Regulatory Reliance Authorizations: Brazil’s Revised ANVISA Process June 2026 Emergo by UL experts highlight recent regulatory reliance authorizations under IN 290/2024, demonstrating evolution in...",
+      "sourceId": "global-anvisa",
+      "source": "ANVISA",
+      "authority": "EMERGO",
+      "region": "Global",
+      "country": "Global",
+      "type": "Guidance",
+      "date": "",
+      "link": "https://www.emergobyul.com/news/regulatory-reliance-authorizations-brazils-revised-anvisa-process-june-2026",
+      "summary": "ANVISA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
     }
   ]
 }
