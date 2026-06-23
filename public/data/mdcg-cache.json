@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-22T23:21:23.171Z",
+  "collectedAt": "2026-06-23T23:09:58.528Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 72,
+  "count": 74,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     }
   ],
   "items": [
@@ -180,6 +184,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Software may fail to load adapted baseline shift plan during treatment delivery when a communication error occurs. | Firm: Elekta, Inc. | Product code: IYE | Code info: Software Version: MOSAIQ 3.2/UDI: 07340201500071",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:98855",
+      "title": "BD Connecta\" BD Luer-Lok\" 360 REF 394910 UDI-DI code: 00382903949106 BD Connecta\" Stopcocks are used to administer fluids or medication through one or two different ports via an IV cannula or extension tube. The ports can be used to sample blood or for hemodynamic monitoring. When used with IV lipid nutritional products, the stopcock device can be used for up to 24 hours.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-21",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Due to stopcock issues when using the plastic luer-lok syringe, the connection at the Port C may over thread or continue to spin rather than tightening securely. This behavior has led some clinical users to perceive the connection as unstable. | Product code: FMG | Code info: Catalog/Model Number: 394910 UDI-DI code: 00382903949106 Lot Numbers: 4277968 4277973 4282451 4282461 4289801 4290582 4292904 4295848 4299949 4303841 4305108 4306700 5129635 5129642 5129649 5129650 5129651 5139250 5139251 5139252 5150181 5153940 5164061 5164062 5178078 5181442 5183810 5183816 5183824 5183828 5218287 5218291 5218293 5218299 5218302 5241476 5247729 5247731 5251098 5275601 5275602",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
@@ -306,6 +333,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:98946",
+      "title": "Impella CP Set with SmartAssist. Product Codes: 1000080, 1000851, 0048-0014, 0048-0024-JP.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-18",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Exposure to the low purge pressure occurrence may result in persistent low purge pressure alarms and, in some cases, interruption or loss of mechanical circulatory support. | Firm: Abiomed, Inc. | Product code: OZD | Code info: GTIN: 00813502012279. Product Codes (Serial Number): 1000080 (677223, 672986, 673252, 644591, 645428, 644314, 613525), 1000851 (636173), 0048-0014 (499250), 0048-0024-JP (661216).",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:98767",
       "title": "HarmonyAIR A-Series Surgical Lighting System",
       "sourceId": "us-fda",
@@ -376,7 +426,7 @@
     },
     {
       "id": "us-fda:98854",
-      "title": "ConMed AirSeal 5mm Access Port and Low Profile Obturator with Bladeless Optical Tip, 100mm Length. Catalog Number: iAS5-100LP. 6 units per pack. Disposable Endoscopic Trocar and Cannula; Carbon Dioxide Insufflator for Laparoscopy.",
+      "title": "ConMed AirSeal 5mm Access Port and Low Profile Obturator with Bladeless Optical Tip, 75mm Length. Catalog Number: iAS5-75LP. 6 units per pack. Disposable Endoscopic Trocar and Cannula; Carbon Dioxide Insufflator for Laparoscopy.",
       "sourceId": "us-fda",
       "source": "FDA",
       "authority": "U.S. Food and Drug Administration",
@@ -386,7 +436,7 @@
       "date": "2026-05-14",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
-      "rawSummary": "Potential for overpressure alerts. | Firm: ConMed Corporation | Product code: HIF | Code info: Catalog Number: iAS5-100LP. UDI-DI: 10845854045626. Lot Numbers: 202509104, 202502195, 202502255, 202503115, 202503205, 202504084, 202503114, 202503035, 202503204, 202510214, 202511044, 202511055, 202510144, 202510284, 202510134, 202511184, 202510294, 202510224, 202511066, 202511124, 202511144, 202511154, 202505284, 202506064, 202506204, 202507014, 202504074, 202507154, 202507294, 202507164, 202507284, 202506194, 202507024, 202505194, 202504014, 202503215, 202505274, 202511134, 202509154, 202509294, 202508274, 202509234, 202510014, 202508044, 202508134, 202508154, 202509114, 202411224, 202509224, 202506216, 202410074, 202410155, 202410154, 202410224, 202412045, 202501064, 202509024, 202503116, 202504024, 202503124, 202502274, 202502175, 202411205, 202407094, 202503206, 202502264, 202408224, 202409105, 202411264, 202506074, 202412164, 202509304, 202601124, 202502184, 202512024, 202502194, 202506094, 202509014, 202508264, 202509124, 202506184, 202506234, 202507074, 202508014, 202508184, 202411255, 202411204, 202510074, 202408305, 202406215, 202501296, 202410025, 202406205, 202411214, 202410284, 202409245, 202410164, 202409186, 202407194, 202410084, 202412134, 202409246, 202502114, 202502054, 202502045, 202411254, 202409244, 202502116, 202407254, 202406285, 202502105, 202412035, 202406214, 202408135, 202502265, 202511114, 202409235, 202509244, 202408064, 202503214, 202503046, 202507214, 202512014, 202409286, 202502276, 202501035, 202501036, 202504164, 202503055, 202507034, 202408134, 202407095, 202412065. OUS added 06/10/2026 expansion: 202409244, 202511044, 202511066, 202511055, 202508274, 202509104, 202506194, 202508134, 202508154, 202507294, 202505194, 202507014, 202507024, 202503114, 202503215, 202504014, 202412164, 202412135, 202501036, 202501294, 202501064, 202412065, 202411225, 202408064, 202412145, 202501065, 202510014, 202407014, 202505274, 202410155, 202406205, 202508044, 202510294, 202511144, 202410094, 202407254, 202510144, 202509294, 202509154, 202507154, 202506204, 202502195, 202501035, 202502045, 202411254, 202409104, 202409245, 202406214, 202504074, 202407194, 202408224, 202406215, 202503115, 202510134, 202506064, 202503204, 202503035, 202509234, 202502114, 202507284, 202505284, 202501295, 202407094, 202502255, 202408134, 202510284, 202511134, 202507164, 202504084, 202412044, 202510074, 202511124, 202508184, 202412134, 202510224, 202510214, 202509304, 202506234, 202509024, 202507034, 202507074, 202507044, 202510064, 202509124, 202510034, 202508264, 202506094, 202506184, 202502105, 202502274, 202503065, 202503205, 202503226, 202509224, 202503055, 202411214, 202512024, 202410154, 202506216, 202503116, 202503124, 202601124, 202412045, 202411224, 202410224, 202509014, 202409105, 202410074, 202509114, 202503206, 202502184, 202509244, 202502276, 202411264, 202502116, 202408215, 202411195, 202408305, 202408144, 202411204, 202410025, 202408135, 202409246, 202410084, 202406285, 202502264, 202503046, 202507214, 202502054, 202502175, 202410284, 202410164, 202502265, 202507174, 202504024, 202411255, 202508014, 202410035, 202502194, 202410255, 202409024, 202410045, 202408264, 202410235, 202406244, 202409286, 202408304, 202407095, 202408065, 202406284, 202511114, 202502185, 202502186, 202412054, 202411215, 202408075, 202409175, 202502196, 202503214, 202504164, 202411205, 202409174, 202409235, 202406204. Manufactured from 14 June 2024 to 12 January 2026.",
+      "rawSummary": "Potential for overpressure alerts. | Firm: ConMed Corporation | Product code: HIF | Code info: Catalog Number: iAS5-75LP. UDI-DI: 10845854046388. Lot Numbers: 202509294, 202508044, 202505144, 202504014, 202502275, 202512034, 202507014, 202510084, 202412144, 202411065, 202409305, 202406284, 202408014, 202409304, 202506254. OUS added 06/10/2026 expansion: 202502275, 202509294, 202504014, 202507014, 202505144, 202512034, 202411065, 202508044, 202409305, 202409304, 202408014, 202506254, 202510084, 202412144, 202406284. Manufactured from 14 June 2024 to 12 January 2026.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
