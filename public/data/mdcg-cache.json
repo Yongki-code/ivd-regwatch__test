@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-24T23:05:11.485Z",
+  "collectedAt": "2026-06-25T23:20:01.520Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 74,
+  "count": 79,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -145,6 +145,52 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99126",
+      "title": "Philips Telemetry Monitor 5500 1.4 GHz. Model Number: 867232. Includes the following system descriptions: TELE Monitor 5500, 1.4 Ghz, ECG only, ex; Telemetry Monitor 5500 1.4 GHz FAST EX.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-05",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential for device reset to default \"NEW_DEVICE\" state, which may lead to a to loss of device configuration and the equipment label, resulting in a failure to reconnect to the PIC iX central monitoring system. | Firm: Philips North America Llc | Product code: MHX | Code info: Model Number: 867232. UDI-DI: (01)00884838102842. Software Version Number: 4.0.0.0. Serial Numbers: US001A002F, US001A00AW, US001A00C9, US001A00EW, US001A00F0, US001A00GM, US001A00N4, US001A00PB, US001A00PZ, US001A00R1, US001A00UE, US001A00VU, US001A00Z4, US001A013T, US001A018A, US001A018R.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99123",
+      "title": "Acumed Hexalob Screw various sizes: REF Numbers: : 3070-27008 2.7mm x 8mm NL Hexalobe Screw; 3070-27009 2.7mm x 9mm NL Hexalobe Screw; 3070-27010 2.7mm x 10mm NL Hexalobe Screw; 3070-27011 2.7mm x 11mm NL Hexalobe Screw; 3070-27012 2.7mm x 12mm NL Hexalobe Screw; 3070-27013 2.7mm x 13mm NL Hexalobe Screw; 3070-27014 2.7mm x 14mm NL Hexalobe Screw; 3070-27015 2.7mm x 15mm NL Hexalobe Screw; 3070-27016 2.7mm x 16mm NL Hexalobe Screw; 3070-27017 2.7mm x 17mm NL Hexalobe Screw; 3070-27018 2.7mm x 18mm NL Hexalobe Screw; 3076-30010 3.0mm x 10mm NL Hexalobe Screw; 3076-30012 3.0mm x 12mm NL Hexalobe Screw; 3076-30014 3.0mm x 14mm NL Hexalobe Screw",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-28",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Due to manufacturing error, hexalobe screws used with wrist fixation system may break during use. | Firm: Acumed LLC | Product code: HRS | Code info: 3070-27008/Lots: 668261/UDI: 10806378125997; 3070-27009/Lots: 680797/UDI: 10806378126000; 3070-27010/Lots: 667231, 682194/UDI: 10806378126017; 3070-27011/Lots: 680621, 680737/UDI: 10806378126024; 3070-27012/Lots: 667233, 668266, 668704, 682195/UDI: 10806378126031; 3070-27013/Lots:668706, 680400/UDI: 10806378126048; 3070-27014/Lots: 667236, 668705, 680935/UDI: 10806378126055; 3070-27015/Lots: 667237, 680936/UDI: 10806378126062; 3070-27016/Lots: 668269, 682390/UDI: 10806378126079; 3070-27017/Lot: 681575/UDI: 10806378126086; 3070-27018/Lot: 667169, 668260, 682482/UDI: 10806378126093; 3076-30010/Lots: 667202, 668271/UDI: 10806378126109; 3076-30012/Lots: 667242, 668273/UDI: 10806378126116; 3076-30014/Lots: 667205, 668272/UDI: 10806378126123",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99105",
       "title": "Advance Aluminum Chloride Gel Clear Hemostatic Gel Kit, Catalog number 504600-28",
       "sourceId": "us-fda",
@@ -166,6 +212,52 @@
         "직접 IVD 적용은 아니나, 유사한 IFU/응급처치 문구 오류가 발생할 경우 미국 고객 통지, 불만 처리, 리콜 평가 및 FDA 보고 필요성 검토 절차가 명확한가?"
       ],
       "analysisMode": "ai"
+    },
+    {
+      "id": "us-fda:98968",
+      "title": "Brand Name: Dexcom G7 Continuous Glucose Monitoring System Product Name: Dexcom G7 US Retail Sensor/Transmitter 1-pack Model/Catalog Number: STP-AT-012 Software Version: N/A Product Description: Dexcom G7 US Retail Sensor/Transmitter 1-pack Component: Dexcom G7 Continuous Glucose Monitoring System",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-27",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Certain lots of Dexcom G7 sensors originally designated as scrap and intended for destruction were stolen during the destruction process. The sensors were later sold to pharmacies and distributors by Pharmsource, LLC. Lot 1725204004 were designated for destruction because the G7 sensors were not properly sterilized and have an increased risk of skin infection if used. Lot 1725069002 were designated for destruction due to an increased risk of having no sensor readings available or experiencing sensor inaccuracy that includes the potential for missed detection of a hyperglycemic event or incorrect treatment decisions that can result in patient injury, including medical intervention to prevent permanent injury or impairment. Additionally, due to the unknown storage and handling and storage conditions these sensors may have undergone during the distribution, these sensors may present additional risk. | Firm: Dexcom, Inc. | Product code: QBJ | Code info: Lot Code: UDI-DI: 00386270004109 Lot Numbers: 1725204004 and 1725069002",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99084",
+      "title": "Philips Avalon Fetal Monitor, FM 30 Part numberM2703A",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-26",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Monitor has incorrect assembly of the speaker connector which can cause device cables to be pulled out of the housing and increase the risk of intermittent or permanent loss of speaker output. | Firm: Philips North America Llc | Product code: HGM | Code info: UDI/DI 00884838000414, Serial Numbers: DE79646555, DE79646616, DE79646645, DE79646647, DE79646651, DE79646697, DE79646702, DE79646746, DE79646754, DE79646757, DE79646758, DE79646762, DE79646765, DE79646775, DE79646776, DE79646783, DE79646857, DE79646891, DE79646924, DE79646750, DE79646751, DE79646756, DE79646804, DE79646592, DE79646877, DE79646644, DE79646706, DE79646723, DE79646653, DE79646766, DE79646786, DE79646824, DE79646827, DE79646848, DE79646956, DE79646709, DE79646892, DE79646724, DE79646729, DE79646732, DE79646733, DE79646927, DE79646675, DE79646820, DE79646821, DE79646837, DE79646866, DE79646869, DE79646871, DE79646875, DE79646882, DE79646683, DE79646676, DE79646640, DE79646849, DE79646952, DE79646699, DE79646694, DE79646648, DE79646701, DE79646900, DE79647027, DE79647039, DE79646654, DE79646800, DE79646604, DE79646660, DE79646829, DE79646747, DE79646606, DE79646826, DE79646784, DE79646794.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
     },
     {
       "id": "us-fda:98980",
@@ -203,6 +295,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Due to stopcock issues when using the plastic luer-lok syringe, the connection at the Port C may over thread or continue to spin rather than tightening securely. This behavior has led some clinical users to perceive the connection as unstable. | Product code: FMG | Code info: Catalog/Model Number: 394910 UDI-DI code: 00382903949106 Lot Numbers: 4277968 4277973 4282451 4282461 4289801 4290582 4292904 4295848 4299949 4303841 4305108 4306700 5129635 5129642 5129649 5129650 5129651 5139250 5139251 5139252 5150181 5153940 5164061 5164062 5178078 5181442 5183810 5183816 5183824 5183828 5218287 5218291 5218293 5218299 5218302 5241476 5247729 5247731 5251098 5275601 5275602",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99045",
+      "title": "Off-Axis Alliance Glenoid, Right, 4-Peg, Augment, Reamer Guide, Model/Catalog Number: 110040476",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-05-20",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Five complaints have been received identifying issues where the plastic guides were catching during reaming, leading to breakage. | Firm: Zimmer, Inc. | Product code: PHX | Code info: Lot Code: Model No. 110040476 ; UDI-DI (01)00889024682047(17)350531(10)097492 ; Lot Number 097492",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
