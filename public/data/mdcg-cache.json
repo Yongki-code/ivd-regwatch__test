@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-06-30T23:15:20.338Z",
+  "collectedAt": "2026-07-01T23:17:45.989Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,10 +72,6 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
-    },
-    {
-      "source": "ca-health-canada",
-      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     }
   ],
   "items": [
@@ -1939,7 +1935,7 @@
     },
     {
       "id": "global-anvisa:https://www.emergobyul.com/news/regulatory-reliance-authorizations-brazils-revised-anvisa-process-june-2026",
-      "title": "new Regulatory Update Jun 18, 2026 Regulatory Reliance Authorizations: Brazil’s Revised ANVISA Process June 2026 Emergo by UL experts highlight recent regulatory reliance authorizations under IN 290/2024, demonstrating evolution in...",
+      "title": "Regulatory Update Jun 18, 2026 Regulatory Reliance Authorizations: Brazil’s Revised ANVISA Process June 2026 Emergo by UL experts highlight recent regulatory reliance authorizations under IN 290/2024, demonstrating evolution in...",
       "sourceId": "global-anvisa",
       "source": "ANVISA",
       "authority": "EMERGO",
