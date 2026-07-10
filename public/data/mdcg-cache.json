@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-09T23:13:56.327Z",
+  "collectedAt": "2026-07-10T22:59:53.391Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 94,
+  "count": 98,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,10 +72,6 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
-    },
-    {
-      "source": "global-johner-institute",
-      "message": "global-johner-institute failed: 502 Bad Gateway"
     }
   ],
   "items": [
@@ -264,6 +260,75 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99151",
+      "title": "Aquacel Ag Surgical SP REF: 413556 9cm x 15cm/3.5 in. x 6 in., Sterile R",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-08",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Surgical dressing manufactured out of specification (greater thickness). | Firm: ConvaTec, Inc | Product code: FRO | Code info: Lot/Batch: 5G00809; Primary Pack UDI: (01) 00768455130764/ Secondary Pack UDI: (01) 00768455130634/ Tertiary Pack UDI: (01) 10768455130631",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99277",
+      "title": "KL Owen Custom Orthodontic Solution, model/catalog number CIAS-800033,",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-08",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "A product error defect may cause incorrect bracket placement. | Firm: Klowen Braces | Product code: QJJ | Code info: UDI/DI 10850061082029, Lot Numbers: 1779407586392-0, 1779138889952-0, 1778173992342-0",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99214",
+      "title": "Atellica CH Enzymatic Hemoglobin A1c (A1c_E). Material Number: 11097536.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-08",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "The potential for intermittent well-to-well bias on the A1c_E assay on the Atellica CH and Atellica CI analyzer which could cause falsely depressed or falsely elevated HbA1c patient results. | Firm: Siemens Healthcare Diagnostics, Inc. | Product code: PDJ | Code info: Material Number: 11097536. UDI-DI: 00630414220505. All Lot Numbers.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99126",
       "title": "Philips Telemetry Monitor 5500 1.4 GHz. Model Number: 867232. Includes the following system descriptions: TELE Monitor 5500, 1.4 Ghz, ECG only, ex; Telemetry Monitor 5500 1.4 GHz FAST EX.",
       "sourceId": "us-fda",
@@ -299,6 +364,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "May contain incorrect connectors and will not attach or misconnect to ENFit connections and is thus incompatible. Issue could lead to slight delay in delivery of enteral nutritional fluids or oral medication. | Firm: Medela Inc | Product code: FPA | Code info: Lot Code: Item Number ENF060182LD / 101033086; Lot Number 0000747253; Date of Manufacturing 2026-01-16; Expiration Date 2029-01-16; Carton GTIN 20020451101358; Unit GTIN 00020451101354",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99106",
+      "title": "Olympus Single Use Distal Cover, Catalog Number MAJ-2315, Used with: EVIS EXERA III Duodenovideoscope TJF-Q190V- designed to be attached to Olympus duodenovideoscopes to cover the distal end of the insertion tube and around the forceps elevator; duodenoscope and accessories, flexible/rigid",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-05",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Olympus has developed and released newly designed version of the Distal Cover (MAJ-2315) to replace previous design of the Single Use Distal Covers. | Firm: Olympus Corporation of the Americas | Product code: FDT | Code info: UDI/DI: 04953170441271, Lot Numbers: H2530 or later",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
@@ -426,7 +514,7 @@
     },
     {
       "id": "us-fda:99209",
-      "title": "Medline Convenience kits containing recalled Swan-Ganz Catheters CABG A CDS CDS982269K CDS982269L CDS982269M CDS982269N CARDIAC MAJOR DYNJ901328D DYNJ901328F HEART A DYNJ903465F DYNJ903465G HEART TRAY-VASCULAR DYNJ907857 DYNJ907857A DYNJ907857B KIT UNIVERSITY CABG PK DYNJ905857A OPEN HEART CDS981161AA CDS981161AB DYNJ905437A DYNJ909090 DYNJ909090C DYNJ9855016R DYNJ9855016S OPEN HEART ACCESSORY CDS CDS984289J OPEN HEART ANESTHESIA PACK CDS983849D CDS983849F CDS983849G OPEN HEART B CDS DYNJ900377P OPEN HEART BASIC B DYNJ904311C OPEN HEART CDS CDS983513F OPEN HEART CDS QVH CDS982523K CDS982523L CDS982523N OPEN HEART LINE SET UP DYNJ908179 DYNJ908179A OPEN HEART SUPPLEMENT DYNJ909116 DYNJ909116A DYNJ909116C DYNJ909116D SILVER CROSS OPEN HEART DYNJ906102J DYNJ906102K DYNJ906102L SM OPEN HEART PACK A&B DYNJ904749G DYNJ904749J VPH OPEN HEART DYNJ902664J DYNJ902664K DYNJ902664L",
+      "title": "Medline Convenience kits containing recalled Swan-Ganz Catheters KIT GERMANTOWN CABG DYNJ905855 KIT UNIVERSITY CABG PACK DYNJ905857 OH MED RN CDS DYNJ905936B",
       "sourceId": "us-fda",
       "source": "FDA",
       "authority": "U.S. Food and Drug Administration",
@@ -436,7 +524,7 @@
       "date": "2026-05-28",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
-      "rawSummary": "Kits contain Swan-Ganz catheters recalled by Becton Dickinson (BD). BD has received complaints of leaks/breakage involving failures of the (blue) proximal injectate lumen hub on these catheters. This has led to instances of leakage, lumen damage, and breakage, and may lead to infection, medication loss, and/or blood loss. | Product code: OEZ | Code info: CDS982269K UDI-DI 10193489906844 Lots 21HBN691 21JBQ518 21LBD444 CDS982269L UDI-DI 10195327018016 Lots 21LBP501 22ABR514 22BBE936 22FBV989 CDS982269M UDI-DI 10195327192808 Lots 22JBE028 22LBF124 23ABP909 23CBO580 CDS982269N UDI-DI 10195327352998 Lots 23GBC969 23HBS959 23KBW067 23LBF510 24CBO691 24DBR250 24EBU619 24GBF288 25ABM339 25CBJ666 25HBH657 25IBM477 26BBG451 DYNJ901328D UDI-DI 10193489854923 Lots 21CBQ397 21FBJ935 21HBR220 21JBV897 21JBV898 22ABG611 DYNJ901328F UDI-DI 10195327044572 Lots 22CBX749 22FBX103 23ABC195 23EBG860 23EBL637 23EBS968 23FBM688 23GBS043 24EBL355 24FBJ301 24IBS567 24JBD767 24JBU518 24KBL806 24LBF815 25DBF590 25FBQ740 25GBH267 25JBQ634 DYNJ903465F UDI-DI 10193489918397 Lots 21FDB453 21HDB016 21IDB927 21KDA273 21LDA283 21LDB750 22CDA262 DYNJ903465G UDI-DI 10195327175559 Lots 22FDA593 22IDA677 22KDA077 23ADB246 DYNJ907857 UDI-DI 10193489909364 Lots 21GBJ159 21IBX945 21LBJ320 22ABH627 DYNJ907857A UDI-DI 10195327133160 Lots 22HBK592 22KBM436 DYNJ907857B UDI-DI 10195327256869 Lots 22KBN208 23ABM669 23IBE277 DYNJ905857A UDI-DI 10193489946680 Lots 22CBW896 22DBR508 22GBG113 22GBW887 22IBU528 22JBA758 22KBJ132 23ABP277 23ABP278 23ABS778 23DBD840 23EBJ932 23EBR134 23FBM591 23FBS624 23HBU190 24FBG082 24GBE581 24HBM636 24IBS825 24JBV903 24KBU708 24LBU110 25BBG391 25CBJ747 25DBP832 CDS981161AA UDI-DI 10193489303407 Lots 21DBH590 21DBU485 CDS981161AB UDI-DI 10193489817461 Lots 21DBT869 21FBD406 21FBK899 21HBT158 21IBJ277 21IBW875 22BBA363 22DBH285 22DBT988 22HBO231 22HBT037 22JBT785 DYNJ905437A UDI-DI 10193489571905 Lots 21ABH889 21DBE110 21EBH610 DYNJ909090 UDI-DI 10195327268350 Lot 23EBD437 DYNJ909090C UDI-DI 10198459084768 Lots 24HBR121 24KBT550 DYNJ9855016R UDI-DI 10193489481730 Lot 21DKA468 DYNJ9855016S UDI-DI 10193489904659 Lots 21HBC511 21HBC512 22GBZ353 22JBA413 22OBI292 22OBL745 23BBA924 23BBN806 23CBM193 CDS984289J UDI-DI 10193489263046 Lots 21BKA389 21DKA676 21FLA954 21GLA057 21GLA312 21GLB087 21HLA680 21ILA628 21KLB205 CDS983849D UDI-DI 10193489278231 Lots 21ABW164 21BBR951 21CBU594 21DBV510 21EBA170 21FBS444 21GBM142 21HBK335 21JBS153 21JBX783 21LBF083 22BBY971 22CBU521 22EBK057 22EBV010 22GBJ239 22GBZ470 22OBM677 CDS983849F UDI-DI 10195327228316 Lots 22JBN998 22KBB265 22LBT079 23ABN910 23ABO447 23DBG442 23EBP559 23FBP234 23FBV862 23GBN607 23HBA321 23IBM362 23JBQ839 24ABE486 24BBC426 CDS983849G UDI-DI 10195327650148 Lots 24EBA261 24FBD116 24GBH789 24HBQ756 24HBV600 24IBV160 24LBB436 25ABD357 25ABL507 25ABO737 25BBM406 25CBL909 25EBN768 25GBC295 25HBJ455 25JBJ254 25LBJ730 25LBQ452 26ABV988 26CBR016 26EBG732 DYNJ900377P UDI-DI 10193489818710 Lots 21ABS254 21DBG173 21EBM044 21FBJ060 21GBC753 DYNJ904311C UDI-DI 10193489427141 Lots 21CBD905 21DBT916 CDS983513F UDI-DI 10193489843729 Lots 21FBF442 21GBV619 21KBR342 22ABG599 22BBX671 22GBI891 22HBI664 22KBI289 23BBE439 CDS982523K UDI-DI 10193489372199 Lots 21AKB056 21CKA531 21DKA456 21EKA149 21FKA087 21GKA019 21HKA157 21HKA477 22ALA702 CDS982523L UDI-DI 10195327111151 Lots 22CLB415 22DLA940 22FLA279 22HLA254 22JLA168 22JLA569 22LLA984 23ALA240 23ALA433 23BLA324 23CLA025 23DLA469 23DLB096 23HLB221 23ILA547 23JLB156 CDS982523N UDI-DI 10198459094187 Lots 24JLA242 25ALA328 25BLA052 25CLA357 25ELB103 25GLA805 25HLA714 25JLA015 25JLA997 25LLA549 26ALA715 26BLA627 DYNJ908179 UDI-DI 10193489999082 Lot 21KBU602 DYNJ908179A UDI-DI 10195327222574 Lots 22IBI258 23ABC799 DYNJ909116 UDI-DI 10195327275419 Lot 22LBF704 DYNJ909116A UDI-DI 10195327326869 Lot 23BBA820 DYNJ909116C UDI-DI 10195327412234 Lots 23EBI448 23GBT021 23HBO369 23LBE724 24ABE871 24ABU718 24CBD865 24CBQ303 24DBT408 DYNJ909116D UDI-DI 10198459055355 Lots 24GBV993 24HBL885 24IBD459 24JBB975 24KBN648 25ABB011 25BBC914 25EBD155 25FBM604 25GBP604 25HBE896 25JBM466 25KBS952 25LBK344 26CBI558 26CBV164 26DBF078 DYNJ906102J UDI-DI 10195327560485 Lots 24DBU434 24HBL681 DYNJ906102K UDI-DI 10198459079733 Lots 24IBB695 24IBF531 24JBC419 24KBA747 24KBJ996 DYNJ906102L UDI-DI 10198459242564 Lot 25GBE498 DYNJ904749G UDI-DI 10195327368876 Lot 23GBJ246 DYNJ904749J UDI-DI 10195327511142 Lots 24KBJ796 24LBP688 25ABE593 25BBG734 25EBU720 25HBI847 25IBQ209 25IBU994 25KBC533 26ABM369 26DBI408 DYNJ902664J UDI-DI 10193489827460 Lots 21CKA218 21DKA466 21EKA130 21GLA739 21HLA316 21ILA068 21ILB049 21LLA925 22BLA932 DYNJ902664K UDI-DI 10195327102524 Lots 22CLA698 22DLA226 22GLA416 22ILB123 22KLA463 23ALA437 23GLA545 23HLB280 23ILA818 DYNJ902664L UDI-DI 10195327537883 Lots 24ELA957 24GLA394 24ILA830 25CLA878",
+      "rawSummary": "Kits contain Swan-Ganz catheters recalled by Becton Dickinson (BD). BD has received complaints of leaks/breakage involving failures of the (blue) proximal injectate lumen hub on these catheters. This has led to instances of leakage, lumen damage, and breakage, and may lead to infection, medication loss, and/or blood loss. | Product code: LRO | Code info: DYNJ905855 UDI-DI 10193489546606 Lots 21ABU297 21BBB235 21DBV520 21FBG162 21GBC672 21GBI192 21IBT387 21VBB580 22DBK812 22FBR093 22FBS035 22HBI628 22IBV291 22JBX729 22NBE430 23ABD954 23BBI465 23CBO951 23CBX474 23GBF721 DYNJ905857 UDI-DI 10193489545678 Lots 21ABG510 21GBK940 DYNJ905936B UDI-DI 10193489422818 Lots 21BBF766 21DBP452 21FBF248 21LBJ459 22ABV319 22DBS751 22FBU868",
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
