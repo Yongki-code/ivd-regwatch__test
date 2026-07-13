@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-12T22:51:32.183Z",
+  "collectedAt": "2026-07-13T22:57:20.995Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,6 +72,14 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+      "source": "global-johner-institute",
+      "message": "global-johner-institute failed: 502 Bad Gateway"
     }
   ],
   "items": [
