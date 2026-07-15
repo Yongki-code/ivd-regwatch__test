@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-14T22:57:30.249Z",
+  "collectedAt": "2026-07-15T22:58:43.650Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -2418,7 +2418,7 @@
     },
     {
       "id": "global-anvisa:https://www.emergobyul.com/news/global-medical-device-udi-update-progress-australia-and-brazil",
-      "title": "new Regulatory Update Jul 8, 2026 Global Medical Device UDI Update: Progress in Australia and Brazil Regulators in Australia and Brazil have advanced phased implementations of Unique Device Identification systems aligned...",
+      "title": "Regulatory Update Jul 8, 2026 Global Medical Device UDI Update: Progress in Australia and Brazil Regulators in Australia and Brazil have advanced phased implementations of Unique Device Identification systems aligned...",
       "sourceId": "global-anvisa",
       "source": "ANVISA",
       "authority": "EMERGO",
