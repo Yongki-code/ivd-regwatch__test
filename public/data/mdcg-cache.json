@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-16T22:57:44.817Z",
+  "collectedAt": "2026-07-17T22:52:16.525Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     }
   ],
   "items": [
