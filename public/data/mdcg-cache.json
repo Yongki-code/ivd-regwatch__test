@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-17T22:52:16.525Z",
+  "collectedAt": "2026-07-18T22:52:05.251Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 103,
+  "count": 104,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,10 +72,6 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
-    },
-    {
-      "source": "ca-health-canada",
-      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     }
   ],
   "items": [
@@ -253,6 +249,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "In certain cases, a collimator may not fully dock, which triggers a system interlock and prevents motion from the operator console. If personnel then enter the treatment room and initiate motion using the in-room control pendant, the collimator may release and fall from the housing. | Firm: Accuray Incorporated | Product code: IYE | Code info: ALL Cyberknife systems running software version 11.X and higher that utilize the Exchange Table.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99210",
+      "title": "ST AIA-Pack Testosterone, IN VITRO DIAGNOSTIC USE ONLY for the quantitative measurement of testosterone in human serum on specific Tosoh AIA System analyzers, Model Number 0025204",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-12",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "The Test cup lot F level 1 low-quality control results values for the device were lower than expected on the Automated Immunoassay Analyzer (AIA) which could cause falsely elevated or falsely low total testosterone results. Such erroneous test results may lead to additional testing/diagnostic interventions and in limited cases, may lead to a delay in diagnosis and/or initiation of unnecessary or incorrect clinical treatment measures. | Firm: Tosoh Bioscience Inc | Product code: CDZ | Code info: UDI-DI: 14560189210032; Lot Numbers: FX12404, FY12407, FY12406, FZ12408",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
