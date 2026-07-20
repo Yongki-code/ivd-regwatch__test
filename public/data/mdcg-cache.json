@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-19T22:54:07.857Z",
+  "collectedAt": "2026-07-20T23:02:33.312Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "global-johner-institute",
+      "message": "global-johner-institute failed: 502 Bad Gateway"
     }
   ],
   "items": [
