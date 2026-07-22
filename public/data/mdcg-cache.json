@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-21T22:58:45.846Z",
+  "collectedAt": "2026-07-22T23:05:24.240Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 104,
+  "count": 107,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "eu-ivdr",
+      "message": "eu-ivdr failed: 503 Service Unavailable"
     }
   ],
   "items": [
@@ -145,6 +149,52 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99289",
+      "title": "Hotline Fluid Warming Set, single use device, is designed to warm blood and intravenous fluids and deliver them to the patient's intravenous access site at normothermic temperatures under gravity flow conditions, List Number L-70",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-24",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "ICU Medical became aware of an increased likelihood of leakage in specific Lots of L-70 HOTLINE Fluid Warming Sets due to potentially inadequate solvent application at the tubing to return connector bond. | Firm: ICU Medical Inc. | Product code: LGZ | Code info: UDI-DI: 30695085407007; Lot Numbers: 4293568, 4293569, 4297510, 4297509, 4326087, 4337724, 4337725, 4346349",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99291",
+      "title": "Power F2 Powered Fastening System, Product No. 0567091 Powered fastening system intended for professional use only. Designed to load, unload, and secure a compatible wheeled stretcher inside a ground-based ambulance. Item no. 0567091",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-19",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Product may experience accelerated roller wear and potential deformation due to interference between the roller assembly and rail. In the worst-case condition, rail mechanism may become lodged during operation and movement of the stretcher along the rail may no longer be possible through either powered or manual operation. May cause delays in transport of patient to healthcare facility. | Firm: Ferno-Washington Inc | Product code: FPO | Code info: UDI-DI 00190790006570 Serial Numbers: 25C227687 25C228204 26C232382 26C233091 25C227688 25C228205 26C232383 26C233092 25C227689 26C231797 26C232384 26C233093 25C227690 26C231798 26C232709 26C233094 25C227691 26C231799 26C232710 26C233095 25C227692 26C231800 26C232711 26C233096 25C227693 26C231801 26C232712 26C233097 25C227694 26C232002 26C232713 26C233098 25C227695 26C232004 26C232714 26C233099 25C227696 26C232005 26C232715 26C233100 25C227697 26C232006 26C232716 26C233111 25C227698 26C232007 26C232717 26C233112 25C227699 26C232008 26C232718 26C233113 25C227700 26C232009 26C233032 26C233114 25C227701 26C232010 26C233033 26C233115 25C227702 26C232011 26C233035 26C233116 25C227703 26C232374 26C233036 26C233117 25C227704 26C232375 26C233037 26C233118 25C227707 26C232377 26C233038 26C233119 25C227708 26C232378 26C233039 26C233120 25C227709 26C232379 26C233040 26C233443 25C227710 26C232380 26C233041 26C233444 25C227711 26C232381 26C233090 26C233446 26C233448 26C234080 26C234360 26C234647 26C233449 26C234081 26C234361 26C234648 26C233450 26C234082 26C234362 26C234649 26C233451 26C234083 26C234363 26C234797 26C233452 26C234084 26C234364 26C234798 26C233692 26C234085 26C234566 26C234799 26C233693 26C234086 26C234567 26C234800 26C233694 26C234087 26C234630 26C234801 26C233695 26C234088 26C234631 26C234802 26C233696 26C234089 26C234632 26C234804 26C233697 26C234090 26C234633 26C234805 26C233698 26C234345 26C234634 26C234806 26C233699 26C234346 26C234635 26C234807 26C233700 26C234349 26C234636 26C234808 26C233701 26C234350 26C234637 26C234809 26C234071 26C234351 26C234638 26C234810 26C234072 26C234352 26C234639 26C234811 26C234073 26C234353 26C234640 26C234812 26C234074 26C234354 26C234641 26C234813 26C234075 26C234355 26C234642 26C234814 26C234076 26C234356 26C234643 26C234815 26C234077 26C234357 26C234644 26C234816 26C234078 26C234358 26C234645 26C235036 26C234079 26C234359 26C234646 26C235037 26C235038 26C235140 26C235437 26C235699 26C235039 26C235141 26C235438 26C235700 26C235040 26C235142 26C235439 26C235701 26C235041 26C235143 26C235440 26C235702 26C235042 26C235144 26C235441 26C235704 26C235043 26C235145 26C235442 26C235705 26C235044 26C235146 26C235443 26C236027 26C235045 26C235147 26C235444 26C236028 26C235046 26C235148 26C235445 26C236029 26C235047 26C235149 26C235446 26C236030 26C235048 26C235150 26C235447 26C236031 26C235049 26C235151 26C235686 26C236032 26C235050 26C235152 26C235687 26C236035 26C235051 26C235153 26C235688 26C236036 26C235052 26C235428 26C235689 26C236038 26C235053 26C235429 26C235691 26C236039 26C235054 26C235430 26C235692 26C236042 26C235055 26C235431 26C235693 26C236111 26C235134 26C235432 26C235694 26C236252 26C235135 26C235433 26C235695 26C236253 26C235136 26C235434 26C235696 26C235137 26C235435 26C235697 26C235138 26C235436 26C235698",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "eu-ivdr:https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec7",
       "title": "New MDCG Position Paper: Management of SS(C)P in EUDAMED after mandatory use",
       "sourceId": "eu-ivdr",
@@ -206,6 +256,29 @@
       "severity": "medium",
       "read": false,
       "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99276",
+      "title": "P28 PHANTON INTRAMEDULLARY NAIL SYSTEM, Phantom Hindfoot TTC/TC Ball Tipped Guide Rod, SIZE: 0.30 mm, LENGTH: 800 mmm, ITem number P31-955-1800-S; provides stabilization of the hindfoot and ankle.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-17",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Paragon 28 received two (2) complaints were received involving breaches in the sterile barrier of the pouch packaging. | Firm: Paragon 28, Inc. 14445 Grasslands Dr Englewood CO 80112-7062 | Product code: HXI | Code info: UDI (01)00889795061577(17)300122(10)501167202225, Lot Number 501167202225; UDI (01)00889795061577(17)300122(10)501167302225, Lot Number 501167302225; UDI (01)00889795061577(17)300527(10)501209514725, Lot Number 501209514725; UDI (01)00889795061577(17)301006(10)501259627925, Lot Number 501259627925; UDI (01)00889795061577(17)301118(10)501275832225, Lot Number 501275832225.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
