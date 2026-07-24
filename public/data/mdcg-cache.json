@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-23T22:57:49.937Z",
+  "collectedAt": "2026-07-24T23:02:43.900Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 107,
+  "count": 112,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -122,6 +122,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99288",
+      "title": "Olympus 4K UHD LCD Monitor. Model Number: OEV321UH. An electrically powered visual display unit designed for displaying graphical information in color.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential for the HDMI and DisplayPort (DP) connectors can become faulty resulting in image loss or image abnormalities. | Firm: Olympus Corporation of the Americas | Product code: GCJ | Code info: Model Number: OEV321UH. UDI-DI: 04953170418723. Serial Numbers: 7503474, 7503477, 7503479, 7503263, 7503264, 7503262, 7503261, 7503260, 7503259, 7503335.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99336",
       "title": "Rapid Refill Continuous Injection System, UPN M00566001",
       "sourceId": "us-fda",
@@ -137,6 +160,29 @@
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99406",
+      "title": "SnapshotGLO Wound Imaging Device, Model KB100, KB100AA.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-30",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "The software controlling the wound imaging device's battery charging circuit was not designed to recognize and recover a battery that has fully discharged into a low-power \"shipping mode.\" When this occurs, an affected device will not resume charging when reconnected to power and becomes temporarily unusable/ unavailable for wound imaging until corrected. | Firm: KENT IMAGING, INC. | Product code: QJF | Code info: UDI-DI: B376KB1000, Software Revisions v4.2.0 and v4.1.3",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
@@ -206,6 +252,29 @@
       "severity": "medium",
       "read": false,
       "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99236",
+      "title": "Boston Scientific TheraSphere 360 Y-90 Management Platform, Model Number M00139509001; Radiological Image Processing System.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-19",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Software anomaly occurs when a user adds one or more vials to the cart and subsequently returns to the Activity Calculator to modify one or more input. When a user modifies an input and selects \"Recalculate\", the dose calculation is updated correctly; however, any vials that were previously added to the cart are not automatically updated to reflect the revised calculation. | Firm: Boston Scientific Corporation | Product code: LLZ | Code info: UDI/DI 00191506068264, All released software versions (V1.1.2, V1.2.1, V1.2.2. V2.0.1, V2.0.2)",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
@@ -306,6 +375,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99342",
+      "title": "Ventriculostomy Kit, REF: 46154",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-17",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Ventriculostomy devices, used during ventriculostomy procedures to gain access to the ventricular system, may exhibit endotoxin levels that exceed the acceptable limit for devices that come into contact with cerebrospinal fluid; endotoxin exposure can cause an acute inflammatory process. | Firm: Medtronic Neurosurgery | Product code: HBG | Code info: UDI-DI: 00673978947396, Lot: 2025-08779",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99075",
       "title": "Cyberknife Treatment Deliver System equipped with the Xchange Robotic Collimator Changer; Linear Accelerator",
       "sourceId": "us-fda",
@@ -352,6 +444,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99109",
+      "title": "Olympus High Flow Insufflation Unit - UHI-4. Model Number: UHI-4",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential for unexpected instances where the front panel display turns off unexpectedly, and air delivery (insufflation) ceases. | Firm: Olympus Corporation of the Americas | Product code: HIF | Code info: Model Number: UHI-4. UDI: 04953170324147, 04953170467219. All Serial Numbers.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99210",
       "title": "ST AIA-Pack Testosterone, IN VITRO DIAGNOSTIC USE ONLY for the quantitative measurement of testosterone in human serum on specific Tosoh AIA System analyzers, Model Number 0025204",
       "sourceId": "us-fda",
@@ -376,7 +491,7 @@
     },
     {
       "id": "us-fda:98893",
-      "title": "ABIOMED Intro Kit, 14Fr x 13 and 25 cm, PKGD, JP, Pump Set Code 0052-0023-JP; containing Introducer Product Code 0052-3025-JP. heart pump and accessories",
+      "title": "ABIOMED Impella 5.5 SmartAssist S2 Set, JP, Pump Set Codes 1000459, 1000460; containing Introducer Product Code 0052-3006-JP. heart pump and accessories",
       "sourceId": "us-fda",
       "source": "FDA",
       "authority": "U.S. Food and Drug Administration",
@@ -386,7 +501,7 @@
       "date": "2026-06-11",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
-      "rawSummary": "A potential for introducer sheath leakage from under the sheath cap and along the hub score lines, identified in 14Fr and 23Fr Introducers. These manufacturing issues are not visually detectable by the user, and 14Fr or 23Fr Introducers are provided in every pump set. | Firm: Abiomed, Inc. | Product code: DYB | Code info: Pump Set Code 0052-0023-JP; Introducer Product Code 0052-3025-JP. GTIN: 00813502011449. All current batches in field.",
+      "rawSummary": "A potential for introducer sheath leakage from under the sheath cap and along the hub score lines, identified in 14Fr and 23Fr Introducers. These manufacturing issues are not visually detectable by the user, and 14Fr or 23Fr Introducers are provided in every pump set. | Firm: Abiomed, Inc. | Product code: DYB | Code info: Pump Set Codes 1000459, 1000460; Introducer Product Code 0052-3006-JP. GTIN: 00813502013054. All current batches in field.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
