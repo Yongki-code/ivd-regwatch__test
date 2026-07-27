@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-26T22:59:27.395Z",
+  "collectedAt": "2026-07-27T23:03:15.102Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 112,
+  "count": 114,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -467,6 +467,52 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99228",
+      "title": "MiniMed Go App, Model: MMT-8600 (iOS), MMT-8601 (Android)",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "For MiniMed Go app version 1.0.0 and 1.1.0, when the Set day and night is turned OFF and missed dose or Correct high glucose alerts are enabled, the associated alerts will not be triggered during the nighttime. This could result in missed rapid-acting insulin doses without the user s knowledge, and may lead to delayed therapy and an increased risk of hyperglycemia. | Firm: Medtronic MiniMed, Inc. | Product code: NDC | Code info: Model/UDI-DI: MMT-8600/00199150038978(10)1.1.0, MMT-8601/00199150038985(10)1.1.0 Software Versions: 1.0.0, 1.1.0",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99333",
+      "title": "L-Cath Midline S/L Catheter 20ga (3F) 1mm x 20cm, REF: 384620",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-15",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Catheters, indicated for short/long-term peripheral access to central venous system for the administration of fluids, medications, nutrients; and sampling, may experience leaking and/or cracking at the hub, which may lead to replacement, inability to flush/aspirate catheter, catheter occlusion, therapy interruption, blood loss, tissue irritation, bloodstream infection. | Firm: Argon Medical Devices, Inc | Product code: LJS | Code info: REF/UDI-DI/Lot(Expiration): 384620/00886333210008/11490543(7/28/2026)",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99210",
       "title": "ST AIA-Pack Testosterone, IN VITRO DIAGNOSTIC USE ONLY for the quantitative measurement of testosterone in human serum on specific Tosoh AIA System analyzers, Model Number 0025204",
       "sourceId": "us-fda",
@@ -491,7 +537,7 @@
     },
     {
       "id": "us-fda:98893",
-      "title": "ABIOMED Impella 5.5 SmartAssist S2 Set, JP, Pump Set Codes 1000459, 1000460; containing Introducer Product Code 0052-3006-JP. heart pump and accessories",
+      "title": "ABIOMED Impella CP Introducer Kit 14 Fr, 13 cm, Pump Set Code 0052-0038, containing Kit, 14Fr Introducer, 13cm, Long Taper, Introducer Product Code 0052-3052. heart pump and accessories",
       "sourceId": "us-fda",
       "source": "FDA",
       "authority": "U.S. Food and Drug Administration",
@@ -501,7 +547,7 @@
       "date": "2026-06-11",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
-      "rawSummary": "A potential for introducer sheath leakage from under the sheath cap and along the hub score lines, identified in 14Fr and 23Fr Introducers. These manufacturing issues are not visually detectable by the user, and 14Fr or 23Fr Introducers are provided in every pump set. | Firm: Abiomed, Inc. | Product code: DYB | Code info: Pump Set Codes 1000459, 1000460; Introducer Product Code 0052-3006-JP. GTIN: 00813502013054. All current batches in field.",
+      "rawSummary": "A potential for introducer sheath leakage from under the sheath cap and along the hub score lines, identified in 14Fr and 23Fr Introducers. These manufacturing issues are not visually detectable by the user, and 14Fr or 23Fr Introducers are provided in every pump set. | Firm: Abiomed, Inc. | Product code: DYB | Code info: Pump Set Code 0052-0038; Introducer Product Code 0052-3052. GTIN: 00813502011708, 00813502012729. All current batches in field.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
