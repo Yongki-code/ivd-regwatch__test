@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-07-27T23:03:15.102Z",
+  "collectedAt": "2026-07-28T23:00:57.422Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 114,
+  "count": 116,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -237,6 +237,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99320",
+      "title": "EOPA 3D Arterial Cannula 22FR, intended for use with cardiopulmonary bypass as an arterial return cannula, Model Number 78322",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-24",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Medtronic received reports of pinhole leaks in the wire-wound body of 22 Fr EOPA 3D Arterial Cannulae and EOPA Elongated One-Piece Arterial Cannulae used during cardiopulmonary bypass procedures. | Firm: Medtronic Perfusion Systems | Product code: DWF | Code info: UDI-DI: 20199150023251, Lot Numbers: 0232709184 0232745036 0232798416 0232862784 0232862787; UDI-DI: 00199150023257, Lot Numbers: 0232862787",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99291",
       "title": "Power F2 Powered Fastening System, Product No. 0567091 Powered fastening system intended for professional use only. Designed to load, unload, and secure a compatible wheeled stretcher inside a ground-based ambulance. Item no. 0567091",
       "sourceId": "us-fda",
@@ -363,7 +386,7 @@
       "date": "2026-06-17",
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
-      "rawSummary": "Paragon 28 received two (2) complaints were received involving breaches in the sterile barrier of the pouch packaging. | Firm: Paragon 28, Inc. 14445 Grasslands Dr Englewood CO 80112-7062 | Product code: HXI | Code info: UDI (01)00889795061577(17)300122(10)501167202225, Lot Number 501167202225; UDI (01)00889795061577(17)300122(10)501167302225, Lot Number 501167302225; UDI (01)00889795061577(17)300527(10)501209514725, Lot Number 501209514725; UDI (01)00889795061577(17)301006(10)501259627925, Lot Number 501259627925; UDI (01)00889795061577(17)301118(10)501275832225, Lot Number 501275832225.",
+      "rawSummary": "Paragon 28 received two (2) complaints were received involving breaches in the sterile barrier of the pouch packaging. | Firm: Paragon 28, Inc. | Product code: HXI | Code info: UDI (01)00889795061577(17)300122(10)501167202225, Lot Number 501167202225; UDI (01)00889795061577(17)300122(10)501167302225, Lot Number 501167302225; UDI (01)00889795061577(17)300527(10)501209514725, Lot Number 501209514725; UDI (01)00889795061577(17)301006(10)501259627925, Lot Number 501259627925; UDI (01)00889795061577(17)301118(10)501275832225, Lot Number 501275832225.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
@@ -390,6 +413,29 @@
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99347",
+      "title": "AMS ALIGNED MEDICAL SOLUTIONS medical convenience kits labeled as: Block Tray - RX, Part Number AMS12414",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-06-17",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "Windstone Medical Packaging issued a recall for specific item(s) and lot(s) of Aligned Medical Solutions (AMS) convenience kits containing Elevaris Lidocaine HCl injection USP. Elevaris Medical Devices Inc. recalled the Lidocaine HCl injection USP due to supplier quality issues. | Firm: Windstone Medical Packaging, Inc. | Product code: OJG | Code info: UDI/DI B098AMS124140, Lot Numbers: 230411.",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
