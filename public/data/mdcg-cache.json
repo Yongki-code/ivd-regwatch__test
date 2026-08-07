@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-08-05T23:00:46.294Z",
+  "collectedAt": "2026-08-07T01:30:09.332Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 122,
+  "count": 127,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -99,6 +99,29 @@
       "sourceId": "eu-ivdr"
     },
     {
+      "id": "us-fda:99459",
+      "title": "FilmArray NGDS Warrior Panel REF NGDS-ASY-0007 UDI-DI code: (01)00851458005136 The FilmArray NGDS Warrior Panel is a qualitative, multiplexed, nucleic acid-based in vitro diagnostic test intended for use with the FilmArray 2.0 system. The FilmArray NGDS Warrior Panel detects and identifies Bacillus anthracis, Yersinia pestis, Francisella tularensis, Coxiella burnetii, Ebola virus, and Marburg virus nucleic acids directly from human whole blood (EDTA).",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Firm has identified mismatches between the outbreak strain and the reference strain used in the development of its qualitative, multiplexed, nucleic acid-based in vitro diagnostic panel test. | Firm: Biofire Defense | Product code: PRD | Code info: Part Number: NGDS-ASY-0007 UDI-DI code: (01)00851458005136 Lot Numbers: 311825D 312025D 313526D 322925D",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "eu-ivdr:https://health.ec.europa.eu/latest-updates/monitoring-availability-medical-devices-eu-market-2024-01-09_en",
       "title": "Publication of dashboard version 3.5 for the Study supporting the monitoring of availability of medical devices on the EU market",
       "sourceId": "eu-ivdr",
@@ -111,6 +134,29 @@
       "link": "https://health.ec.europa.eu/latest-updates/monitoring-availability-medical-devices-eu-market-2024-01-09_en",
       "summary": "IVDR의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Publication of dashboard version 3.5 for the Study supporting the monitoring of availability of medical devices on the EU market",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99475",
+      "title": "GE Healthcare Portrait Core Services SW V 1.2.0, REF 5700592",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-10",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Portrait Core Services Software version V1.2.0 Security Vulnerability | Firm: GE Medical Systems Information Technologies Inc | Product code: MWI | Code info: GTIN 00198953056752, Lot/Serial Numbers: SWT25510001TA, 3M1D391215, 3M1D411081, 3M1D411083, 3M1D3B100D, SWT26110010TA, SWT26070001TA, SWT26120008TA, 3M1D411080, 3M1D411082, 3M1D3B100C.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
@@ -168,6 +214,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99389",
+      "title": "Atellica CH Urine Albumin REF: 11537225",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "processing Atellica CH Urine Albumin (UAlb) tests on Atellica CH and Atellica CI analyzers may lead to the following issues: Falsely depressed Atellica CH Urea Nitrogen (UN_c) results; Falsely depressed Atellica CH Enzymatic Hemoglobin A1c (A1c_E) results; and Increased rate of reaction cuvette QC failures and Delayed results due to QC failures. | Firm: Siemens Healthcare Diagnostics, Inc. | Product code: JIR | Code info: All Lots within expiry/UDI: 00630414611099",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99332",
       "title": "OsteoBallast, 45 x 17.5 mm (SeaSpine Brand), REF: 56800095. Ballast, 45 x 17.5 mm (IsoTis Brand), REF: 02-8000-095",
       "sourceId": "us-fda",
@@ -203,6 +272,52 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Potential cracking of the Hoffmann II Carbon Connecting Rods following cleaning and sterilization. | Firm: Stryker GmbH | Product code: KTT | Code info: Catalog Number: 50796150. GTIN: 04546540389954. All lot numbers.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99346",
+      "title": "Intramedullary Bone Saw Blade Assembly Model/Catalog Number: 475640 Product Description: Intramedullary Bone Saw Blade Assembly 16mm",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-01",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "Zimmer Biomet is conducting a medical device recall removal for various sizes of the Intramedullary Bone Saw Blade Assembly due to potential sterile barrier packaging damage caused by an exposed saw blade. | Firm: Biomet, Inc. | Product code: LXH | Code info: UDI-DI (01)00887868507830(17)360316(10)67818792; Lot 67818792",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99344",
+      "title": "5-PLASMA Bivalirudin AMR Verification Kit, Model Number 5D-45905",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-01",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Stability issues with the reconstituted lyophilized human plasma and bivalirudin matrix have been identified. These stability issues lead to a degradation of measurable bivalirudin in the controls, calibrators, and linearity values. | Firm: Aniara Diagnostica LLC | Product code: JIT | Code info: UDI-DI: 05070002420378, Lot Number: KE132603",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
