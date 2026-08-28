@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-08-27T02:59:10.119Z",
+  "collectedAt": "2026-08-28T05:59:32.720Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 145,
+  "count": 151,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -76,6 +76,75 @@
   ],
   "items": [
     {
+      "id": "us-fda:99607",
+      "title": "POWERSEAL 5 MM (in diameter) 23 CM (long), Curved Jaw Sealer & Divider, Double Action. GEI / Electrosurgical, cutting & coagulation & accessories",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-18",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential labeling deficiency in which an outer shelf box is incorrectly labeled as a 37-cm device. | Firm: Olympus Corporation of the Americas | Product code: GEI | Code info: Model Number: PS-0523CJDA. UDI-DI: 00821925044531. Lot Number: FR490902.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99596",
+      "title": "ORT300, operating room table, ORT300 Modular Table Main Unit Assy Part Numbers 114093-000 and 114093-600",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "The linear actuator and rotational lock mechanism components may experience a mechanical failure that prevents the system from transitioning between locked and unlocked state. This may pose a risk of injury to the patient if unintended rotational movement occurs during a procedure. | Firm: IMRIS Imaging Inc | Product code: KXJ | Code info: 114093-000 - UDI-DI: 00857534006356, Serial Numbers: 10005695, 10002998, 10002997, 10005456, 10005612, 10004372, 10005613, 10002841, 10011119; 114093-600 - UDI-DI: 00857534006462, Serial Numbers: 10002996, 10004515, 10007411, 10007376",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99222",
+      "title": "Alphenix Models INFX-8000C INFX-8000F INFX-8000V This device is a digital radiography/fluoroscopy system used in a diagnostic and interventional angiography configuration. The system is indicated for use in diagnostic and angiographic procedures for blood vessels in the heart, brain, abdomen and lower extremities.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Due to the fixing screws of ceiling movement gear in ceiling suspended arm that are part of the X-ray interventional systems may become loose. | Firm: Canon Medical System, USA, INC. | Product code: OWB | Code info: Model Number: INFX-8000C/B3 UDI code: Pending SID Number:30101165 Serial Number: B3E2422005 Model Number: INFX-8000F/SG UDI code: Pending SID Number: 30093711 Serial Number: SGC2412001 Model Number: INFX-8000V/SZ UDI code: Pending SID Number: 30029686 Serial Number: SZA2422001 SID Number: 79000002 Serial Number:SZA2442004 Model Number: INFX-8000V/SX UDI code: Pending SID Number: 30049491 Serial Number: SXA2432001 SID Number: 30100053 Serial Number: SXA2432002 Model Number: INFX-8000V/B9 UDI code: Pending SID Number: 30059175 Serial Number: B9F2412001 Model Number: INFX-8000V/ST UDI code: Pending SID Number: 30059180 Serial Number: STA2412001 Model Number: INFX-8000V/SZ UDI code: Pending SID Number: 30095017 Serial Number: SZA2432003 SID Number: 30097052 Serial Number: SZA2422002",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99484",
       "title": "BD Needle Kit for Powered Driver 15mm x 15Ga, REF: D015151NK, BD Needle Kit for Powered Driver 25mm x 15Ga, REF: D015251NK, BD Needle Kit for Powered Driver 35mm x 15Ga, REF: D015351NK, BD Needle Kit for Powered Driver 45mm x 15Ga, REF: D015451NK, BD Needle Kit for Powered Driver 55mm x 15Ga, REF: D015551NK",
       "sourceId": "us-fda",
@@ -91,6 +160,29 @@
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99537",
+      "title": "healthmark ProChek-W Protein Test for Robotic Arms; ProChek-Semi Quantitative Protein Test, Model Number PT-SQ-001",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-29",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Test manufactured with an expired ingredient which may present as either a false negative or positive. | Firm: Healthmark Industries Co., Inc. | Product code: SDC | Code info: Serial/Lot Numbers: 200035, 200036, 200037, 200038, 200039, 200040, 30028.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
@@ -168,6 +260,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99529",
+      "title": "FUJIFILM Synapse PACS software v7.4.310; radiological image processing system",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-22",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Software issue may cause the ruler measurement to be inaccurate. | Firm: FUJIFILM Healthcare Americas Corporation | Product code: LLZ | Code info: UDI (01)00854904006008(10)0704310, Serial Numbers: CV-00272120, CV-0080080176, CV-01318490, CV-01-80102732, CV-80057523, CV-00494020-38",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99322",
       "title": "Dentsply Sirona Capsule Mixer Model No. 5546068",
       "sourceId": "us-fda",
@@ -203,6 +318,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Due to a firmware defect, the portable organ transfer device datalogger may lose its configuration, resulting in a blank screen and loss of displayed preservation parameters. | Firm: Paragonix Technologies Inc. | Product code: KDN | Code info: All Serial Numbers/UDI: 00850005470342 Software Version: Paragonix App Ver. 6.1.1/6.1.2",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99404",
+      "title": "Midmark Digital ECG HD+12, HD+15, Model/Catalog Number: 4-000-0080 Software Version: Midmark IQecg Plugin versions starting with v10 and prior to v10.1.0.18.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-20",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "A communication anomoly may result in incorrect electrocardiogram waveforms of a patient and an inaccurate beats-per-minute calculation. | Firm: Midmark Corporation | Product code: DRG | Code info: Lot Code: This correction affects IQecg plugin software versions starting with v10 and prior to v10.1.0.18 installed on Midmark Digital ECG. The Midmark Digital ECG system information is provided below. The total quantities manufactured and distributed noted below are the combined IQecgs Digital ECG and Midmark Digital ECG systems. Serial Numbers: 7817519 7817645, L1130587 V2967564 UDI-DI: 00841709121319, 08056732652491",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
