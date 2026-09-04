@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-09-03T23:49:52.091Z",
+  "collectedAt": "2026-09-04T23:47:16.044Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 151,
+  "count": 157,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -99,6 +99,75 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99557",
+      "title": "Baxter Novum IQ Syringe Pump, Loaner, Model Number 40800BAXUSL",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-11",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "A software issue that may occur during a Volume/Time (VOT) multi-syringe infusion when a syringe reaches empty and is replaced while a Volume To Be Infused (VTBI) remains. | Firm: Baxter Healthcare Corporation | Product code: FRN | Code info: UDI-DI 00197886002300, all serial numbers",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99556",
+      "title": "5008X HD/HDF with Twister Blood Tubing Set Part Number 03-5350-8",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-10",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Heightened probability of blood leak from the connection between the Arterial Alpha Clip and the main line or pump segment. Leak during treatment may lead to blood loss and hypovolemia. | Firm: Fresenius Medical Care Renal Therapies Group, LLC | Product code: KOC | Code info: Lots 25JR01802 25NR01017 25NR01266 UDI-DI 00840861102525",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99784",
+      "title": "Philips Brilliance CT 64: Brilliance CT 64 Channel Product Code: 728231, Brilliance CT 64 Upgrades Product Code: 728232. Software 4.1.10.x",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Philips has identified an unintended radiation issue with the Philips IQon, iCT, Ingenuity, and Brilliance CT 64 systems that could affect the performance of the equipment. | Firm: Philips North America Llc | Product code: JAK | Code info: Brilliance CT 64 Channel UDI (01)00884838083325. Brilliance CT 64 Upgrades UDI N/A.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99596",
       "title": "ORT300, operating room table, ORT300 Modular Table Main Unit Assy Part Numbers 114093-000 and 114093-600",
       "sourceId": "us-fda",
@@ -122,6 +191,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99524",
+      "title": "LUX-Dx, LUX-Dx II, LUX-Dx II+ Insertable Cardiac Monitor System, SERVER SW LAT CLARITY DS ANZ, Model Number 7248, All Versions (Current 7.7)",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "There is potential for a delay in AF Burden Alert notification affecting the server software which supports the Insertable Cardiac Monitors (ICMs). Delayed notification of an AF Burden Alert may delay clinical evaluation or therapeutic intervention of an atrial arrhythmia. | Firm: Boston Scientific Corporation | Product code: MXD | Code info: UDI-DI: 00802526613852",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99222",
       "title": "Alphenix Models INFX-8000C INFX-8000F INFX-8000V This device is a digital radiography/fluoroscopy system used in a diagnostic and interventional angiography configuration. The system is indicated for use in diagnostic and angiographic procedures for blood vessels in the heart, brain, abdomen and lower extremities.",
       "sourceId": "us-fda",
@@ -134,6 +226,52 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Due to the fixing screws of ceiling movement gear in ceiling suspended arm that are part of the X-ray interventional systems may become loose. | Firm: Canon Medical System, USA, INC. | Product code: OWB | Code info: Model Number: INFX-8000C/B3 UDI code: Pending SID Number:30101165 Serial Number: B3E2422005 Model Number: INFX-8000F/SG UDI code: Pending SID Number: 30093711 Serial Number: SGC2412001 Model Number: INFX-8000V/SZ UDI code: Pending SID Number: 30029686 Serial Number: SZA2422001 SID Number: 79000002 Serial Number:SZA2442004 Model Number: INFX-8000V/SX UDI code: Pending SID Number: 30049491 Serial Number: SXA2432001 SID Number: 30100053 Serial Number: SXA2432002 Model Number: INFX-8000V/B9 UDI code: Pending SID Number: 30059175 Serial Number: B9F2412001 Model Number: INFX-8000V/ST UDI code: Pending SID Number: 30059180 Serial Number: STA2412001 Model Number: INFX-8000V/SZ UDI code: Pending SID Number: 30095017 Serial Number: SZA2432003 SID Number: 30097052 Serial Number: SZA2422002",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99550",
+      "title": "Brand Name: Extension Set Product Name: DISCOFIX FOUR WAY STOPCOCK Model/Catalog Number: 456025",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-04",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "Specific lots of Discofix Stopcock Sets recalled due to an incorrect expiration date printed on the carton shipper label. | Firm: B Braun Medical Inc | Product code: FPA | Code info: Lot Code: Model No 456025, UDI-DI 04046964183638, Lot Numbers 0062062778 and 0062062779",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99496",
+      "title": "HEALON EndoCoat PRO, REF: 10300012 (US/CAN) HEALON DUET PRO II, REF: 10300016 (US/CAN) HEALON EndoCoat PRO, REF: 10301012 (EU); HEALON DUET PRO II, REF: 10301016 (EU)",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-07-31",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Surgical instructions sent for viscoelastic products used during ophthalmic viscosurgical cataract procedures including in part: If resistance is encountered during insertion, withdraw cannula and reassess the insertion conditions (i.e. insertion angle, incision size, etc.) before proceeding because forcing the cannula may cause corneal abrasion, iris trauma or descemet's membrane detachment. | Firm: Johnson & Johnson Surgical Vision, Inc. | Product code: LZP | Code info: REF/UDI-DI/Lot: 10300012/5050474755093/UA32232, UA32250, UA32268, UA32290, UA32292, UA32303, UA32371, UP31203, UP31205; 10300016/5050474755116/UA32447, UA32448, UA32449, UB33008, UB33026, UB33082, UB33083, UB33175; 10301012/5050474755109/UB33014, UB33041, UB33057, UB33060, UB33100, UB33190; 10301016/5050474755123/UB33084, UB33194",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
