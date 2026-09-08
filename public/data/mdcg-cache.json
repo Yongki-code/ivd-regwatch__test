@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-09-06T23:34:17.638Z",
+  "collectedAt": "2026-09-08T00:01:43.492Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 157,
+  "count": 159,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -168,6 +168,29 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99680",
+      "title": "Getinge PVC Thoracic Catheter, Firm PVC Straight, 10 per Case; Size(Model Number): 1. 28FR(15028), 2. 36FR(15036);",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-07",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "An Out of Specification result (OOS) related to bacterial endotoxin testing in a single lot of catheters. | Firm: Atrium Medical Corporation | Product code: GBZ | Code info: 1. Model Number(Size): 15028(28FR); UDI-DI: 00650862150285; Lot Number: ME244891; 3. Model Number(Size): 15036(36FR); UDI-DI: 00650862150360; Lot Number: ME244850;",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99596",
       "title": "ORT300, operating room table, ORT300 Modular Table Main Unit Assy Part Numbers 114093-000 and 114093-600",
       "sourceId": "us-fda",
@@ -203,6 +226,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "There is potential for a delay in AF Burden Alert notification affecting the server software which supports the Insertable Cardiac Monitors (ICMs). Delayed notification of an AF Burden Alert may delay clinical evaluation or therapeutic intervention of an atrial arrhythmia. | Firm: Boston Scientific Corporation | Product code: MXD | Code info: UDI-DI: 00802526613852",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99601",
+      "title": "Product Name: DermaV Laser System Model/Catalog Number: DermaV Medical laser device that delivers pulsed laser energy at wavelengths of 532 nm and 1064 nm through a fiber-optic handpiece. The system may be configured with an Intelligent Cooling Device (ICD) to provide epidermal cooling during laser treatment",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-06",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Utilizing higher fluences at 1064nm wavelength with current cryogen parameters may result in a spark/loud noise during treatment, potentially resulting in patient burn. | Firm: Lutronic Corporation | Product code: GEX | Code info: Lot Code: Model: DermaV Software Version: 1.06 UDI #: 08800291820200 Serial Numbers: DV025A010, DV025A011, DV025A012, DV025A013, DV025A014, DV025A015 DV025A016, DV025A018, DV025A019, DV025A020, DV025A021, DV025A022, DV025B011, DV025B012, DV025B013, DV025B014, DV025B015, DV025D006, DV025D007, DV025D008, DV025D009, DV025D010, DV025E003, DV025E004, DV025E005, DV025E006, DV025E007, DV025E008, DV025E009, DV025E010, DV025E011, DV025E012, DV025E013, DV025E014, DV025E016, DV025E017, DV025F012, DV025F013, DV025F014, DV025F015, DV025F016, DV025G011, DV025G012, DV025G013, DV025G014, DV025G015, DV025G016, DV025G017, DV025G018, DV025G019, DV025G020, DV025J021, DV025J022, DV025J023, DV025J025, DV025J026, DV025J027, DV025J028, DV025J034, DV025J035, DV025J036, DV025J037, DV025J038, DV025J040, DV025K018, DV025K019, DV025K020, DV025K021, DV025K023, DV025K024, DV025K025, DV025K027, DV025M031, DV025M032, DV025M033, DV025M034, DV026B001, DV026B002, DV026B003, DV026B004, DV026B005, DV026B010, DV026B014, DV026B015, DV026B016, DV026B017, DV026B018, DV026C006, DV026C007, DV026C008, DV026C009, DV026C010, DV025M035",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
