@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-09-08T23:54:06.197Z",
+  "collectedAt": "2026-09-09T23:52:27.230Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 159,
+  "count": 160,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,13 +72,32 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
-    },
-    {
-      "source": "ca-health-canada",
-      "message": "fetch failed: UND_ERR_CONNECT_TIMEOUT"
     }
   ],
   "items": [
+    {
+      "id": "eu-ivdr:https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en",
+      "title": "MDCG 2020-16 rev.5 - Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746 (September 2026)",
+      "sourceId": "eu-ivdr",
+      "source": "IVDR",
+      "authority": "MDCG",
+      "region": "EU",
+      "country": "EU",
+      "type": "MDCG Guidance",
+      "date": "2026-09-09",
+      "link": "https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en",
+      "summary": "제품 분류 또는 경계 제품 판단에 영향을 줄 수 있는 문서입니다. 제품군별 분류 근거와 기존 기술문서의 규정 인용이 최신인지 확인하세요.",
+      "rawSummary": "MDCG 2020-16 rev.5 - Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746 (September 2026)",
+      "severity": "medium",
+      "read": false,
+      "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
     {
       "id": "us-fda:99607",
       "title": "POWERSEAL 5 MM (in diameter) 23 CM (long), Curved Jaw Sealer & Divider, Double Action. GEI / Electrosurgical, cutting & coagulation & accessories",
