@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-10-09T01:47:03.944Z",
+  "collectedAt": "2026-10-10T01:33:21.740Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 178,
+  "count": 185,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -76,6 +76,29 @@
   ],
   "items": [
     {
+      "id": "us-fda:99856",
+      "title": "HexaVue Focus Integration System, a single, all-in-one system that handles operating room video routing, surgical video integration, and environmental control, Software Version: 2.0.18",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-23",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "A software issue may result in unintended mismatch of patient information on manually printed images. Incorrect patient information appearing on printed images could create a documentation discrepancy or incorrect association of clinical images with a patient record. | Firm: Steris Corporation | Product code: FTA | Code info: Lot Code: UDI: 00724995245047; Serial Numbers: RL25293001 RL25301003 RL25301004 RL26007031 RL26013044 RL26013045 RL26028062 RL26040066 RL26054029 RL26062001 RL26063005 RL26063007 RL26063013 RL26063014 RL26063019 RL26063021 RL26063022 RL26063023 RL26069033 RL26069034 RL26072049 RL26072052 RL26072053 RL26072055 RL26072056 RL26072056 RL26077072 RL26077073 RL26077074 RL26083077 RL26084078 RL26084080 RL26084081 RL26085083 RL26085084 RL26085085 RL26085086 RL26085087 RL26085088 RL26085089 RL26089090 RL26089091 RL26089092 RL26089093 RL26089094 RL26089095 RL26089096 RL26089097 RL26098098 RL26104099 RL26105102 RL26133103 RL26133104 RL26138105 RL26139106 RL26140114 RL26187116 RL26243121",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99816",
       "title": "NOxBOXi Nitric Oxide Delivery System. Model Number: NOXBOX-I.",
       "sourceId": "us-fda",
@@ -114,6 +137,144 @@
       "severity": "medium",
       "read": false,
       "action": "법규 원문과 적용일을 확인한 뒤 인증기관 커뮤니케이션, 기술문서 목차, 제품군별 갭 분석표를 업데이트하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99549",
+      "title": "Product Name: Nihon Kohden CNS-6200 Series Central Nurse Station, Model/Catalog Number: CN-6201 Software Version: software versions: 01-03, 01-04, 01-05, 01-06, 02-10, 02-11, and 02-40 Product Description: The device is intended for use by medical professionals to provide cardiac and vital signs monitoring for multiple patients within a medical facility. The CNS-6200 Series Central Nurse Station will display and record physiological data from up to forty telemetry receiver/transmitters and generates an alarm when a measured parameter falls outside a pre-set limit or when life threatening arrhythmia is detected. Arrhythmia detection and alarm determination are functions of the telemetry receivers/transmitters or individual bedside monitor. Component: No",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-08",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Due to a cybersecurity issue associate with a NULL Pointer Dereferences vulnerabiity. If exploited would potentially cause disruption of the centralized monitoring of multiple beds and the visualization of alarms. | Firm: Nihon Kohden America LLC | Product code: MHX | Code info: Lot Code: CNS-6201 (PU-621RA), SW versions: 01-03, 01-04, 01-05, 01-06, 02-10, 02-11, and 02-40",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99787",
+      "title": "VentStar Resus Neo. Neonatal. 25 Units per Box. Part Number: MP00310 Disposable breathing circuit for use with a resuscitation module.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-03",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential cracks in the hose, which could lead to leakage or the hose falling off. | Firm: Draeger, Inc. | Product code: BYE | Code info: Part Number MP00310. UDIDI: 04048675422358. All lot numbers.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99814",
+      "title": "Battle Bandage, REF: 32-700; Patrol IFAK Bag, Black - Advanced, REF: 81-125-BL; Patrol IFAK Bag, Multicam - Advanced, REF: 81-125-MC; Patrol IFAK II, Olive Drab, Stocked (Option 1), 81-129-OD; IFAK Bag, Intermediate, Black - Stocked, 81-133-BL; IFAK Bag, Intermediate, Coyote Brown - Stocked, 81-133-CB; IFAK Bag, Intermediate, Multicam - Stocked, 81-133-MC; IFAK Bag, Advanced, Black - Stocked, 81-135-BL; IFAK Bag, Advanced, Multicam - Stocked, 81-135-MC; LEO Patrol Kit, 81-139; IFAK Refill, 81-301; IFAK Resupply, 81-303-01; IFAK Resupply - CS/30, 81-303-30; K9 Trauma Kit, 81-605; Medic Enhancement Set, 82-504-03; Medic Enhancement Resupply, 82-504-05; Emergency Trauma Kit, 82-520; First Responder - Intermediate, Coyote Brown, 83-303; First Responder, Intermediate, Black, 83-303-BL; DC-First Responder - Intermediate - Foliage Green, 83-303-FG; First Responder, Intermediate, Multicam, 83-303-MC; First Responder - Advanced- Coyote Brown, 83-305-CB; Combat Life Saver - Intermediate - Coyote Brown, 83-323-CB; Combat Life Saver - Intermediate - Multicam, 83-323-MC; Multi Mission, Advanced, Black - Stocked, 84-446-01-BL; Multi Mission, Advanced, Coyote Brown - Stocked, 84-446-01-CB; Multi Mission, Advanced, Multicam - Stocked, 84-446-01-MC; Direct Action Bag, Coyote Brown, Advanced, Stocked, 84-497-CB; DC-DIRECT ACTION BAG, FOLIAGE GREEN, ADVANCED, STOCKED, 84-497-FG; Direct Action Bag, Multicam, Advanced, Stocked, 84-497-MC; Bleeding Control Kit - Advanced, Stocked, 87-155; Stop the Bleed Kit (NJSP), 87-232; Patrol Officer IFAK - Basic, 88-105-01; Patrol Officer IFAK - Advanced, 88-105-03; High Threat Kit - Basic, 88-108-01; High Threat Kit - Intermediate, 88-108-02; High Threat Kit - Advanced, 88-108-03; High Threat Kit - PS, 88-108-05; Micro Trauma Kit (without Tourniquet), Black, 88-147; SDR EDC v1 - OTC, SDR-EDC1OTC; DC-SDR EDC v1 - OTC, SDR-EDC1-OTC; SDR Tactical Battle Belt IFAK - OTC - Black, SDR-TBBOTC; DC-SDR Tactical Battle Belt IFAK - OTC, SDR-TBB-OTC; SDR Tactical Battle Belt IFAK - OTC - Coyote Brown, SDR-TBBOTC-CB; Emergency Trauma Kit (Employee only kit), SG0999/COM",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-02",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Compression bandage may be degraded, which may cause unwanted foreign material to be introduced inside the wound, which may lead to wound exploration and irrigation, formation of scar tissue, and infection. | Firm: Safeguard US Operating LLC | Product code: MHW | Code info: REF/UDI-DI/Lot(Expiration): 32-700/M68932700070/PBO0005447(10/31/2029), PBO0006353(2/12/2030), PBO0004168(9/12/2029), PBO0006219(10/22/2029), PBO0005499(12/27/2028), PBO0005960(11/29/2029), PBO0004076(9/12/2029), PBO0004497(10/31/2029), PBO0004261(9/12/2029), PBO0004301(10/17/2029), PBO0005856(11/29/2029), PBO0005599(2/12/2030), PBO0006434(12/25/2029), PBO0009032(8/14/2031), PBO0008804(9/13/2030), PBO0010083(12/4/2031), PBO0010114(1/14/2032), PBO0007376(6/20/2030), PBO0005601(1/18/2030), PBO0007651(10/31/2029), PBO0007809(7/29/2030), PBO0008889(5/7/2030), PBO0010280(8/24/2031), PBO0010523(2/9/2032), PBO0010613(2/16/2032), PBO0007921(5/7/2030), PBO0009049(8/14/2031), PBO0008482(5/7/2030), PBO0009934(12/4/2031), PBO0009717(7/29/2030), PBO0008104(6/6/2030), PBO0006035(6/6/2030), PBO0009729(8/24/2031), PBO0008615(6/6/2030), PBO0008079(5/7/2030), PBO0008184(7/29/2030), PBO0009639(8/14/2031), PBO0009858(8/24/2031), PBO0004824(12/6/2029), PBO0008078(8/25/2030); 81-125-BL/M68981125030/PBO0010399(1/9/2029), PBO0006315(7/23/2029); 81-125-MC/M68981125030/PBO0006046(12/25/2028), PBO0006198(12/25/2028), PBO0007487(11/14/2028), PBO0007765(10/10/2027), PBO0008917(1/8/2029), PBO0010390(1/9/2029); 81-129-OD/M68981129060/PBO0010400(10/18/2029), PBO0010557(1/9/2029); 81-133-BL/M68981133080/PBO0004848 (9/5/2029); 81-133-CB/M68981133080/PBO0004849(9/11/2028); 81-133-MC/M68981133080/PBO0004850(9/11/2028); 81-135-BL/M68981135060/PBO0006810(1/23/2028), PBO0008450(12/31/2028); 81-135-MC/M68981135060/PBO0008217(12/31/2028), PBO0005853(5/9/2029), PBO0008944(11/28/2029); 81-139/M68981139010/PBO0005528(11/23/2027), PBO0010122(11/23/2027), PBO0007389(11/23/2027); 81-301/M68981301030/PBO0008729(1/8/2029), PBO0009012(1/8/2029), PBO0009785(1/9/2029), PBO0008634(1/8/2029); 81-303-01/M6898130301130/PBO0006031(1/23/2028), PBO0005527(10/3/2028), PBO0007324(1/23/2028), PBO0005163(12/31/2026), PBO0004331(7/17/2028), PBO0009143(12/31/2028), PBO0006564(1/23/2028), PBO0006871(1/23/2028), PBO0005598(11/28/2028), PBO0009321(12/31/2028), PBO0009438(12/31/2028), PBO0009417(9/25/2029), PBO0008167(12/31/2028), PBO0009959(9/25/2029), PBO0005343(9/11/2028), PBO0004484(8/14/2028), PBO0004620(8/14/2028), PBO0004672(8/14/2028), PBO0009328(2/8/2030), PBO0009607(9/25/2029), PBO0007584(12/31/2028), PBO0008805(12/31/2028), PBO0009258(12/31/2028), PBO0009286(11/28/2029), PBO0006327(1/23/2028), PBO0010076(9/25/2029), PBO0007790(12/31/2028), PBO0007810(12/31/2028), PBO0007890(12/31/2028), PBO0006841(1/23/2028), PBO0007937(12/31/2028), PBO0008111(12/31/2028), PBO0007628(12/31/2028), PBO0005321(9/11/2028), PBO0006493(1/23/2028), PBO0008992(11/28/2029), PBO0009051(12/31/2028), PBO0010410(9/25/2029), PBO0006908(1/23/2028), PBO0007234(1/23/2028), PBO0007272(1/23/2028), PBO0010508(9/25/2029), PBO0010580(9/25/2029), PBO0005838(12/25/2028), PBO0005885(5/28/2029), PBO0010009(9/25/2029), PBO0005597(11/28/2028), PBO0005508(10/3/2028), PBO0009296(12/31/2028), PBO0006165(1/23/2028), PBO0006010(1/23/2028), PBO0008084(12/31/2028); 81-303-30/M6898130330010/PBO0006441(1/23/2028), PBO0006326(1/23/2028), PBO0009138(12/31/2028), PBO0009293(12/31/2028), PBO0010158(9/25/2029), PBO0008112(12/31/2028), PBO0008085(12/31/2028), PBO0008072(12/31/2028), PBO0009165(12/31/2028), PBO0009832(9/25/2029), PBO0008439(12/31/2028), PBO0006599(1/23/2028), PBO0008836(12/31/2028), PBO0009329(2/8/2030), PBO0009685(9/25/2029), PBO0004465(8/14/2028), PBO0005391(10/3/2028), PBO0005394(10/3/2028), PBO0005681(10/3/2028), PBO0005750(12/27/2028), PBO0006001(5/28/2029), PBO0006581(1/23/2028), PBO0006649(1/23/2028), PBO0006736(1/23/2028), PBO0006822(1/23/2028), PBO0006872(1/23/2028), PBO0007106(1/23/2028), PBO0007251(1/23/2028), PBO0008825(12/31/2028), PBO0009022(11/28/2029), PBO0008872(12/31/2028), PBO0009740(9/25/2029), PBO0009782(9/25/2029), PBO0009768(9/25/2029), PBO0009831(9/25/2029), PBO0009937(12/31/2028), PBO0009918(9/25/2029), PBO0009951(9/25/2029), PBO0010073(9/25/2029), PBO0010097(9/25/2029), PBO0008957(12/31/2028), PBO0009958(9/25/2029), PBO0009642(9/25/2029), PBO0009664(9/25/2029), PBO0007597(1/23/2028), PBO0007627(12/31/2028), PBO0007988(12/31/2028), PBO0004412(1/20/2028), PBO0004125(12/31/2026), PBO0005322(11/19/2028), PBO0005887(12/27/2028), PBO0006066(1/23/2028), PBO0006117(12/25/2028), PBO0006011(5/28/2029), PBO0004673(8/14/2028), PBO0005169(12/31/2026), PBO0006139(1/23/2028), PBO0006116(5/28/2029), PBO0006227(1/23/2028), PBO0006272(1/23/2028), PBO0006273(1/23/2028), PBO0006191(1/23/2028), PBO0006339(1/23/2028), PBO0010746(9/25/2029), PBO0004359(12/31/2026), PBO0006379(1/23/2028), PBO0004737(7/17/2028), PBO0005576(10/3/2028), PBO0005680(11/28/2028), PBO0006777(1/23/2028), PBO0006669(1/23/2028); 81-605/M68981605020/PBO0005156(12/31/2026), PBO0006811(10/31/2027), PBO0008219(10/31/2027), PBO0004893(10/31/2025), PBO0009367(10/31/2027), PBO0008464(10/31/2027); 82-504-03/M6898250403050/PBO0006956(11/30/2025); 82-504-05/M6898250405060/PBO0006957(11/30/2025), PBO0008338(3/30/2026), PBO0006430(11/30/2025), PBO0010030(2/25/2028), PBO0005728(7/31/2026), PBO0008997(6/30/2026), PBO0005924(7/31/2026); 82-520/M68982520020/PBO0008664(10/29/2028), PBO0008767(12/31/2028); 83-303/M68983303040/PBO0009194(5/7/2030), PBO0010271(9/25/2029), PBO0005157(12/31/2026); 83-303-BL/M68983303040/PBO0004789(8/14/2028); 83-303-FG/M68983303040/PBO0004790(8/14/2028); 83-303-MC/M68983303040/PBO0007112(1/23/2028), PBO0008988(11/28/2029); 83-305-CB/M68983305040/PBO0004851(9/5/2029); 83-323-CB/M68983323100/PBO0004523(3/4/2024); 83-323-MC/M68983323100/PBO0004454(8/14/2028); 84-446-01-BL/M6898444601190, PBO0006368(4/3/2025), PBO0010159(2/18/2028), PBO0006836(6/13/2025), PBO0005726(5/31/2025), PBO0007075(11/30/2025), PBO0004998(10/31/2024); 84-446-01-CB/M6898444601190/PBO0005727(5/31/2025), PBO0007252(11/30/2025), PBO0009313(2/25/2028), PBO0010246(2/18/2028), PBO0008940(3/30/2026), PBO000642994/3/2025), PBO0004996(10/31/2024), PBO0006462(6/13/2025), PBO0006711(5/31/2025), PBO0008339(1/30/2026), PBO0007070(11/30/2025); 84-446-01-MC/M6898444601190/PBO0005202(10/31/2024), PBO0008340(1/30/2026), PBO0007071(11/30/2025), PBO0006428(4/3/2025), PBO0004997(10/31/2024), PBO0008423(1/30/2026), PBO0009303(2/25/2028), PBO0009314(2/25/2028), PBO0009719(2/18/2028), PBO0010160(2/18/2028), PBO0010493(2/25/2028); 84-497-CB/M68984497110/PBO0005812(4/30/2026); 84-497-FG/M68984497110/PBO0004990(10/31/2024); 84-497-MC/M68984497110/PBO0006832(11/30/2025), PBO0008367(3/30/2026); 87-155/M68987155030/PBO0004364(8/14/2028); 87-232/M68987232010/PBO0005412(8/31/2027), PBO0006639(12/31/2027); 88-105-01/M6898810501020/PBO0008466(5/7/2033); 88-105-03/M6898810503070/PBO0005280(11/1/2028), PBO0005908(12/25/2029), PBO0005998(2/12/2030), PBO0008259(10/18/2029); 88-108-01/M6898810801030/PBO0009562(11/23/2027); 88-108-02/M6898810802030/PBO0006951(11/23/2027), PBO0005757(11/23/2027), PBO0008782(11/23/2027), PBO0007373(11/23/2027); 88-108-03/M6898810803030/PBO0004612(11/23/2027), PBO0004942(11/23/2027), PBO0004525 (11/23/2027); 88-108-05/M6898810805010/PBO0006203(1/23/2028); 88-147/¿M68988147010/PBO0005267(11/23/2027), PBO0005095(11/23/2027), PBO0005937(11/23/2027), PBO0006812(11/23/2027); SDR-EDC1OTC/M689SDREDC1OCT010/PBO0005185(5/16/2027), PBO0005872(5/16/2027); SDR-EDC1-OTC/M689SDREDC1OTC050/PBO0004353(10/4/2026), PBO0004463(10/4/2026), PBO0004796(5/16/2027), PBO0004719(5/16/2027), PBO0004916(4/20/2027); SDR-TBBOTC/M6898SDRTBB0TC020/PBO0005184(8/9/2027), PBO0005754(5/16/2027); SDR-TBB-OTC/M689SDR-TBB-OTC/PBO0004797(5/16/2027), PBO0004718(5/16/2027), PBO0004915(5/16/2027); SDR-TBBOTC-CB/M689SDR-TBB-OTC/PBO0005873(5/16/2027); SG0999/COM/M689SG0999COM040/PBO0005076(12/31/2026), M689SG0999COM041/PBO0005331(8/9/2027), M689SG0999COM042/PBO0009635(8/9/2027), M689SG0999COM043/PBO0007404(8/9/2027), M689SG0999COM044/PBO0007568(8/9/2027), M689SG0999COM045/PBO0007899(8/9/2027), M689SG0999COM046/PBO0007897(8/9/2027), M689SG0999COM047/PBO0005744(5/16/2027), M689SG0999COM048/PBO0005777(5/16/2027),",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99800",
+      "title": "DxC 500 AU Clinical Chemistry Analyzers: 1. AU w/out ISE, Part No. C63519 2. AU w/ISE, Part No. C63520",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-02",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "Beckman Coulter has identified a software issue affecting DxC 500 AU Clinical Analyzers when testing plasma samples. Following user configuration of a Clinical Chemistry test to use units different from the system default, a subsequent configuration change and activation of the draft configuration in the System Configuration page may cause the analyzer to revert the test units to the system default setting without notifying the user. The system does Pre-Review Reminders Include OII and CDRHRecallGroup@fda.hhs.gov in any discussions on change/elevation of recalls to Class I classification and situations involving additional public communications (FDA and/or firm issued). Post-Review Reminders Final Check: Ensure your documentation accurately reflects the final recommendation prior to signature. Complete CTS: Recall Product tab, Additional Recall Event Info, Regulation, and Act. Upload PDFs of Consult, Review Memo, and Classification Letter for Class I Recall in DocMan. [Click to enter extra reminder]To add reminders, type the reminder in the text field to the left then press the Tab key. Doc ID 03534.05.06 2 of 8 not provide a warning or notification to alert the user that the configured units have reverted to the default units. This issue can result in falsely elevated reported results. | Firm: Beckman Coulter Inc. | Product code: JJE | Code info: Software version 1.4.5 or earlier. 1. UDI-DI 14987666545058 2. UDI-DI 14987666545065",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99704",
+      "title": "VERIFY Biological Steam Test Pack Model/Catalog Number: S3069",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-31",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 안전성 또는 회수 관련 업데이트입니다. 제품 식별, 영향 범위, 고객 통지 및 시정조치 필요성을 우선 확인하세요.",
+      "rawSummary": "Geobacillus stearothermophilus spore population in affected products may fall below minimum shelf life specification. When used to monitor steam sterilization cycles, the potential hazard is that the biological indicator will show no growth, indicating that the steam cycle was effective, even if the steam cycle did not achieve the intended spore reduction | Firm: Steris Corporation | Product code: FRC | Code info: UDI:10724995023864 Lot numbers: 260810: expiration date - 08/10/2026 260810A: expiration date - 08/10/2026 261106: expiration date - 11/06/2026 270116: expiration date - 01/16/2027",
+      "severity": "high",
+      "read": false,
+      "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99828",
+      "title": "cPM Series Patient Monitor. Operator's Manual: cPM 8/cPM 12",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-08-31",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Certain monitor operator's manuals contain descriptions that may be insufficient or may require clarification regarding selected physiological alarm functions | Firm: Mindray DS USA, Inc. | Product code: MHX | Code info: Part Numbers of the cPM Series Patient Monitor Operator's Manual: 1. cPM 12/cPM 8 Operator's Manual up to and including revision 4.0; Part No. 046-011732-00",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
