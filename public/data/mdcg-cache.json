@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-10-20T00:55:59.861Z",
+  "collectedAt": "2026-10-21T00:24:18.558Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 193,
+  "count": 200,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -72,10 +72,6 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
-    },
-    {
-      "source": "ca-health-canada",
-      "message": "fetch failed: UNABLE_TO_VERIFY_LEAF_SIGNATURE"
     }
   ],
   "items": [
@@ -95,6 +91,29 @@
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99878",
+      "title": "Philips Lumify Diagnostic Ultrasound System",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-24",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Ultrasound system may: 1) Not recognize previous transducer registration, prevent scanning, require re-registration with Wi-Fi/cellular access, which may be unavailable outside of the hospital (ambulances/aircraft/field); 2) At connection between transducer USB cable to tablet/phone, there may be an unstable connection/may disconnect disrupting function. May cause diagnosis/treatment delay. | Firm: Philips Ultrasound, LLC | Product code: IYN | Code info: UDI-DI/Software Version: Android: 00884838122116/1.X, 3.X, 4.X, 5.X. iOS: 00884838124141/2.X and 5.X",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
@@ -138,6 +157,75 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "If the vented cap becomes blocked, gas may accumulate and the bottle may swell due to increased internal pressure. In some cases, excess vapor or liquid chemistry may escape from the bottle when the cap is twisted during opening, which could result in user exposure if required personal protective equipment (PPE) is not properly used. Such exposure may result in injury to the user or others in close proximity. | Firm: Steris Corporation | Product code: FEB | Code info: UDI: 00724995245962 Lot numbers with expiration dates: 688019 10/19/2027 688021 10/19/2027 688023 10/19/2027 688025 10/19/2027 688576 10/26/2027 688580 10/26/2027 688582 10/26/2027 688584 10/26/2027 688586 10/26/2027 688588 10/26/2027 689173 11/2/2027 689175 11/2/2027 689177 11/2/2027 689179 11/2/2027 689983 11/10/2027 689985 11/10/2027 689987 11/10/2027 690299 11/16/2027 690301 11/16/2027 690995 11/24/2027 690997 11/24/2027 690999 11/24/2027 691001 11/24/2027 691741 12/1/2027 691743 12/1/2027 691745 12/8/2027 692203 12/8/2027 692206 12/8/2027 692208 12/8/2027 692210 12/8/2027 692213 12/8/2027 692215 12/8/2027 692217 12/9/2027 692572 12/10/2027 692574 12/10/2027 692576 12/10/2027 692578 12/10/2027 692580 12/10/2027 692582 12/10/2027 692730 12/14/2027 692732 12/14/2027 692734 12/14/2027 692736 12/14/2027 692738 12/14/2027 692740 12/14/2027 692742 12/14/2027 692744 12/14/2027 694359 12/30/2027 694361 12/30/2027 694363 12/30/2027",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99875",
+      "title": "Williams Cystoscopic Injection Needles, used for cystoscopic injection into the urethra, bladder neck, and bladder wall, Reference Part Number 090001-S26, Order Number (GPN) G16112",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "The female Luer lock adapter component in the affected device lots may not have been correctly seated due to misalignment and inadequate torquing during manufacturing. Potential events that may occur as a result of this issue include increased procedural time and inadequate treatment. | Firm: Cook Incorporated | Product code: FBK | Code info: UDI-DI: 00827002161122; Lot Numbers: 16613606, 16951548, 16951548X",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99883",
+      "title": "TS Misc. Instruments Tray, Triathlon. Catalog Number: 6543-6-519.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Reprocessing instructions provided in LSTPI-B specify a sterilization dry time of 30 minutes for the trays sterilized in blue wrap. When blue wrap is used, the 30-minute dry time may lead to a small amount of residual moisture remaining after sterilization. | Firm: Howmedica Osteonics Corp. | Product code: FSM | Code info: Catalog Number: 6543-6-519. GTIN: 07613327555127. All lot numbers used prior to the correction date of May 8, 2026 are impacted.",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99908",
+      "title": "Philips Smart-hopping 2.0 AP 1.4 GHz; Product/Model Number: 867216;",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-16",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Unreliable wireless roaming behavior of Smart-hopping 1.0 wireless clients during transport when connecting to Smart-hopping 2.0 infrastructure, resulting in loss of connectivity to the central monitoring system (PIC iX). | Firm: Philips North America | Product code: MHX | Code info: Product/Model Number: 867216; UDI-DI: N/A; System Serial Numbers: DK61624330, DK61623830, DK61724824, DK61623802, DK61623826, DK61624101, DK61624082, DK61623910, DK61624187, DK51313245, DK61724472, DK61724620, DK61724590, DK61724461, DK61724725, DK61724679, DK61724684, DK51313645, DK51313455, DK61724814, DK61724747, DK61624235, DK61422548, DK52316132, DK61724553, DK61724957, DK61724756, DK61523178, DK61724502, DK61724860, DK61523117, DK61724577, DK61724376, DK61724566, DK61422553, DK61322150, DK61523070, DK61523270, DK52617072, DK61523151, DK61422454, DK53817745, DK52617073, DK61422674, DK61422973, DK61523211, DK61322124, DK61523272, DK61523248, DK51313320, DK61422463, DK61523260, DK61322137, DK61322337, DK61322253, DK61322375, DK61322380, DK61422762, DK61422868, DK61322122, DK61422851, DK61322283, DK61523658, DK61422848, DK61422884, DK61422897, DK61523409, DK61422808, DK61422736, DK61422806, DK61422763, DK61523517, DK61422957, DK61523383, DK61523442, DK61322227, DK61422843, DK61523495, DK61423030, DK61422949, DK61322271, DK61322127, DK60621383, DK60621482, DK61322213, DK60321063, DK60320788, DK60621426, DK60621646, DK61322238, DK60621223, DK60621517, DK61322379, DK52316002, DK60320966, DK60621224, DK60621197, DK60821808, DK60621565, DK60821916, DK60821936, DK60320570, DK60320720, DK60320768, DK60320506, DK60320537, DK60321057, DK60320711, DK60320892, DK60320761, DK60320544, DK60321033, DK60320571, DK60320759, DK60320484, DK60321044, DK60320839, DK60320419, DK60320437, DK60320474, DK54820263, DK60320601, DK60320592, DK54820262, DK54820037, DK54819845, DK54820134, DK54819871, DK54820272, DK60320874, DK54519084, DK54519572, DK54820343, DK54819876, DK52516932, DK54519153, DK53817766, DK54518977, DK52516923, DK54519018, DK53817821, DK54820004, DK54819819, DK54820101, DK54819922, DK54518948, DK52516510, DK54519031, DK54518951, DK54519115, DK52516754, DK52516873, DK52516766, DK53817862, DK52516569, DK52516783, DK52516933, DK54418622, DK52516533, DK52315958, DK53217276, DK52316143, DK53217187, DK53217154, DK52316114, DK53217197, DK54418453, DK53918024, DK54418698, DK54418600, DK54418588, DK54418881, DK54519407, DK54418598;",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
@@ -195,6 +283,52 @@
       "analysisMode": "rules"
     },
     {
+      "id": "us-fda:99879",
+      "title": "B Braun SAFSITE Injection Site, RV1000NC SAFSITE VALVE W/O EXTRA CAP. Catalog Number: 415068.",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-14",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Potential for leakage and backflow at the Safsite valve. | Firm: B Braun Medical Inc | Product code: FPA | Code info: Catalog Number: 415068; Primary UDI-DI: 04022495769862; Unit of Use UDI-DI: 4045928016067; Lot Number (Expiration Date): 0061968348 (31OCT2029), 0061966913 (30SEP2029).",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99983",
+      "title": "Medline convenience kit labeled as: FOOT ANKLE. Medline Kit SKU DYNJ65395A",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-11",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Discrepancy in the shelf-life of a component | Firm: Medline Industries, LP | Product code: KCY | Code info: UDI/DI 10195327174156 (each) 40195327174157 (case), Lot Number 22GBW912",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
       "id": "us-fda:99829",
       "title": "NaviFlex LW Pusher; Advx Panc. Stent 4/5F; Material Number (UPN): M00535030;",
       "sourceId": "us-fda",
@@ -207,6 +341,29 @@
       "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
       "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
       "rawSummary": "Device was incorrectly manufactured with a guidewire exit port (referred to in the IFU as the RX port), which is not a design feature associated with this device configuration. | Firm: Boston Scientific Corporation | Product code: FGE | Code info: Material Number (UPN): M00535030; UDI-DI: 08714729856191; Lot Number: 38904309, 39017263, 39365322;",
+      "severity": "medium",
+      "read": false,
+      "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:99844",
+      "title": "Amplatzer Amulet Left Atrial Appendage Occluder Model Numbers 1. 9-ACP2-007-016 2. 9-ACP2-007-018 3. 9-ACP2-007-020 4. 9-ACP2-007-022 5. 9-ACP2-010-025 6. 9-ACP2-010-028 7. 9-ACP2-010-031 8. 9-ACP2-010-034",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-09-10",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "FDA의 의료기기 규제 업데이트입니다. 자사 제품군과 업무 프로세스에 직접 적용되는 요구사항이 있는지 확인하세요.",
+      "rawSummary": "Changes to Instructions for Use (IFU) for the device regarding risk of Pulmonary Artery Injury (PAI). | Firm: Abbott | Product code: NGV | Code info: UDI-DI 1. 00811806013459 2. 00811806013466 3. 00811806013473 4. 00811806013480 5. 00811806013497 6. 00811806013503 7. 00811806013510 8. 00811806013527 All lots/serial numbers.",
       "severity": "medium",
       "read": false,
       "action": "내용을 검토하고 자사 제품, 공급망, 등록 상태에 영향을 주는지 1차 스크리닝하세요.",
