@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-10-24T00:22:37.951Z",
+  "collectedAt": "2026-10-25T00:03:09.540Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -76,10 +76,6 @@
     {
       "source": "ca-health-canada",
       "message": "ca-health-canada failed: 503 Service Unavailable"
-    },
-    {
-      "source": "global-johner-institute",
-      "message": "global-johner-institute failed: 524 <none>"
     }
   ],
   "items": [
