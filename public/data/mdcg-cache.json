@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-11-01T00:45:46.452Z",
+  "collectedAt": "2026-11-02T01:19:14.645Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -72,6 +72,10 @@
     {
       "source": "ai",
       "message": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis."
+    },
+    {
+      "source": "ca-health-canada",
+      "message": "fetch failed: ETIMEDOUT"
     }
   ],
   "items": [
