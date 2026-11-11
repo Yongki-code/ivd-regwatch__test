@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-11-10T03:58:23.326Z",
+  "collectedAt": "2026-11-11T01:44:05.246Z",
   "mode": "github-actions-rss-rules",
   "aiEnabled": false,
   "aiProvider": "openai",
@@ -8,7 +8,7 @@
   "aiKeyMissingMessage": "AI_PROVIDER=openai is selected, but OPENAI_API_KEY is not registered. Collection continued with rule-based analysis.",
   "openAiModel": null,
   "claudeModel": null,
-  "count": 219,
+  "count": 220,
   "sources": [
     {
       "id": "eu-ivdr",
@@ -206,6 +206,29 @@
       "severity": "high",
       "read": false,
       "action": "즉시 영향 평가를 열고 제품 식별, 고객 통지, 시정조치, SOP 및 책임자별 액션 항목을 확인하세요.",
+      "impactPoints": [
+        "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
+        "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
+        "인증기관, 수입자, 대리인과 공유해야 하는 변경사항 선별"
+      ],
+      "analysisMode": "rules"
+    },
+    {
+      "id": "us-fda:100036",
+      "title": "LIAISON PLEX Gram-Negative Blood Culture Assay Catalog No. 20-005-303",
+      "sourceId": "us-fda",
+      "source": "FDA",
+      "authority": "U.S. Food and Drug Administration",
+      "region": "US",
+      "country": "US",
+      "type": "Guidance",
+      "date": "2026-10-05",
+      "link": "https://www.fda.gov/medical-devices/medical-device-recalls",
+      "summary": "MDCG 지침 또는 의료기기 규제 해석에 관한 업데이트입니다. 적용 범위를 확인하고 기술문서, PMS, 임상평가 또는 품질시스템 절차서 반영 필요성을 검토하세요.",
+      "rawSummary": "Instructions for Use updated to include explicit guidance that repeat testing is recommended whenever a positive family-level only result is obtained. Issue may contribute to incorrect or delayed diagnosis of bloodstream infection. | Firm: Luminex Corporation | Product code: NSU | Code info: All lots UDI-DI pending",
+      "severity": "medium",
+      "read": false,
+      "action": "기존 내부 해석과 차이가 있는 항목을 표시하고, 다음 RA 정기회의 안건으로 올려 적용 범위와 우선순위를 결정하세요.",
       "impactPoints": [
         "자사 IVD 또는 의료기기 제품군에 직접 적용되는 범위인지 확인",
         "기술문서, PMS/PMCF, vigilance 또는 QMS 절차서 변경 필요성 검토",
